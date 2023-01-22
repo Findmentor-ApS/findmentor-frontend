@@ -54,10 +54,7 @@ Thumbs.db
 /dist  
 /tmp  
 /out-tsc  
-  
-# dependencies  
-/node_modules  
-  
+
 # IDEs and editors  
 /.idea  
 .project  
@@ -66,14 +63,14 @@ Thumbs.db
 *.launch  
 .settings/  
 *.sublime-workspace  
-  
+
 # IDE - VSCode  
 .vscode/*  
 !.vscode/settings.json  
 !.vscode/tasks.json  
 !.vscode/launch.json  
 !.vscode/extensions.json  
-  
+
 # misc  
 /.sass-cache  
 /connect.lock  
@@ -83,7 +80,7 @@ npm-debug.log
 yarn-error.log  
 testem.log  
 /typings  
-  
+
 # System Files  
 .DS_Store  
 Thumbs.db  
