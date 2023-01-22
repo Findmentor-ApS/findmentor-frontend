@@ -1,0 +1,91 @@
+<div class="createAccount align-items-center row">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-md-12">
+               <div class="heading-content">
+                <h1 class="text-center mt-0 mx-auto pageTitle">
+                    Opret bruger
+                </h1>
+                <p class="text-center mt-0 mx-auto">
+                    Vælg fra nedenståden hvad der beskriver dig bedst
+                </p>
+               </div>
+            </div>
+        </div>
+       <div class="cards-wrap mt-8">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card test text-center " [ngClass]="{'active': card1 }">
+                    <div class="card-tick" *ngIf="card1"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 16 16" version="1.1">
+                            <rect width="16" height="16" id="icon-bound" fill="none"/>
+                            <path d="M0,9.014L1.414,7.6L5.004,11.189L14.593,1.6L16.007,3.014L5.003,14.017L0,9.014Z"/>
+                          </svg>
+                    </div>
+                    <div class="card-header">
+                        <h2 class="header-title">Borger</h2>
+                    </div>
+                <div class="card-image">
+                    <img src="../../assets/images/borger.png" alt="">
+                </div>
+                    <div class="card-footer">
+                       <button (click)="card1 = !card1; card2 =false; card3 =false" routerLink="/sign-up">
+                        Vælg
+                       </button>
+                    </div>
+    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center" [ngClass]="{'active': card2 }">
+                    <div class="card-tick" *ngIf="card2"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 16 16" version="1.1">
+                            <rect width="16" height="16" id="icon-bound" fill="none"/>
+                            <path d="M0,9.014L1.414,7.6L5.004,11.189L14.593,1.6L16.007,3.014L5.003,14.017L0,9.014Z"/>
+                          </svg>
+                    </div>
+                    <div class="card-header">
+                        <h2 class="header-title">Kommune</h2>
+                    </div>
+                <div class="card-image">
+                    <img src="../../assets/images/kommune.png" alt="">
+                </div>
+                    <div class="card-footer">
+                       <button (click)="card2 = !card2; card3 =false; card1 =false" routerLink="/sign-up">
+                        Vælg
+                       </button>
+                    </div>
+    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center" [ngClass]="{'flipped': card3 }">
+                    <div class="card-tick"  *ngIf="card3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 16 16" version="1.1">
+                            <rect width="16" height="16" id="icon-bound" fill="none"/>
+                            <path d="M0,9.014L1.414,7.6L5.004,11.189L14.593,1.6L16.007,3.014L5.003,14.017L0,9.014Z"/>
+                          </svg>
+                    </div>
+                    <div class="card-header">
+                        <h2 class="header-title">Mentor
+                        </h2>
+                    </div>
+                <div class="card-image">
+                    <img src="../../assets/images/mentor.png" alt="">
+                </div>
+                    <div class="card-footer">
+                       <button (click)="card3 = !card3; card2 =false; card1 =false" routerLink="/sign-up">
+                        Vælg
+                       </button>
+                    </div>
+    
+                </div>
+            </div>
+           
+    
+        </div>
+       </div>
+    </div>
+</div>

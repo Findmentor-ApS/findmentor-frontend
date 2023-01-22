@@ -1,0 +1,143 @@
+.single-result{
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+ }
+ .single-result .img{
+  width: 20%;
+ }
+ .single-result .img img{
+  border-radius: 4px;
+  width: 100%;
+ }
+ .mentor-detail{
+  width: 55%;
+  padding-left: 5%;
+
+ }
+ .mentor-detail h2{
+  font-size: 24px;
+ }
+ .mentor-detail h4{
+  font-size: 18px;
+ }
+ .mentor-detail p{
+  font-size: 14px;
+  padding-right: 5%;
+}
+.detail-divider{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 2px;
+  background-color: #94969940;
+}
+.tags p{
+  display: inline-block;
+  margin: 5px;
+  padding: 4px 7px ;
+  font-weight: 600;
+  background-color: #e4e0fc;
+border-radius: 8px;
+}
+
+/* contact detail mentor  */
+.mentor-contact{
+  width: 30%;
+  border-left: 1px solid #94969940;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.icons{
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+  margin-top: 5px;
+}
+.icons>div{
+  width: 30px;
+  height: 30px;
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icons>div>svg{
+  fill: #fff;
+}
+.availability .available-status{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: auto;
+
+  column-gap: 10px;
+  padding: 3px 7px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.availability .accessible.available-status{
+  background-color: #e4e0fc;
+}
+.availability .waiting.available-status{
+  background-color: #e6c682;
+}
+.availability .available-status p{
+  font-weight: 600;
+}
+.underAvailabilityText{
+  text-align: center;
+  margin-top: 5px;
+}
+.underAvailabilityText p{
+font-weight: 600;
+}
+
+.btn-contact-wrap{
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 0 10%;
+}
+
+.btn-contact-wrap button{
+  padding: 10px 20px;
+    width: 75%;
+    margin: auto;
+    font-weight: 600;
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+.btn-contact-wrap button.bookNow{
+  background-color: #a8d6b6;
+  border-color: #a8d6b6;
+}
+
+@media screen and (max-width:768px) {
+  .single-result{
+    flex-direction: column;
+    margin: 10px;
+
+  }
+  .single-result>div{
+    width: 100%;
+  }
+  .single-result>div.img{
+    width: 70%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .mentor-detail{
+    text-align: center;
+  }
+  .mentor-detail>p,.detail-divider,.tags-container,.upper-detail{
+    display: none;
+  }
+  .mentor-contact{
+    border-left-width:0px ;
+  }
+}

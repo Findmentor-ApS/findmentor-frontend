@@ -1,0 +1,230 @@
+.site-logo img{
+  max-width: 150px;
+}
+.header .solution-header{
+  background-color: #f4f4f4 !important;
+  border: 0 !important;
+}
+/* mobile navigation  */
+.header .nav.is-visible{
+  padding-top: 0px;
+  width: 90%;
+  max-width: 500px;
+}
+.mobile-menu-topbar{
+  background-color: #444c94;
+  padding: 7px 10px;
+}
+.mobile-menu-text{
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.mobile-menu-text p{
+  color: #fff;
+  font-weight: 600;
+}
+.mobile-menu-text .topbar-divider{
+  height: 15px;
+  width: 2px;
+  background-color: #fff;
+}
+.mobile-menu-close-btn button{
+  color: #fff !important;
+}
+.header .nav.is-visible .navbar-inner.container.navbar-context-actions{
+  padding: 0px 50px;
+}
+.mobile-menu-links>a{
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.mobile-menu-links>a>svg{
+  margin-right: 5px;
+}
+.mobile-nav-btn button,.button-menu-close, .mobile-nav-btn button:visited,.button-menu-close:visited{
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+@media (min-width: 992px){
+  .header .nav{
+    display: none !important;
+  }
+  .header .button-menu-open{
+    display: inline-block;
+  }
+   .header .button-menu-close{
+    display: block;
+  }
+  .header .solution-header .solution-header-inner   .solution-info {
+max-width: 85%;
+}
+.header .solution-header.login .solution-info{
+  display: none;
+}
+ .overlay.is-visible{
+  z-index: 2;
+}
+.header .solution-header.login .mobile-nav-btn,.header  .nav.login{
+  display: block !important;
+}
+.logout , .mail{
+  margin-left: 20px;
+}
+.header  .nav.login.is-visible{
+  max-width: 300px;
+    margin-left: auto;
+    margin-right: 0;
+    position: fixed;
+}
+.nav.login.is-visible .mobile-menu{
+  display: block;
+  padding-top: 20px;
+}
+
+.nav.login.is-visible .mobile-menu  .mobile-menu-links{
+  justify-content: start;
+}
+.nav.login.is-visible .mobile-menu  .mobile-menu-links .function-link{
+  margin-left: 0;
+}
+.header  .nav.login .mobile-menu-topbar{
+  display: none;
+}
+.mobile-menu .navbar-inner{
+  flex-direction: column !important;
+}
+ .mobile-menu{
+  display: none;
+}
+.nav-primary .current span{
+  border-bottom: 0 !important;
+}
+.nav-primary li a:focus-visible, .nav-primary li a:focus{
+  outline: 0;
+}
+.nav-primary .current .overflow-menu .button-overflow-menu span,
+.nav-primary .current .overflow-menu .button-overflow-menu:hover span,
+.nav-primary > li > .nav-link:hover span,
+.nav-primary .current .overflow-menu .button-overflow-menu[aria-expanded=true] span,
+.nav-primary .current .overflow-menu .button-overflow-menu[aria-expanded=true] span,
+.nav-primary .current .overflow-menu .button-overflow-menu[aria-expanded=true]:hover span, .nav-primary .current .overflow-menu .button-overflow-menu[aria-expanded=true]:focus span, .nav-primary .current .overflow-menu .button-overflow-menu[aria-expanded=true]:active span {
+  border-bottom-width: 0px !important;
+}
+
+}
+.mobile-nav-btn{
+  text-align: right;
+}
+/* login button style  */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dd-button {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding:4px 20px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.dd-button:hover {
+  background-color: #eeeeee;
+}
+
+
+.dd-input {
+  display: none;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+.dd-input + .dd-menu {
+  display: none;
+}
+
+.dd-input:checked + .dd-menu {
+  display: block;
+  z-index: 2;
+  text-align: left;
+}
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.dd-menu li::before{
+  display: none;
+}
+
+.dd-menu li:hover {
+  background-color: #f6f6f6;
+}
+
+/* drop down style end  */
+
+.nav-primary .overflow-menu .button-overflow-menu{
+  background-position: right 10px center !important;
+}
+.nav-primary .overflow-menu .button-overflow-menu span {
+  padding-right: 20px;
+padding-bottom: 0;
+}
+.nav-primary .overflow-menu{
+  height: 100%;
+  display: flex;
+  max-height: 34px;
+}
+.nav-primary .overflow-menu button{
+  background: transparent;
+  border: 1px solid #BFBFBF;
+  outline: none;
+  border: 1px solid black;
+  padding: 4px 20px;
+  border-radius: 8px;
+}
+.nav-primary .overflow-menu button svg{
+  width: 12px;
+}
+.overflow-menu.green{
+  margin-left: 15px;
+
+}
+.overflow-menu.green button{
+  background: #add4b5;
+  border: 0;
+}
+.nav-primary > li > .nav-link{
+  padding: 0;
+  margin: 0px 10px;
+}
+.nav-primary > li > .nav-link span{
+  padding: 10px 0px;
+  border-bottom: 0;
+}
+
+@media screen and (min-width:992px) {
+  .secondary-toggle{
+    display: none !important;
+  }
+}

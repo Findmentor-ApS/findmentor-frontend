@@ -1,0 +1,225 @@
+.mentorDetailWrap{
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+.breadcrumbs ol li a,.breadcrumbs ol li{
+    font-weight: 500;
+    text-decoration: underline;
+    color: #4b4b4b;
+}
+.detailCard{
+    background: #fff;
+    padding: 10px;
+    display: flex;
+    column-gap: 40px;
+    padding-bottom: 30px;
+}
+.mentorInformation{
+    margin-top: 20px;
+}
+.mentorInformation>div>h1{
+    font-size: 30px;
+}
+.mentorInformation>div>h3{
+    color: #333333;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.mentorInformation>div>p{
+    font-weight: 500;
+    color: #333333;
+}
+
+.detailCard .imageWrap img{
+    height: 430px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.detailCard .imageWrap .actionIcons{
+    column-gap: 15px;
+    margin-left: 10px;
+}
+.detailCard .imageWrap .actionIcons .icon{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.detailCard .imageWrap .actionIcons .icon svg{
+    fill: #bcd5c1;
+    height: 18px;
+}
+
+/* Book Mentor Wrap  */
+.bookMentor{
+    background-color: #e5e6e9;
+    padding: 20px 30px;
+}
+.bookMentor>h2{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.contactMentor {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.contactMentor li{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    column-gap: 10px;
+    margin-bottom: 10px;
+}
+.contactMentor li .icon{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contactMentor li .icon svg{
+    fill: #fff;
+    width: 18px;
+}
+.contactMentor li::before{
+    display: none;
+}
+.contactMentor li h3{
+    margin: 0;
+    font-size: 20px;
+    color: #333333;
+}
+.status{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background-color: #cfccea;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-top: 25px;
+}
+.status p{
+    margin: 0;
+}
+.price{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+.price p, .price h3{
+    margin: 0;
+}
+.price h3{
+    font-size: 25px;
+}
+.price p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.buttonWrap{
+    margin-top: 25px;
+}
+.buttonWrap button{
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+    background-color: transparent;
+    min-width: 150px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+}
+.buttonWrap button.book{
+    background-color: #a8d6b6;
+    border-color: #a8d6b6;
+}
+.buttonWrap button:focus{
+    outline: 0;
+}
+
+/* Biography Wrap  */
+.biographyWrap{
+    background-color: #fff;
+    padding: 25px;
+    margin-top: 20px;
+}
+.biographyWrap h3{
+    margin: 0;
+    font-size: 30px;
+    color: #333333;
+}
+.biographyWrap p{
+    color: #585858;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Video Wrap  */
+.videoWrap{
+    background-color: #fff;
+    padding: 25px;
+    margin-top: 20px;
+}
+.videoWrap video{
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Area Of Experience  */
+.experienceWrap, .clientsWrap{
+    background-color: #fff;
+    padding: 30px 20px ;
+    margin-top: 20px;
+}
+.experienceWrap h3,.clientsWrap h3{
+    margin: 0;
+    margin-bottom: 15px;
+    color: #333333;
+}
+.tagsWrap {
+    max-width: 650px;
+}
+.tagsWrap .tag{
+    background-color: #e4e0fc;
+    color: #876ff4;
+}
+.clientsWrap{
+    margin-bottom: 200px;
+}
+
+/* Testimonials  */
+.testimonialWrap{
+    background-color: #2e3131;
+    padding: 80px 0;
+}
+.testimonial{
+    max-width: 660px;
+    text-align: center;
+    margin: auto;
+}
+.testimonial .quote svg{
+    fill: #fff;
+    width: 50px;
+    margin-bottom: 30px;
+}
+
+.testimonial h3,.testimonial p {
+    margin: 0;
+    color: #fff;
+}
+.testimonial h3{
+    margin-bottom: 15px;
+}

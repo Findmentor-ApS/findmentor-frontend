@@ -1,0 +1,51 @@
+.signUpForm{
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+.pageTitle{
+    font-size: 45px;
+}
+.heading-content p{
+    font-size: 18px;
+    font-weight: 400;
+    color: #6c6c6c;
+}
+.formWrap{
+    max-width: 850px;
+    margin: auto;
+}
+.formWrap .form-group{
+    margin-bottom: 25px;
+}
+.form-group fieldset ul{
+    display: flex;
+    column-gap: 25px;
+}
+.formWrap .form-label{
+    font-weight: 600;
+    color: #404040;
+    font-size: 18px;
+}
+.formWrap input{
+    max-width: 100%;
+    border-color: #6c6c6c;
+}
+.formWrap input:focus{
+    border-radius: 0;
+    outline-width: 3px;
+    outline-color: #aaccb2;
+}
+.radioBtn input.form-radio:focus{
+    outline-width: 3px;
+    outline-color: #aaccb2;
+}
+.btnWrap{text-align: right;}
+.btnWrap button{
+    background-color: #a8d6b6;
+    color: #3e4541;
+    font-size: 20px;
+    font-weight: 500;
+    border: 0px;
+    padding: 5px 15px;
+    border-radius: 5px;
+}

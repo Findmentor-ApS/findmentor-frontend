@@ -1,0 +1,204 @@
+<div class="main-content">
+  <div class="container">
+    <!-- search bar top   -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-wrap">
+          <div class="searchInput">
+            <div class="icon">
+              <svg _ngcontent-ymh-c64="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 487.95 487.95" xml:space="preserve" style="enable-background: new 0 0 487.95 487.95;"><g _ngcontent-ymh-c64=""><g _ngcontent-ymh-c64=""><path _ngcontent-ymh-c64="" d="M481.8,453l-140-140.1c27.6-33.1,44.2-75.4,44.2-121.6C386,85.9,299.5,0.2,193.1,0.2S0,86,0,191.4s86.5,191.1,192.9,191.1    c45.2,0,86.8-15.5,119.8-41.4l140.5,140.5c8.2,8.2,20.4,8.2,28.6,0C490,473.4,490,461.2,481.8,453z M41,191.4    c0-82.8,68.2-150.1,151.9-150.1s151.9,67.3,151.9,150.1s-68.2,150.1-151.9,150.1S41,274.1,41,191.4z"></path></g></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g><g _ngcontent-ymh-c64=""></g></svg>
+            </div>
+            <ng-select [multiple]="true" [(ngModel)]="selectedSearch" placeholder="Hvad ønsker du hjælp til?">
+              <ng-option *ngFor="let tags of searchArr" [value]="tags.id" >{{tags.name}}</ng-option>
+              <ng-option [value]="'custom'">Custom</ng-option>
+          </ng-select>
+          </div>
+          <div class="locationInput">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 349.661 349.661" enable-background="new 0 0 349.661 349.661">
+                <g>
+                  <path d="M174.831,0C102.056,0,42.849,59.207,42.849,131.981c0,30.083,21.156,74.658,62.881,132.485   c30.46,42.215,61.363,76.607,61.671,76.95l7.429,8.245l7.429-8.245c0.309-0.342,31.211-34.734,61.671-76.95   c41.725-57.828,62.881-102.402,62.881-132.485C306.812,59.207,247.605,0,174.831,0z M174.83,319.617   c-37.058-42.692-111.98-139.048-111.98-187.636C62.849,70.235,113.084,20,174.831,20s111.981,50.235,111.981,111.981   C286.812,180.54,211.888,276.915,174.83,319.617z"/>
+                  <circle cx="174.831" cy="131.982" r="49.696"/>
+                </g>
+              </svg>
+            </div>
+            <ng-select [multiple]="false" [(ngModel)]="selectedLocationArr" placeholder="Hvor skal du bruge en mentor">
+              <ng-option *ngFor="let location of locationArr" [value]="location.id" >{{location.name}}</ng-option>
+              <ng-option [value]="'custom'">Custom</ng-option>
+          </ng-select>
+          </div>
+          <div class="btn-wrap">
+            <button>
+              Find Mentor
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- search bar top   end-->
+    <!-- results and filters  -->
+    <div class="row mt-5">
+      <!-- filters column  -->
+      <div class="col-md-3 d-flex justify-content-between align-items-center align-items-md-start">
+        <div class="dropdown-container">
+          <input type="checkbox" id="drop" />
+          <label class="filter-label" for="drop">Filters</label>
+          <div class="dropdown-filter-wrap">
+            <div class="filters">
+              <div class="supportFilter">
+                <h3>
+                  Støtteform
+                </h3>
+                <div class="filter-wrap">
+                  <ng-select (change)="typeFormSelector()" [multiple]="true" [(ngModel)]="SelectedTypeForm">
+                    <ng-option *ngFor="let type of typeForm" [value]="type.id" >{{type.name}}</ng-option>
+                    <ng-option [value]="'custom'">Custom</ng-option>
+                </ng-select>
+                </div>
+              </div>
+              <div class="regionFilter">
+                <h3>
+                  Vælg Region
+                </h3>
+                <div class="filter-wrap">
+                  <ng-select [multiple]="true" (change)="locationSelector()" [(ngModel)]="selectedLocation">
+                    <ng-option *ngFor="let location of filterLocation" [value]="location.id" >{{location.name}}</ng-option>
+                    <ng-option [value]="'custom'">Custom</ng-option>
+                </ng-select>
+                </div>
+              </div>
+              <div class="languageFilter">
+                <h3>
+                  Vælg sprog
+                </h3>
+                <div class="filter-wrap">
+                  <ng-select [multiple]="true" (change)="languageSelector()" [(ngModel)]="selectedLanguage" >
+                    <ng-option *ngFor="let car of language" [value]="car.id" >{{car.name}}</ng-option>
+                    <ng-option [value]="'custom'">Custom</ng-option>
+                </ng-select>
+                </div>
+              </div>
+              <div class="mentorFilter">
+                <h3>
+                  Mentor
+                </h3>
+                <div class="filter-wrap">
+                  <ng-select [multiple]="false" (change)="genderSelector()" [(ngModel)]="emptyLanguage" placeholder="Vælg specifik mentor">
+                    <ng-option *ngFor="let car of language" [value]="car.id" >{{car.name}}</ng-option>
+                    <ng-option [value]="'custom'">Custom</ng-option>
+                </ng-select>
+                </div>
+              </div>
+
+              <div class="checkbox-wrap">
+                <div class="audienceCheckbox">
+                  <div class="checkboxTitle">
+                    <b class="mb-0">
+                      Målgruppe
+                    </b>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="barn" >
+                    <label for="barn">Barn (-15)</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="unge" checked>
+                    <label for="unge">Unge (16-18)</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="voksen" >
+                    <label for="voksen">Voksen (18+)</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="par" >
+                    <label for="par">Par</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="familie" >
+                    <label for="familie">Familie</label>
+                  </div>
+                </div>
+                <div class="mentorGender">
+                  <div class="checkboxTitle">
+                    <b class="mb-0">
+                      Mentor køn
+                    </b>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="mand" >
+                    <label for="mand">Mand</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="kvinde" >
+                    <label for="kvinde">Kvinde</label>
+                  </div>
+                </div>
+                <div class="contact-form">
+                  <div class="checkboxTitle">
+                    <b class="mb-0">
+                      Kontaktform
+                    </b>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="personlig" >
+                    <label for="personlig">Personlig</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="telefonisk" checked>
+                    <label for="telefonisk">Telefonisk</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" id="online" >
+                    <label for="online">Online</label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- reset button  -->
+              <div class="reset-btn">
+                <button class="btn btn-outline-dark" (click)="resetURL()">
+                  Ryd filtre
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  class="sortBy d-flex justify-content-end d-block d-md-none"><p _ngcontent-lpe-c63="" class="m-0">Sortér efter:</p><select _ngcontent-lpe-c63=""><option _ngcontent-lpe-c63="" value="anbefalet" ng-reflect-value="anbefalet">Anbefalet</option></select></div>
+
+
+      </div>
+      <!-- filters column  end-->
+      <!-- results column  -->
+      <div class="col-md-9">
+        <div class="result-wrap px-4">
+        <div class="row">
+          <div class="col-6">
+            <div class="mentor-number">
+              <p class="m-0">
+                34 mentorer matcher dine kriterier
+              </p>
+            </div>
+          </div>
+          <div class="col-6 text-right">
+            <div class="sortBy d-flex justify-content-end">
+              <p class="m-0">Sortér efter:</p>
+              <select >
+                <option value="anbefalet">Anbefalet</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="results-container"
+        (scrolled)="onScrollDown($event)"
+        >
+          <!-- testing area  -->
+          <app-mentor-list [index]="index"></app-mentor-list>
+      </div>
+      </div>
+      </div>
+      <!-- results column end  -->
+    </div>
+     <!-- results and filters end   -->
+  </div>
+</div>
