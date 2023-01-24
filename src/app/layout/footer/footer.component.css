@@ -1,0 +1,22 @@
+/* Footer  */
+footer {
+    padding: 50px 0px;
+    background-color: #e0d4bc;
+  }
+  
+  footer b {
+    margin-bottom: 10px;
+  }
+  
+  footer a {
+    color: #1a1a1a !important;
+    outline: none;
+    margin-bottom: 10px;
+  }
+  
+  footer .contact,
+  footer .link,
+  footer .cookies {
+    display: flex;
+    flex-direction: column;
+  }

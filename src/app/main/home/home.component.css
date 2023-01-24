@@ -1,0 +1,368 @@
+/* Banner starrt  */
+.banner {
+  background: #f4f4f4;
+  padding-top: 80px;
+
+}
+
+.banner .heading {
+  margin-bottom: 40px;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  max-width: 90%;
+}
+
+.input-wrap form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-wrap form input {
+  border: 0px;
+  background: transparent;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.input-wrap form a[type="submit"] {
+  background-color: #7c64f4;
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.search-icon svg {
+  width: 24px;
+  fill: #c9c9c9;
+}
+
+.images-wrap {
+  display: flex;
+
+  column-gap: 15px;
+
+}
+
+@media screen and (max-width:991px) {
+  .images-wrap {
+    justify-content: space-between;
+    margin-top: 70px;
+  }
+
+  .images-wrap>.img:first-child {
+    display: none;
+  }
+
+  .images-wrap>.img {
+    width: 50%;
+    text-align: center;
+  }
+
+  .images-wrap>.img>img {
+    width: 100%;
+    max-height: 450px;
+    max-width: 250px;
+    border-radius: 30px;
+  }
+
+  .input-wrap {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .banner {
+    max-height: 580px;
+  }
+
+  .images-wrap {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 15px;
+  }
+
+  .images-wrap img {
+    max-height: 380px;
+    border-radius: 30px;
+  }
+
+  .images-wrap img:first-child {
+    max-width: 320px;
+    height: 100%;
+  }
+
+  .images-wrap img:nth-child(2) {
+    max-width: 150px;
+  }
+}
+
+/* Get Help section  */
+@media only screen and (min-width: 600px) {
+  .get-help{
+      padding: 80px 0px;
+  }
+}
+
+.help-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.help-img img {
+  width: 200px;
+  height: 200px;
+}
+
+/* how-does-it-work */
+.how-does-it-work {
+  padding: 50px 0px;
+  background-color: #f4f4f4;
+}
+
+.how-does-it-work h3 {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #BFBFBF;
+}
+
+.card .card-image {
+  margin: 15px 0px;
+}
+
+.card .card-image img {
+  width: 100px;
+  height: 100px;
+}
+
+.cards-wrap,
+.right-match-wrap {
+  max-width: 930px;
+  margin: auto;
+}
+
+/* right match  */
+.right-match {
+  padding: 80px 0px;
+}
+
+.right-match .img-wrap {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.tags-wrap {
+  display: flex;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.tags-wrap .tagItem {
+  border: 1px solid #747474;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.tags-wrap .tagItem p {
+  margin: 0;
+}
+
+/* Frequently asked question  */
+.faq {
+  padding: 50px 0px;
+  background-color: #f4f4f4;
+}
+
+.faq .accordion {
+  margin-top: 30px;
+}
+
+.faq .accordion>li .accordion-content,
+.faq .accordion>li .accordion-button {
+  border-width: 0px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.faq .accordion-button {
+  outline: 0;
+}
+
+.faq .accordion-button:hover,
+.faq .accordion-button[aria-expanded="true"] {
+  background-color: #d0cccc;
+}
+
+.faq .accordion-button[aria-expanded="true"] {
+  border-radius: 4px;
+}
+
+.faq h3 {
+  max-width: 100%;
+}
+
+
+.accordion {
+  display: block;
+  font-size: inherit;
+  margin: 0px;
+  position: relative;
+}
+
+.accordion input {
+  display: none;
+  position: absolute;
+  visibility: hidden;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+}
+
+.accordion__header {
+  border-width: 0px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+.accordion__header:before,
+.accordion__header:after {
+  background-color: #000;
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 3;
+}
+
+.accordion__header:before {
+  height: 2px;
+  margin-top: -1px;
+  top: 50%;
+  right: 20px;
+  width: 8px;
+}
+
+.accordion__header:after {
+  height: 8px;
+  margin-top: -4px;
+  top: 50%;
+  right: 23px;
+  width: 2px;
+}
+
+.accordion input:checked~.accordion__header {
+
+  border-color: #15967d;
+}
+
+.accordion input:checked~.accordion__header:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.accordion input:checked~.accordion__header:before {
+  background-color: #000;
+}
+
+.accordion input:checked~.accordion__header:after {
+  display: none;
+}
+
+.accordion:first-child .accordion__header {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.accordion:last-child .accordion__header {
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.accordion:last-child input:checked~.accordion__header {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.accordion__content {
+  background-color: white;
+  display: none;
+  padding: 20px;
+}
+
+.accordion input:checked~.accordion__content {
+  display: block;
+}
+
+.accordion:last-child .accordion__content {
+  border-bottom-width: 1px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.accordion__content h6 {
+  color: #1abc9c;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+/* Get Started  */
+.get-started {
+  background-color: #303434;
+  padding: 50px 0px;
+}
+
+.get-started .content h3,
+.get-started .content p {
+  max-width: 100%;
+  color: #fff;
+}
+
+.get-started .btn-group button {
+  border-radius: 4px;
+  border: 0px;
+  padding: 5px 10px;
+  border: 1px solid #acd3b4;
+  cursor: pointer;
+  margin: 0px 5px;
+}
+
+.get-started .btn-group button:first-child {
+  background-color: #acd3b4;
+
+}
+
+.get-started .btn-group button:last-child {
+  background-color: transparent;
+
+  color: #fff;
+}

@@ -14,6 +14,7 @@ import { LayoutComponent } from './layout/layout/layout.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileModule } from './profile/profile.module';
 import { SharedModule } from './shared/shared.module';
+import { WhatIsAMentorComponent } from './main/what-is-a-mentor/what-is-a-mentor.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
     CreateAccountComponent,
     LayoutComponent,
     SignUpComponent,
+    WhatIsAMentorComponent,
   ],
   imports: [
     BrowserModule,
