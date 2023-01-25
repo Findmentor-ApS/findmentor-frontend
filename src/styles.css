@@ -27,7 +27,7 @@ p {
 /* Banner starrt  */
 .banner {
   background: #f4f4f4;
-  padding-top: 80px;
+  padding-top: 50px;
 }
 .banner .heading {
   margin-bottom: 40px;
@@ -70,10 +70,18 @@ p {
 .images-wrap {
   display: flex;
   column-gap: 25px;
+  float: right;
 }
 .images-wrap img {
   object-fit: cover;
-  float: right;
+}
+.images-wrap .img:nth-child(2) img {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  object-position: 35% 50%;
+}
+.images-wrap .img:nth-child(3) img {
+  object-position: 20% 50%;
 }
 @media screen and (max-width: 991px) {
   .images-wrap {
@@ -111,20 +119,10 @@ p {
     border-radius: 20px;
   }
   .images-wrap .img:first-child img {
-    max-width: 320px;
     height: 100%;
-  }
-  .images-wrap .img:nth-child(2) img {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    object-position: 35% 50%;
-  }
-  .images-wrap .img:nth-child(3) img {
-    object-position: 20% 50%;
   }
   .images-wrap .img:nth-child(2) img,
   .images-wrap .img:nth-child(3) img {
-    max-width: 100px;
     height: 100%;
   }
 }
