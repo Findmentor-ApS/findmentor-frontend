@@ -14,7 +14,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'bliv-mentor', component: BlivMentorComponent },
-            { path: 'what-is-a-mentor', component: WhatIsAMentorComponent },
+            { path: 'hvad-er-en-mentor', component: WhatIsAMentorComponent },
             { path: 'find-mentor', component: FindMentorComponent },
             { path: 'mentor-detail', component: MentorDetailComponent },
             { path: 'overview', component: OverviewComponent }
