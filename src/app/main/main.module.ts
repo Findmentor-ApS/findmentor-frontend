@@ -10,6 +10,8 @@ import { FormsModule } from '@angular/forms';
 import { MentorDetailComponent } from './mentor-detail/mentor-detail.component';
 import { OverviewComponent } from './overview/overview.component';
 import { SharedModule } from '../shared/shared.module';
+import { BlivMentorComponent } from './bliv-mentor/bliv-mentor.component';
+import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.component';
 
 
 @NgModule({
@@ -17,6 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     FindMentorComponent,
     MentorListComponent,
     HomeComponent,
+    BlivMentorComponent,
+    WhatIsAMentorComponent,
     MentorDetailComponent,
     OverviewComponent
   ],
