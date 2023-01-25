@@ -1,0 +1,43 @@
+.banner {
+    background: #f4f4f4;
+    padding-top: 50px;
+}
+
+.banner .heading {
+    margin-bottom: 40px;
+}
+
+.images-wrap .img:first-child img {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.how-does-it-work {
+    padding: 50px 0px;
+    background-color: #f4f4f4;
+}
+
+.how-does-it-work h3 {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.how-does-it-work-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.how-does-it-work-img img {
+    height: 400px;
+    object-fit: cover;
+}
+
+@media screen and (min-width: 768px) {
+    .how-does-it-work-img img {
+        z-index: 1;
+        position: absolute;
+    }
+}

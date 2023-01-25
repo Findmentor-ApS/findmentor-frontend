@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
- h1,h2,h3,h4,h5,a,p,b,button{
+h1, h2, h3, h4, h5, a, p, b, button {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 p{
@@ -61,9 +61,11 @@ padding-top: 80px;
 }
 .images-wrap{
   display: flex;
-
-  column-gap: 15px;
-
+  column-gap: 25px;
+}
+.images-wrap img{
+  object-fit: cover;
+  float: right;
 }
 @media screen and (max-width:991px){
   .images-wrap{
@@ -81,7 +83,7 @@ padding-top: 80px;
     width: 100%;
     max-height: 450px;
     max-width: 250px;
-    border-radius: 30px;
+    border-radius: 20px;
   }
   .input-wrap{
     max-width: 100%;
@@ -93,19 +95,28 @@ padding-top: 80px;
   }
   .images-wrap{
     display: flex;
-    justify-content: flex-end;
     column-gap: 15px;
+    height: 380px;
  }
  .images-wrap img{
-   max-height: 380px;
-   border-radius: 30px;
+   height: 380px;
+   border-radius: 20px;
  }
- .images-wrap img:first-child{
+ .images-wrap .img:first-child img{
    max-width: 320px;
    height: 100%;
  }
- .images-wrap img:nth-child(2){
-    max-width: 150px;
+ .images-wrap .img:nth-child(2) img{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    object-position: 35% 50%;
+ }
+ .images-wrap .img:nth-child(3) img{
+    object-position: 20% 50%;
+ }
+ .images-wrap .img:nth-child(2) img, .images-wrap .img:nth-child(3) img{
+    max-width: 100px;
+    height: 100%;
  }
 }
 /* Get Help section  */
@@ -121,17 +132,6 @@ padding-top: 80px;
 .help-img img{
    width: 200px;
    height: 200px;
-}
-
-/* how-does-it-work */
-.how-does-it-work{
-   padding: 50px 0px;
-   background-color: #f4f4f4;
-}
-.how-does-it-work h3{
-   width: 100%;
-   max-width: 1200px;
-   margin-bottom: 20px;
 }
 .card{
    padding: 20px;
@@ -374,3 +374,16 @@ margin-right: 5px;
   border-top: 6px solid rgb(110, 110, 110);
 }
 .ng-select .ng-has-value .ng-placeholder {    display: none;  }
+
+.icon-list {
+  margin-left: 20px;
+}
+
+.icon-list li::before {
+  content: "";
+}
+
+.icon-list i {
+  left: -20px;
+  position: absolute;
+}

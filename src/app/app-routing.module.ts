@@ -8,18 +8,18 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
-    path:'', pathMatch:'full',
+    path: '', pathMatch: 'full',
     component: LayoutComponent,
-    loadChildren:()=> import('./main/main.module').then(m=>m.MainModule)
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
-  {path: 'create-account', component: CreateAccountComponent},
-  {path: 'sign-up', component:SignUpComponent},
+  { path: 'create-account', component: CreateAccountComponent },
+  { path: 'sign-up', component: SignUpComponent },
   {
-    path:'profile', 
+    path: 'profile',
     component: LayoutComponent,
-    loadChildren:()=> import('./profile/profile.module').then(m=>m.ProfileModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
   },
-  
+
 ];
 
 @NgModule({
