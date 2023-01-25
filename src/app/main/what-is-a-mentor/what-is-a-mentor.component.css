@@ -130,36 +130,28 @@
     height: 200px;
 }
 
-/* how-does-it-work */
-.how-does-it-work {
+/* findmentor-connect */
+.findmentor-connect {
     padding: 50px 0px;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
 }
 
-.how-does-it-work h3 {
+.findmentor-connect h3 {
     width: 100%;
     max-width: 1200px;
     margin-bottom: 20px;
 }
 
+
 .card {
     padding: 20px;
     border: 1px solid #BFBFBF;
+    margin-top: 30px;
 }
 
-.card .card-image {
-    margin: 15px 0px;
-}
-
-.card .card-image img {
-    width: 100px;
-    height: 100px;
-}
-
-.cards-wrap,
-.right-match-wrap {
-    max-width: 930px;
-    margin: auto;
+.card .header-title{
+    font-weight: bold;
+    font-size: 24px;
 }
 
 /* right match  */
@@ -191,17 +183,17 @@
 }
 
 /* Frequently asked question  */
-.faq {
+.mentor-types {
     padding: 50px 0px;
     background-color: #f4f4f4;
 }
 
-.faq .accordion {
+.mentor-types .accordion {
     margin-top: 30px;
 }
 
-.faq .accordion>li .accordion-content,
-.faq .accordion>li .accordion-button {
+.mentor-types .accordion>li .accordion-content,
+.mentor-types .accordion>li .accordion-button {
     border-width: 0px;
     background-color: #fff;
     border-radius: 4px;
@@ -209,20 +201,20 @@
     padding-bottom: 15px;
 }
 
-.faq .accordion-button {
+.mentor-types .accordion-button {
     outline: 0;
 }
 
-.faq .accordion-button:hover,
-.faq .accordion-button[aria-expanded="true"] {
+.mentor-types .accordion-button:hover,
+.mentor-types .accordion-button[aria-expanded="true"] {
     background-color: #d0cccc;
 }
 
-.faq .accordion-button[aria-expanded="true"] {
+.mentor-types .accordion-button[aria-expanded="true"] {
     border-radius: 4px;
 }
 
-.faq h3 {
+.mentor-types h3 {
     max-width: 100%;
 }
 
@@ -250,7 +242,8 @@
     padding: 15px 10px;
     cursor: pointer;
     transition: 0.2s;
-
+    font-size: 16px;
+    font-weight: bold;
     position: relative;
     z-index: 2;
 }
@@ -287,7 +280,6 @@
 }
 
 .accordion input:checked~.accordion__header:hover {
-    background-color: #fff;
     border-color: #fff;
 }
 
@@ -336,34 +328,26 @@
     margin-bottom: 5px;
 }
 
-/* Get Started  */
-.get-started {
+/* Quote  */
+.quote {
     background-color: #303434;
     padding: 50px 0px;
 }
 
-.get-started .content h3,
-.get-started .content p {
+.quote h1{
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 60px;
+    margin-bottom: -4rem;
+}
+
+.quote .content h3,
+.quote .content p {
     max-width: 100%;
     color: #fff;
 }
 
-.get-started .btn-group button {
-    border-radius: 4px;
-    border: 0px;
-    padding: 5px 10px;
-    border: 1px solid #acd3b4;
-    cursor: pointer;
-    margin: 0px 5px;
-}
-
-.get-started .btn-group button:first-child {
-    background-color: #acd3b4;
-
-}
-
-.get-started .btn-group button:last-child {
-    background-color: transparent;
-
-    color: #fff;
+.quote .content p {
+    font-style: italic;
 }
