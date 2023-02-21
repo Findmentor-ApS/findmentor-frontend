@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
   selector: 'app-find-mentor',
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./find-mentor.component.css']
 })
 export class FindMentorComponent implements OnInit {
-
-  constructor(private router: Router, private httpClient: HttpClient) {
+  selectedGender: Array<number> = [];
+  constructor(private router: Router, private httpClient: HttpClient, private mentorService: MentorService) {
 
   }
 
   ngOnInit(): void {
+    this.selectedGender = [1,2];
   }
   // testing code
   array = [];
@@ -34,35 +36,30 @@ export class FindMentorComponent implements OnInit {
   mentorList: any;
 
   typeFormSelector() {
-    console.log("Dropdown selection:", this.SelectedTypeForm);
-    this.router.navigate(['/find-mentor'], { queryParams: { Støtteform: this.SelectedTypeForm } });
+    console.log("Dropdown selection:", this.selectedTypeForm);
+    // this.router.navigate(['/find-mentor'], { queryParams: { Støtteform: this.selectedTypeForm } });
   }
   locationSelector() {
     console.log("Dropdown selection:", this.selectedLocation);
-    this.router.navigate(['/find-mentor'], { queryParams: { VælgRegion: this.selectedLocation } });
+    // this.router.navigate(['/find-mentor'], { queryParams: { VælgRegion: this.selectedLocation } });
   }
   languageSelector() {
     console.log("Dropdown selection:", this.selectedLanguage);
-    this.router.navigate(['/find-mentor'], { queryParams: { Vælgsprog: this.selectedLanguage } });
+    // this.router.navigate(['/find-mentor'], { queryParams: { Vælgsprog: this.selectedLanguage } });
   }
   genderSelector() {
     console.log("Dropdown selection:", this.selectedGender);
-    this.router.navigate(['/find-mentor'], { queryParams: { mentor: this.selectedGender } });
+    // this.router.navigate(['/find-mentor'], { queryParams: { mentor: this.selectedGender } });
   }
 
   resetURL() {
     this.router.navigate(['/find-mentor'])
   }
   // selectedCars = [];
-  selectedSearch = []
+  selectedSearch: any;
   searchArr = [
-    { id: 1, name: 'Angst' },
-    { id: 2, name: 'Depression' },
-    { id: 3, name: 'Stress' },
-    { id: 4, name: 'Personlig udvikling' },
-    { id: 5, name: 'Sorg og tab' },
-    { id: 6, name: 'Autisme' },
-    { id: 7, name: 'Stofmisbrug' },
+    { id: 1, name: 'Støttementor' },
+    { id: 2, name: 'SocialMentor' },
   ];
 
   selectedLocationArr = []
@@ -74,7 +71,7 @@ export class FindMentorComponent implements OnInit {
   ];
 
 
-  SelectedTypeForm = [1]
+  selectedTypeForm = [];
   typeForm = [
     { id: 1, name: 'Angst' },
     { id: 2, name: 'Depression' },
@@ -85,7 +82,7 @@ export class FindMentorComponent implements OnInit {
     { id: 7, name: 'Stofmisbrug' },
   ]
 
-  selectedLocation = [1]
+  selectedLocation = []
   emptyLanguage = [];
   filterLocation = [
     { id: 1, name: ' Hovedstaden' },
@@ -94,13 +91,12 @@ export class FindMentorComponent implements OnInit {
     { id: 4, name: ' Syddanmark' },
   ];
 
-  selectedLanguage = [1, 2]
-  language = [
+  selectedLanguage = []
+  languages = [
     { id: 1, name: 'Engelsk' },
     { id: 2, name: 'Dansk' }
   ]
-  selectedGender = [1, 2]
-  gender = [
+  genders = [
     { id: 1, name: 'Male' },
     { id: 2, name: 'Female' }
   ]
@@ -116,6 +112,13 @@ export class FindMentorComponent implements OnInit {
   toggleDisabled() {
     const search: any = this.searchArr[1];
     search.disabled = !search.disabled;
+  }
+
+  onSearch(): void {
+    this.mentorService.searchMentors(this.selectedSearch, this.selectedLocationArr, this.selectedTypeForm, this.selectedLanguage, this.selectedGender)
+    .subscribe(mentors => {
+      // Do something with the mentors returned from the API
+    });
   }
 
 }

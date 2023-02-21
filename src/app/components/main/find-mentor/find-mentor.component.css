@@ -229,3 +229,7 @@ background-color: #000;
     display: none;
   }
 }
+
+ng-select ::ng-deep .ng-option {
+  margin-bottom: 10px; /* adjust the value as per your requirement */
+}

@@ -1,0 +1,14 @@
+
+ <div [ngClass]="{'form-error' : displayErrors()}" class="form-group"  >
+    <label class="form-label" for="form-error">
+        {{ label }}
+    </label>
+    <span *ngIf="displayErrors()" class="form-hint" id="form-error-hint">
+        {{ hintMessage }}
+    </span>
+    <span *ngIf="displayErrors()" class="form-error-message" id="form-error-error">
+        <span class="sr-only">Fejl:</span> {{ errorMessage }}
+    </span>
+    <input class="form-input" [type]="type" aria-invalid="true" aria-describedby="form-error-hint form-error-error "
+    [formControl]="control" [placeholder]="placeHolder" [required]="required" />
+</div>

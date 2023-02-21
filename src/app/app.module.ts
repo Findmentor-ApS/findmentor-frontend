@@ -5,14 +5,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
-import { MainModule } from './main/main.module';
-import { LayoutComponent } from './layout/layout/layout.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { ProfileModule } from './profile/profile.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components//layout/footer/footer.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { MainModule } from './components//main/main.module';
+import { LayoutComponent } from './components//layout/layout/layout.component';
+import { SignUpComponent } from './components//sign-up/sign-up.component';
+import { ProfileModule } from './components//profile/profile.module';
+import { APIInterceptor } from './services/http-interceptor.interceptor';
+import { LoginComponent } from './components/login/login.component';
+import { InputComponent } from './components/shared/input/input.component';
 
 
 @NgModule({
@@ -23,6 +26,8 @@ import { ProfileModule } from './profile/profile.module';
     CreateAccountComponent,
     LayoutComponent,
     SignUpComponent,
+    LoginComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,13 @@ import { ProfileModule } from './profile/profile.module';
     MainModule,
     ProfileModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: APIInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
