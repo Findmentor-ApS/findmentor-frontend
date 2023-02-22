@@ -33,7 +33,7 @@
                 <g _ngcontent-ymh-c64=""></g>
               </svg>
             </div>
-            <ng-select [multiple]="false" [(ngModel)]="selectedSearch" [searchable]="false" notFoundText="Ingen resultater"
+            <ng-select [multiple]="false" [(ngModel)]="selectedMentorType" [searchable]="false" notFoundText="Ingen resultater"
               placeholder="Hvilken type mentor ønsker du?">
               <ng-option *ngFor="let tags of searchArr" [value]="tags.id">{{tags.name}}</ng-option>
             </ng-select>
@@ -55,7 +55,7 @@
             </ng-select>
           </div>
           <div class="btn-wrap">
-            <button (click)="onSearch()">
+            <button (click)="searchMentors()">
               Find Mentor
             </button>
           </div>
@@ -77,46 +77,33 @@
                   Støtteform
                 </h3>
                 <div class="filter-wrap">
-                  <ng-select (change)="typeFormSelector()" [multiple]="true" placeholder="Vælg støtteform"
+                  <ng-select [multiple]="true" placeholder="Vælg støtteform"
                   notFoundText="Ingen resultater" [(ngModel)]="selectedTypeForm">
                     <ng-option *ngFor="let type of typeForm" [value]="type.id">{{type.name}}</ng-option>
                   </ng-select>
                 </div>
               </div>
-              <div class="regionFilter">
+              <!-- <div class="regionFilter">
                 <h3>
                   Region
                 </h3>
                 <div class="filter-wrap">
-                  <ng-select [multiple]="true" (change)="locationSelector()" placeholder="Vælg Region" notFoundText="Ingen resultater" [(ngModel)]="selectedLocation">
-                    <ng-option *ngFor="let location of filterLocation"
+                  <ng-select [multiple]="true" placeholder="Vælg Region" notFoundText="Ingen resultater" [(ngModel)]="selectedLocationArr">
+                    <ng-option *ngFor="let location of locationArr"
                       [value]="location.id">{{location.name}}</ng-option>
                   </ng-select>
                 </div>
-              </div>
+              </div> -->
               <div class="languageFilter">
                 <h3>
                   Sprog
                 </h3>
                 <div class="filter-wrap">
-                  <ng-select [multiple]="true" (change)="languageSelector()" notFoundText="Vælg sprog" [(ngModel)]="selectedLanguage">
+                  <ng-select [multiple]="true" placeholder="Vælg Sprog" [searchable]="false" notFoundText="Ingen Resulateter" [(ngModel)]="selectedLanguage">
                     <ng-option *ngFor="let language of languages" [value]="language.id">{{language.name}}</ng-option>
-                    <ng-option [value]="'custom'">Custom</ng-option>
                   </ng-select>
                 </div>
               </div>
-              <!-- <div class="mentorFilter">
-                <h3>
-                  Mentor
-                </h3>
-                <div class="filter-wrap">
-                  <ng-select [multiple]="false" (change)="genderSelector()" notFoundText="Ingen resultater" [(ngModel)]="emptyLanguage"
-                    placeholder="Vælg specifik mentor">
-                    <ng-option *ngFor="let gender of genders" [value]="gender.id">{{gender.name}}</ng-option>
-                  </ng-select>
-                </div>
-              </div> -->
-
               <div class="checkbox-wrap">
                 <div class="audienceCheckbox">
                   <div class="checkboxTitle">
@@ -125,23 +112,23 @@
                     </b>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="barn">
+                    <input type="checkbox" id="barn" (change)="updateArray(1, selectedTarget)">
                     <label for="barn">Barn (-15)</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="unge" checked>
+                    <input type="checkbox" id="unge" (change)="updateArray(2, selectedTarget)">
                     <label for="unge">Unge (16-18)</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="voksen">
+                    <input type="checkbox" id="voksen" (change)="updateArray(3, selectedTarget)">
                     <label for="voksen">Voksen (18+)</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="par">
+                    <input type="checkbox" id="par" (change)="updateArray(4, selectedTarget)">
                     <label for="par">Par</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="familie">
+                    <input type="checkbox" id="familie" (change)="updateArray(5, selectedTarget)">
                     <label for="familie">Familie</label>
                   </div>
                 </div>
@@ -152,11 +139,11 @@
                     </b>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="mand">
+                    <input type="checkbox" id="mand" (change)="updateArray(1, selectedGender)">
                     <label for="mand">Mand</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="kvinde">
+                    <input type="checkbox" id="kvinde" (change)="updateArray(2, selectedGender)">
                     <label for="kvinde">Kvinde</label>
                   </div>
                 </div>
@@ -167,15 +154,15 @@
                     </b>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="personlig">
+                    <input type="checkbox" id="personlig" (change)="updateArray(1, selectedContact)">
                     <label for="personlig">Personlig</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="telefonisk" checked>
+                    <input type="checkbox" id="telefonisk" (change)="updateArray(2, selectedContact)">
                     <label for="telefonisk">Telefonisk</label>
                   </div>
                   <div class="form-group">
-                    <input type="checkbox" id="online">
+                    <input type="checkbox" id="online" (change)="updateArray(3, selectedContact)">
                     <label for="online">Online</label>
                   </div>
                 </div>
@@ -183,11 +170,11 @@
               </div>
 
               <!-- reset button  -->
-              <!-- <div class="reset-btn">
+              <div class="reset-btn">
                 <button class="btn btn-outline-dark" (click)="resetURL()">
                   Ryd filtre
                 </button>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -207,22 +194,32 @@
             <div class="col-6">
               <div class="mentor-number">
                 <p class="m-0">
-                  34 mentorer matcher dine kriterier
+                  {{ totalItems }} mentorer matcher dine kriterier
                 </p>
               </div>
             </div>
-            <div class="col-6 text-right">
+            <!-- <div class="col-6 text-right">
               <div class="sortBy d-flex justify-content-end">
                 <p class="m-0">Sortér efter:</p>
                 <select>
                   <option value="anbefalet">Anbefalet</option>
                 </select>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="results-container" (scrolled)="onScrollDown($event)">
-            <!-- testing area  -->
-            <app-mentor-list [index]="index"></app-mentor-list>
+            <app-mentor-list
+              [index]="index"
+              [selectedMentorType]="selectedMentorType"
+              [selectedGender]="selectedGender"
+              [selectedLocationArr]="selectedLocationArr"
+              [selectedTypeForm]="selectedTypeForm"
+              [selectedLanguage]="selectedLanguage"
+              [selectedContact]="selectedContact"
+              [selectedTarget]="selectedTarget"
+
+              >
+            </app-mentor-list>
           </div>
         </div>
       </div>

@@ -1,48 +1,48 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
   selector: 'app-mentor-list',
   templateUrl: './mentor-list.component.html',
-  styleUrls: ['./mentor-list.component.css']
+  styleUrls: ['./mentor-list.component.css'],
 })
-export class MentorListComponent implements OnInit,OnChanges {
+export class MentorListComponent implements OnChanges {
+  @Input() index!: number;
+  @Input() selectedMentorType: number = 0;
+  @Input() selectedLocationArr: number = 0;
+  @Input() selectedGender: number[] = [];
+  @Input() selectedTypeForm: number[] = [];
+  @Input() selectedContact: number[] = [];
+  @Input() selectedLanguage: number[] = [];
+  @Input() selectedTarget: number[] = [];
 
-  mentorList: any;
-  tempMentorList: any[] ;
+  mentors: any[] = [];
+  totalItems: number = 0;
 
-  @Input("index") index: number;
+  constructor(private mentorService: MentorService) {}
 
-  constructor(private router: Router, private httpClient: HttpClient) {
-    this.mentorList = [];
-  }
-
-  ngOnInit(): void {
-    this.getMentorList();
-
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.getMentorList();
-  }
-
-  getMentorList() {
-    this.httpClient.get('http://localhost:3000/posts').subscribe((res: any) => {
-      this.tempMentorList = res;
-      if (this.tempMentorList && this.tempMentorList.length <= 10) {
-        this.mentorList = this.tempMentorList;
-      }
-      else{
-
-        if(this.mentorList.length >= this.tempMentorList.length){
-
-          this.mentorList = [... this.tempMentorList]
-        }else{
-          this.mentorList = this.tempMentorList;
-        this.mentorList.length = 10*this.index;
-        }
-      }
-
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes.index &&
+      changes.index.currentValue &&
+      changes.index.currentValue !== changes.index.previousValue
+    ) {
+      this.mentorService
+        .searchMentors(
+          this.selectedMentorType,
+          this.selectedLocationArr,
+          this.selectedTypeForm,
+          this.selectedLanguage,
+          this.selectedGender,
+          this.selectedContact,
+          this.selectedTarget,
+          this.index,
+          10
+        )
+        .subscribe((result) => {
+          this.mentors = result.result;
+          this.totalItems = result.totalItems;
+        });
+    }
   }
 }

@@ -1,16 +1,36 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,map } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class MentorService {
+  private httpClient: HttpClient;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, handler: HttpBackend) { 
+    this.httpClient = new HttpClient(handler);
 
-  searchMentors(selectedSearch: number, selectedLocationArr: number[], selectedTypeForm: number[], selectedLanguage: number[], selectedGender: number[]): Observable<any> {
-    const query = `?search=selectedSearch&location=${selectedLocationArr.join(',')}&typeForm=${selectedTypeForm.join(',')}&language=${selectedLanguage.join(',')}&gender=${selectedGender.join(',')}`;
-    return this.http.get<any>(`/mentors${query}`);
+  }
+
+  searchMentors(selectedMentorType: number, selectedLocationArr: number, selectedTypeForm: number[], selectedLanguage: number[], selectedGender: number[],selectedContact: number[], selectedTarget: number[], page: number, perPage = 10): Observable<any> {
+    const params = {
+      search: selectedMentorType,
+      location: selectedLocationArr,
+      typeForm: selectedTypeForm.join(','),
+      language: selectedLanguage.join(','),
+      gender: selectedGender.join(','),
+      contact: selectedContact.join(','),
+      target: selectedTarget.join(','),
+      page: page,
+      perpage: perPage
+    };
+    return this.http.get<any>('/mentors', { params }).pipe(
+      map(result => ({
+        result: result.result,
+        totalItems: result.totalItems
+      }))
+    );
   }
 }
