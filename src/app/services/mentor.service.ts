@@ -1,4 +1,4 @@
-import { HttpClient,HttpBackend } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,map } from 'rxjs';
 
@@ -7,11 +7,8 @@ import { Observable,map } from 'rxjs';
   providedIn: 'root'
 })
 export class MentorService {
-  private httpClient: HttpClient;
 
-  constructor(private http: HttpClient, handler: HttpBackend) { 
-    this.httpClient = new HttpClient(handler);
-
+  constructor(private http: HttpClient) { 
   }
 
   searchMentors(selectedMentorType: number, selectedLocationArr: number, selectedTypeForm: number[], selectedLanguage: number[], selectedGender: number[],selectedContact: number[], selectedTarget: number[], page: number, perPage = 10): Observable<any> {
