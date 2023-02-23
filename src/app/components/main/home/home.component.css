@@ -1,3 +1,8 @@
+/* Path: frontend/src/app/components/main/home/home.component.css */
 .banner .left-content {
     margin-top: 30px;
+}
+
+#howTitle{
+    max-width: none;
 }
