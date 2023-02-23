@@ -22,13 +22,13 @@
 }
 .secondaryNavWrap ul li .form-group input[type=checkbox].form-toggle:checked ~ .form-toggle-label:before{
     left: 45px;
-    content: url(../../../../assets/svgs/tick.svg);
+    content: url(../../../../../assets/svgs/tick.svg);
 }
 .secondaryNavWrap ul li .form-group input[type=checkbox].form-toggle:checked ~ label::after{
     background-color: #a8d6b6 !important;
 }
 .secondaryNavWrap ul li .form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
-    content: url(../../../../assets/svgs/cross.svg);
+    content: url(../../../../../assets/svgs/cross.svg);
 }
 .secondaryNavWrap ul li::before{
     display: none;
