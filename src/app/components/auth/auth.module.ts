@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { LoginAccountComponent } from './login-account/login-account.component';
 import { ValidateLoginComponent } from './validate-login/validate-login.component';
+import { ValidateEmailComponent } from './validate-email/validate-email.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ValidateLoginComponent } from './validate-login/validate-login.componen
     LoginComponent,
     CreateAccountComponent,
     LoginAccountComponent,
-    ValidateLoginComponent
+    ValidateLoginComponent,
+    ValidateEmailComponent
   ],
   imports: [
     CommonModule,

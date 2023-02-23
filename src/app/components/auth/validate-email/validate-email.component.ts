@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-validate-login',
-  templateUrl: './validate-login.component.html',
-  styleUrls: ['./validate-login.component.css']
+  selector: 'app-validate-email',
+  templateUrl: './validate-email.component.html',
+  styleUrls: ['./validate-email.component.css']
 })
-export class ValidateLoginComponent implements OnInit {
+export class ValidateEmailComponent implements OnInit {
+
   errorMessage = '';
   userType: string;
   loginToken: string;
@@ -20,8 +21,8 @@ export class ValidateLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userType = this.route.snapshot.paramMap.get('type');
-    this.loginToken = this.route.snapshot.paramMap.get('login_token');
-    this.authService.validateLogin(this.userType, this.loginToken).subscribe(
+    this.loginToken = this.route.snapshot.paramMap.get('verify_email_token');
+    this.authService.validateEmail(this.userType, this.loginToken).subscribe(
       {
         next: (res) => {
           this.loading = false;
@@ -29,7 +30,8 @@ export class ValidateLoginComponent implements OnInit {
           this.error = false;
           this.errorMessage = '';
           setTimeout(() => {
-            this.router.navigate(['/profile']);
+            // Navigate to home page
+            this.router.navigate(['/auth/login/'+this.userType]);
             
           }, 5000);
         },
@@ -38,6 +40,7 @@ export class ValidateLoginComponent implements OnInit {
           this.success = false;
           this.error = true;
           setTimeout(() => {
+            // Navigate to home page
             this.router.navigate(['/home']);
             
           }, 5000);
