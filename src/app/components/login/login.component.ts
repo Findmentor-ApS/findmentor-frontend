@@ -9,7 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  errorMessage = '';
+  success = false;
   userType: string;
   formGroup = new FormGroup({
     email: new FormControl('',[Validators.required, Validators.email]),
@@ -23,9 +24,19 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-    this.authService.login(this.userType, this.formGroup.value).subscribe((res: any) => {
-      console.log(res);
-    });
+    this.authService.login(this.userType, this.formGroup.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
   }
 
 }

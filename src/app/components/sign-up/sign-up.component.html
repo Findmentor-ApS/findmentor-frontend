@@ -90,6 +90,19 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Fejl</p>
+                        <p class="alert-text">{{ errorMessage }}</p>
+                    </div>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Success</p>
+                        <p class="alert-text">Du er nu oprettet. Venligst klik på linket 
+                        på den mail du har modtaget for at logge ind</p>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

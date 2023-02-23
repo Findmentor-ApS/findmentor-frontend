@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignUpComponent implements OnInit {
   userType: string;
+  errorMessage = '';
+  success = false;
   formGroup = new FormGroup({
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
@@ -24,8 +26,18 @@ export class SignUpComponent implements OnInit {
     this.userType = this.route.snapshot.paramMap.get('type');
   }
   signup(){
-    this.authService.register(this.userType, this.formGroup.value).subscribe((res: any) => {
-      console.log(res);
-    });
+    this.authService.register(this.userType, this.formGroup.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
   }
 }
