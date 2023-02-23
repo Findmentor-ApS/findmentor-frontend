@@ -1,0 +1,30 @@
+<div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
+    <div class="spinner-status" role="status">Arbejder</div>
+</div>
+
+
+<div class="h-100 d-flex justify-content-center align-items-center"  *ngIf="success">
+    <div class="toast toast-success show" id="notification-success"
+        aria-live="assertive" aria-atomic="true">
+        <div class="toast-icon"></div>
+        <div class="toast-message">
+            <p class="bold">Success</p>
+            <p>Du er nu oprettet. Venligst klik på linket på den mail du har modtaget for at logge ind</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="h-100 d-flex justify-content-center align-items-center" *ngIf="error">
+    <div class="toast toast-error show" id="notification-error"
+        aria-live="assertive" aria-atomic="true">
+        <div class="toast-icon"></div>
+        <div class="toast-message">
+            <p class="bold">Fejl</p>
+            <p>{{ errorMessage }}
+            </p>
+            <p>Du bliver viderestillet til hovedsiden</p>
+        </div>
+    </div>
+</div>

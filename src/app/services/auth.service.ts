@@ -41,4 +41,22 @@ export class AuthService {
       })
     );  
   }
+
+  validateLogin(userType: string, loginToken: string) {
+    const url = `${'/auth/validate_login/'}${userType}/${loginToken}`;
+    return this.http.get(url).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        localStorage.setItem('access_token', response['access_token']);
+        return response;
+      })
+    );  
+  }
+
 }

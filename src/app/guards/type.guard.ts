@@ -15,7 +15,6 @@ export class TypeGuard implements CanActivate {
     if (allowedTypes.indexOf(type) !== -1) {
       return true;
     } else {
-        console.log("hagasd")
       this.router.navigate(['/home']);
       return false;
     }

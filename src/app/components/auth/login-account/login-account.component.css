@@ -1,0 +1,56 @@
+
+.createAccount{
+    background-color: #f4f4f4;
+    height: 100vh;
+  
+}
+.pageTitle{
+    font-size: 45px;
+}
+.heading-content p{
+    font-size: 18px;
+    font-weight: 400;
+    color: #6c6c6c;
+}
+.card{
+    box-shadow: unset;
+    border-width: 2px;
+    position: relative;
+    overflow: unset;
+}
+.card.active{
+    border-color: #a8d6b6;
+    border-width: 3px;
+}
+.card .card-tick{
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #a8d6b6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.card .card-header .header-title{
+    font-size: 30px;
+}
+.card .card-image img{
+    height: 200px;
+    width: auto;
+}
+.card .card-footer button{
+    background-color: #a8d6b6;
+    color: #3e4541;
+    font-size: 20px;
+    font-weight: 500;
+    border: 0px;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+.card .card-footer button:focus-visible,.card .card-footer button:focus{
+    outline: 0 !important;
+}
