@@ -75,4 +75,8 @@ export class AuthService {
     );  
   }
 
+  getAccessToken() {
+    return localStorage.getItem('access_token');
+  }
+
 }

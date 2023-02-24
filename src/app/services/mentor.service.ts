@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,map } from 'rxjs';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable,map } from 'rxjs';
 })
 export class MentorService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private authService: AuthService) { 
   }
 
   searchMentors(selectedMentorType: number, selectedLocationArr: number, selectedTypeForm: number[], selectedLanguage: number[], selectedGender: number[],selectedContact: number[], selectedTarget: number[], page: number, perPage = 10): Observable<any> {
@@ -23,7 +24,8 @@ export class MentorService {
       page: page,
       perpage: perPage
     };
-    return this.http.get<any>('/mentors', { params }).pipe(
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.get<any>('/mentors', { params,headers }).pipe(
       map(result => ({
         result: result.result,
         totalItems: result.totalItems
