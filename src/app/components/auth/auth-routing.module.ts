@@ -12,7 +12,7 @@ import { ValidateEmailComponent } from './validate-email/validate-email.componen
 const routes: Routes = [
     {
         path: '', children: [
-            { path: '', redirectTo: 'hvad-er-en-mentor', pathMatch: 'full' },
+            { path: '', redirectTo: 'create-account', pathMatch: 'full' },
             { path: 'create-account', component: CreateAccountComponent},
             { path: 'login-account', component: LoginAccountComponent},
             { path: 'sign-up/:type', component: SignUpComponent, data: { allowedTypes: ['mentor', 'kommune', 'borger'] },  canActivate: [TypeGuard] },
