@@ -113,10 +113,10 @@
             <div>
                 <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                 <div class="btnGroup">
-                    <button (click)="updateProfile()" class="save">Gem</button>
-                    <button (click)="reroute()">
+                    <button (click)="updateProfile()" [disabled]="!formGroup.valid" class="save">Gem</button>
+                    <!-- <button (click)="reroute()">
                         Se profil
-                    </button>
+                    </button> -->
                 </div>
 
             </div>

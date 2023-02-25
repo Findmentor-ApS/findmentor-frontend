@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,12 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class EditProfileComponent implements OnInit {
   formGroup: FormGroup;
   user: any;
-  constructor(private fb: FormBuilder,    private route: ActivatedRoute    ) { }
+  success = false;
+  errorMessage = '';
+  constructor(private fb: FormBuilder,private route: ActivatedRoute, private profileService: ProfileService) { }
   ngOnInit(): void {
     this.route.data.subscribe((data: { user: any }) => {
       this.user = data.user;
     });
-    console.log(this.user);
     this.formGroup = this.fb.group({
       first_name: new FormControl(this.user.first_name, [Validators.required]),
       last_name: new FormControl(this.user.last_name, [Validators.required]),
@@ -34,9 +36,18 @@ export class EditProfileComponent implements OnInit {
     });  
   }
 updateProfile(){
-  console.log(this.formGroup.value);
-}
-reroute(){
-  alert('working')
-}
+    this.profileService.updateProfile(this.formGroup.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
+  }
 }
