@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,24 +9,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditProfileComponent implements OnInit {
   formGroup: FormGroup;
-  constructor(private fb: FormBuilder) { }
-
+  user: any;
+  constructor(private fb: FormBuilder,    private route: ActivatedRoute    ) { }
   ngOnInit(): void {
+    this.route.data.subscribe((data: { user: any }) => {
+      this.user = data.user;
+    });
+    console.log(this.user);
     this.formGroup = this.fb.group({
-      Fornavn: ['Thomas', Validators.required],
-      Efternavn:['Christiansen', Validators.required],
-      Gade: ['Frederiksberg Alle',Validators.required],
-      Husnummer:['',Validators.required],
-      Etage:[''],
-      Side:[''],
-      Postnummer:['',Validators.required],
-      By:['', Validators.required],
-      Uddannelse:['',Validators.required],
-      kon:['',Validators.required],
-      Telefon:['',Validators.required],
-      email:['',Validators.required],
-      Hjemmeside:['',Validators.required],
-      Beskrivelse:['',Validators.required]
+      first_name: new FormControl(this.user.first_name, [Validators.required]),
+      last_name: new FormControl(this.user.last_name, [Validators.required]),
+      street: new FormControl(this.user.street, [Validators.required]),
+      street_no: new FormControl(this.user.street_no, [Validators.required]),
+      street_floor: new FormControl(this.user.street_side),
+      street_side: new FormControl(this.user.street_side),
+      post_no: new FormControl(this.user.post_no, [Validators.required]),
+      city: new FormControl(this.user.city, [Validators.required]),
+      education: new FormControl(this.user.education, [Validators.required]),
+      gender: new FormControl(this.user.gender, [Validators.required]),
+      phone: new FormControl(this.user.phone, [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+      email: new FormControl(this.user.email,[Validators.required, Validators.email]),
+      linkedin: new FormControl(this.user.linkedin),
+      description: new FormControl(this.user.description,[Validators.required]),
     });  
   }
 updateProfile(){

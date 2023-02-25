@@ -3,6 +3,9 @@
     <label class="form-label" for="form-error">
         {{ label }}
     </label>
+    <span *ngIf="!required">
+                        (frivilligt)
+                    </span>
     <span *ngIf="displayErrors()" class="form-hint" id="form-error-hint">
         {{ hintMessage }}
     </span>

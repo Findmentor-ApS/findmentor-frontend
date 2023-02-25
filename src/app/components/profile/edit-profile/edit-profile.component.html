@@ -4,184 +4,123 @@
     </h3>
     <div class="editFormWrap">
         <form [formGroup]="formGroup">
-
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Fornavn
-                </label>
-            
-                <input class="form-input"   name="Fornavn" formControlName="Fornavn"
-                    type="text" required />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Fornavn" placeholder="Indtast Fornavn" type="text"
+                    errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars" [required]="true"
+                    [control]="$any(formGroup.get('first_name'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Efternavn
-                </label>
-            
-                <input class="form-input"   name="Efternavn" formControlName="Efternavn"
-                    type="text" required />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Efternavn" placeholder="Indtast Efternavn" type="text"
+                    errorMessage="Indtast venligst et efternavn" hintMessage="eks. Hansen" [required]="true"
+                    [control]="$any(formGroup.get('last_name'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Gade/vej
-                </label>
-            
-                <input class="form-input"   name="Gade" formControlName="Gade"
-                    type="text" required />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Gade/Vej" placeholder="Indtast gade" type="text"
+                    errorMessage="Indtast venligst gadenavn" hintMessage="eks. Nørregade" [required]="true"
+                    [control]="$any(formGroup.get('street'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label " for="input-type-text">
-                    Husnummer
-                </label>
-            
-                <input class="form-input adrs"   name="Husnummer" formControlName="Husnummer"
-                    type="text" required />
-            
+            <div class="col-md-3 editProfileComponent">
+                <app-input label="Husnummer" placeholder="Intast husnummer" type="number"
+                    errorMessage="Indtast venligst husnummer" hintMessage="eks. 2" [required]="true"
+                    [control]="$any(formGroup.get('street_no'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Etage <span>
-                        (frivilligt)
-                    </span>
-                </label>
-            
-                <input class="form-input adrs"   name="Etage" formControlName="Etage"
-                    type="text"  />
-            
+            <div class="col-md-3 editProfileComponent">
+                <app-input label="Etage" placeholder="Intast etage" type="text" errorMessage="Indtast venligst etage"
+                    hintMessage="eks. 3" [required]="false" [control]="$any(formGroup.get('street_floor'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label " for="input-type-text">
-                    Side <span>
-                        (frivilligt)
-                    </span>
-                    <span class="example">
-                        Fx: TV, 2. dør
-                    </span>
-                </label>
-            
-                <input class="form-input adrs"   name="Side" formControlName="Side"
-                    type="text"  />
-            
+            <div class="col-md-3 editProfileComponent">
+                <app-input label="Side" placeholder="Intast side" type="text" errorMessage="Indtast venligst side"
+                    hintMessage="eks. th." [required]="false" [control]="$any(formGroup.get('street_side'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Postnummer
-                </label>
-            
-                <input class="form-input adrs"   name="Postnummer" formControlName="Postnummer"
-                    type="text"  />
-            
+            <div class="col-md-3 editProfileComponent">
+                <app-input label="Postnummer" placeholder="Intast Postnummer" type="number"
+                    errorMessage="Indtast venligst postnummer" hintMessage="eks. 4200" [required]="true"
+                    [control]="$any(formGroup.get('post_no'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    By
-                </label>
-            
-                <input class="form-input"   name="By" formControlName="By"
-                    type="text"  />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="By" placeholder="Intast by" type="text"
+                    errorMessage="Indtast venligst den by du bor i" hintMessage="eks. København" [required]="true"
+                    [control]="$any(formGroup.get('city'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Uddannelse
-                </label>
-            
-                <input class="form-input"   name="Uddannelse" formControlName="Uddannelse"
-                    type="text"  />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Uddannelse" placeholder="Intast Uddannelse" type="text"
+                    errorMessage="Indtast venligst din Uddannelse" hintMessage="eks. Pædagog" [required]="true"
+                    [control]="$any(formGroup.get('education'))">
+                </app-input>
             </div>
-            <div class="form-group radioBtn">
+            <div class="form-group radioBtn" style="margin-bottom: 30px;">
                 <fieldset>
                     <legend class="form-label">Køn</legend>
-                    <ul class="nobullet-list row">
+                    <ul class="nobullet-list">
                         <li>
                             <div class="form-group-radio">
-                                <input id="radio-1" type="radio" name="kon"
-                                    value="Mand" class="form-radio radio-large " formControlName="kon" />
-                                <label for="radio-1" id="form-label-radio-1"
-                                    class="">Mand </label>
-            
+                                <input id="radio-1" type="radio" name="gender" value="1" class="form-radio radio-large "
+                                    formControlName="gender" />
+                                <label for="radio-1" id="form-label-radio-1" class="">Mand </label>
+
                             </div>
                         </li>
                         <li>
                             <div class="form-group-radio">
-                                <input id="radio-2" type="radio" name="kon"
-                                    value="Kvinde" class="form-radio radio-large " formControlName="kon" />
-                                <label for="radio-2" id="form-label-radio-2"
-                                    class="">Kvinde </label>
-            
+                                <input id="radio-2" type="radio" name="gender" value="2" class="form-radio radio-large "
+                                    formControlName="gender" />
+                                <label for="radio-2" id="form-label-radio-2" class="">Kvinde </label>
+
                             </div>
                         </li>
                     </ul>
                 </fieldset>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Telefon
-                </label>
-            
-                <input class="form-input"   name="Telefon" formControlName="Telefon"
-                    type="text"  />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Telefon" placeholder="Intast tlf nummer" type="text"
+                    errorMessage="Indtast venligst telefon nummer" hintMessage="+4512341234" [required]="true"
+                    [control]="$any(formGroup.get('phone'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    E-mail
-                </label>
-            
-                <input class="form-input"   name="email" formControlName="email"
-                    type="text"  />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Mail" placeholder="Intast mail" type="text"
+                    errorMessage="Indtast venligst din mailadresse" hintMessage="lars.hansen@gmail.com"
+                    [required]="true" [control]="$any(formGroup.get('email'))">
+                </app-input>
             </div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Hjemmeside
-                </label>
-            
-                <input class="form-input"   name="Hjemmeside" formControlName="Hjemmeside"
-                    type="text"  />
-            
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="LinkedIn" placeholder="Intast din linkedin profil" type="text"
+                    errorMessage="Indtast venligst din mailadresse" hintMessage="linked.com/lars-hansen"
+                    [required]="false" [control]="$any(formGroup.get('linkedin'))">
+                </app-input>
             </div>
 
             <div class="form-divider"></div>
-            <div class="form-group">
-
-                <label class="form-label" for="input-type-text">
-                    Beskrivelse om dig som mentor
-                </label>
-            <textarea name="Beskrivelse" class="form-input" rows="6" formControlName="Beskrivelse"></textarea>
-
-            
+            <div class="col-md-6 editProfileComponent">
+                <div class="form-group" id="editDescription">
+                    <label class="form-label" for="input-type-text">
+                        Beskrivelse om dig som mentor
+                    </label>
+                    <textarea name="Beskrivelse" class="form-input" rows="6" formControlName="description"></textarea>
+                </div>
             </div>
-        
-        
-        
-                            <div>
-                                <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
-                                <div class="btnGroup">
-                                    <button (click)="updateProfile()" class="save">Gem</button>
-                                    <button (click)="reroute()">
-                                        Se profil
-                                    </button>
-                                </div>
 
-          </div>
-        
+
+
+            <div>
+                <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
+                <div class="btnGroup">
+                    <button (click)="updateProfile()" class="save">Gem</button>
+                    <button (click)="reroute()">
+                        Se profil
+                    </button>
+                </div>
+
+            </div>
+
         </form>
     </div>
 </div>
