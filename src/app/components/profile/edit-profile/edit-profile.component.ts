@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class EditProfileComponent implements OnInit {
   user: any;
   success = false;
   errorMessage = '';
-  constructor(private fb: FormBuilder,private route: ActivatedRoute, private profileService: ProfileService) { }
+  constructor(private fb: FormBuilder,private route: ActivatedRoute, private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditProfileComponent>) { }
   ngOnInit(): void {
     this.route.data.subscribe((data: { user: any }) => {
       this.user = data.user;
@@ -49,5 +50,9 @@ updateProfile(){
         complete: () => console.log('complete')
       }
     )
+  }
+
+  canDeactivate() {
+    return this.unsavedChanges.canDeactivate(this);
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
 import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
@@ -9,7 +10,7 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
 const routes: Routes = [
   {path:'', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
     {path: '', redirectTo:'edit-profile' ,pathMatch:'full'},
-    {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver} },
+    {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver}, canActivate: [AuthGuard], canDeactivate: [UnsavedChangesGuard]},
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver}},
   ]
 }
