@@ -12,12 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./components/main/main.module').then(m => m.MainModule)
   },
   { 
-    path: 'auth', canActivate: [LoginGuard],
+    path: 'auth',
     loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'profile',
-    component: LayoutComponent, canActivate: [AuthGuard],
+    component: LayoutComponent,
     loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
   },
 

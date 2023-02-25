@@ -8,11 +8,12 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LoginAccountComponent } from './login-account/login-account.component';
 import { ValidateLoginComponent } from './validate-login/validate-login.component';
 import { ValidateEmailComponent } from './validate-email/validate-email.component';
+import { LoginGuard } from 'src/app/guards/login.guard';
 
 const routes: Routes = [
     {
-        path: '', children: [
-            { path: '', redirectTo: 'create-account', pathMatch: 'full' },
+        path: '', canActivate: [LoginGuard], children: [
+            { path: '', redirectTo: 'create-account' },
             { path: 'create-account', component: CreateAccountComponent},
             { path: 'login-account', component: LoginAccountComponent},
             { path: 'sign-up/:type', component: SignUpComponent, data: { allowedTypes: ['mentor', 'kommune', 'borger'] },  canActivate: [TypeGuard] },
