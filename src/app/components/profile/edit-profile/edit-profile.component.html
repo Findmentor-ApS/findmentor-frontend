@@ -41,7 +41,7 @@
             <div class="col-md-3 editProfileComponent">
                 <app-input label="Postnummer" placeholder="Intast Postnummer" type="number"
                     errorMessage="Indtast venligst postnummer" hintMessage="eks. 4200" [required]="true"
-                    [control]="$any(formGroup.get('post_no'))">
+                    [control]="$any(formGroup.get('post_code'))">
                 </app-input>
             </div>
             <div class="col-md-6 editProfileComponent">
@@ -111,6 +111,18 @@
 
 
             <div>
+                <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Fejl</p>
+                        <p class="alert-text">{{ errorMessage }}</p>
+                    </div>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Success</p>
+                        <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                    </div>
+                </div>
                 <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                 <div class="btnGroup">
                     <button (click)="updateProfile()" [disabled]="!formGroup.valid" class="save">Gem</button>
@@ -118,7 +130,6 @@
                         Se profil
                     </button> -->
                 </div>
-
             </div>
 
         </form>

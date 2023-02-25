@@ -25,7 +25,7 @@ export class EditProfileComponent implements OnInit {
       street_no: new FormControl(this.user.street_no, [Validators.required]),
       street_floor: new FormControl(this.user.street_side),
       street_side: new FormControl(this.user.street_side),
-      post_no: new FormControl(this.user.post_no, [Validators.required]),
+      post_code: new FormControl(this.user.post_code, [Validators.required]),
       city: new FormControl(this.user.city, [Validators.required]),
       education: new FormControl(this.user.education, [Validators.required]),
       gender: new FormControl(this.user.gender, [Validators.required]),
