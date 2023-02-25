@@ -7,13 +7,15 @@ import { ProfileSidebarComponent } from './profile-sidebar/profile-sidebar.compo
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
 
 
 @NgModule({
   declarations: [
     ProfileLayoutComponent,
     ProfileSidebarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ExperienceProfileComponent
   ],
   imports: [
     CommonModule,
