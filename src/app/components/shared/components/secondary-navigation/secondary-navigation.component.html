@@ -1,5 +1,5 @@
 <div class="secondaryNavWrap">
-    <div class="container">
+    <div class="container" *ngIf="type == 'mentor'">
         <ul>
             <li><a routerLink="/overview" routerLinkActive="active">
                 <b>
@@ -33,7 +33,7 @@
             </a></li>
             <li>
                 <b>
-                    Tilgænglig til booking
+                    Tilgængelig til booking
                 </b>
                 <div class="form-group">
 
@@ -43,6 +43,35 @@
                 
                 </div>
             </li>
+        </ul>
+    </div>
+    <div class="container" *ngIf="type == 'commune'">
+        <ul>
+            <li><a>
+                <b>
+                    Udforsk
+                </b>
+            </a></li>
+            <li><a href="">
+                <b>
+                    Klienter
+                </b>
+            </a></li>
+            <li><a href="">
+                <b>
+                    Dokumenter
+                </b>
+            </a></li>
+            <li><a href="">
+                <b>
+                    Fakturering
+                </b>
+            </a></li>
+            <li><a routerLink="/profile" routerLinkActive="active">
+                <b>
+                    Konto
+                </b>
+            </a></li>
         </ul>
     </div>
 </div>

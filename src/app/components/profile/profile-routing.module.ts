@@ -10,7 +10,7 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
 const routes: Routes = [
   {path:'', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
     {path: '', redirectTo:'edit-profile' ,pathMatch:'full'},
-    {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver}, canActivate: [AuthGuard], canDeactivate: [UnsavedChangesGuard]},
+    {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver}},
   ]
 }

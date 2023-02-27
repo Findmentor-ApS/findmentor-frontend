@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-sidebar.component.css']
 })
 export class ProfileSidebarComponent implements OnInit {
-
+  type: string;
   constructor() { }
 
   ngOnInit(): void {
+    this.type = localStorage.getItem('type');
   }
 
 }

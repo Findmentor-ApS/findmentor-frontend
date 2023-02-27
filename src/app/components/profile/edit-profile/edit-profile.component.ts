@@ -14,27 +14,43 @@ export class EditProfileComponent implements OnInit {
   user: any;
   success = false;
   errorMessage = '';
+  type = '';
+
   constructor(private fb: FormBuilder,private route: ActivatedRoute, private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditProfileComponent>) { }
   ngOnInit(): void {
     this.route.data.subscribe((data: { user: any }) => {
       this.user = data.user;
     });
-    this.formGroup = this.fb.group({
-      first_name: new FormControl(this.user.first_name, [Validators.required]),
-      last_name: new FormControl(this.user.last_name, [Validators.required]),
-      street: new FormControl(this.user.street, [Validators.required]),
-      street_no: new FormControl(this.user.street_no, [Validators.required]),
-      street_floor: new FormControl(this.user.street_side),
-      street_side: new FormControl(this.user.street_side),
-      post_code: new FormControl(this.user.post_code, [Validators.required]),
-      city: new FormControl(this.user.city, [Validators.required]),
-      education: new FormControl(this.user.education, [Validators.required]),
-      gender: new FormControl(this.user.gender, [Validators.required]),
-      phone: new FormControl(this.user.phone, [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
-      email: new FormControl(this.user.email,[Validators.required, Validators.email]),
-      linkedin: new FormControl(this.user.linkedin),
-      description: new FormControl(this.user.description,[Validators.required]),
-    });  
+    this.type = localStorage.getItem('type');
+    if(this.type == 'mentor') {
+      this.formGroup = this.fb.group({
+        first_name: new FormControl(this.user.first_name, [Validators.required]),
+        last_name: new FormControl(this.user.last_name, [Validators.required]),
+        street: new FormControl(this.user.street, [Validators.required]),
+        street_no: new FormControl(this.user.street_no, [Validators.required]),
+        street_floor: new FormControl(this.user.street_side),
+        street_side: new FormControl(this.user.street_side),
+        post_code: new FormControl(this.user.post_code, [Validators.required]),
+        city: new FormControl(this.user.city, [Validators.required]),
+        education: new FormControl(this.user.education, [Validators.required]),
+        gender: new FormControl(this.user.gender, [Validators.required]),
+        phone: new FormControl(this.user.phone, [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+        email: new FormControl(this.user.email,[Validators.required, Validators.email]),
+        linkedin: new FormControl(this.user.linkedin),
+        description: new FormControl(this.user.description,[Validators.required]),
+      });  
+    }
+    if(this.type == 'commune') {
+      this.formGroup = this.fb.group({
+        commune_name: new FormControl(this.user.commune_name, [Validators.required]),
+        first_name: new FormControl(this.user.first_name, [Validators.required]),
+        last_name: new FormControl(this.user.last_name, [Validators.required]),
+        phone: new FormControl(this.user.phone, [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+        email: new FormControl(this.user.email,[Validators.required, Validators.email]),
+        department: new FormControl(this.user.department, [Validators.required]),
+        ean_nr: new FormControl(this.user.ean_nr, [Validators.required]),
+      });
+    }
   }
 updateProfile(){
     this.profileService.updateProfile(this.formGroup.value).subscribe(

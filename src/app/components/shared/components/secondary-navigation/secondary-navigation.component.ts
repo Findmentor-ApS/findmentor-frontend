@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./secondary-navigation.component.css']
 })
 export class SecondaryNavigationComponent implements OnInit {
-
+  type: string;
   constructor() { }
 
+
   ngOnInit(): void {
+    this.type = localStorage.getItem('type');
   }
 
 }

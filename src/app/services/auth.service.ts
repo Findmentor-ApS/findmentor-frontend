@@ -54,6 +54,7 @@ export class AuthService {
       }),
       map(response => {
         localStorage.setItem('access_token', response['access_token']);
+        localStorage.setItem('type', response['type']);
         return response;
       })
     );  

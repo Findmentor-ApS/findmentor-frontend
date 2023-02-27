@@ -3,7 +3,7 @@
         Om mig
     </h3>
     <div class="editFormWrap">
-        <form [formGroup]="formGroup">
+        <form [formGroup]="formGroup" *ngIf="type == 'mentor'">
             <div class="col-md-6 editProfileComponent">
                 <app-input label="Fornavn" placeholder="Indtast Fornavn" type="text"
                     errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars" [required]="true"
@@ -110,6 +110,72 @@
 
 
 
+            <div>
+                <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Fejl</p>
+                        <p class="alert-text">{{ errorMessage }}</p>
+                    </div>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Success</p>
+                        <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                    </div>
+                </div>
+                <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
+                <div class="btnGroup">
+                    <button (click)="updateProfile()" [disabled]="!formGroup.valid" class="save">Gem</button>
+                    <!-- <button (click)="reroute()">
+                        Se profil
+                    </button> -->
+                </div>
+            </div>
+
+        </form>
+        <form [formGroup]="formGroup" *ngIf="type == 'commune'">
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Kommune navn" placeholder="Indtast din Kommune" type="text"
+                    errorMessage="Indtast venligst din kommune navn" hintMessage="København" [required]="true"
+                    [control]="$any(formGroup.get('commune_name'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Fornavn" placeholder="Indtast Fornavn" type="text"
+                    errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars" [required]="true"
+                    [control]="$any(formGroup.get('first_name'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Efternavn" placeholder="Indtast Efternavn" type="text"
+                    errorMessage="Indtast venligst et efternavn" hintMessage="eks. Hansen" [required]="true"
+                    [control]="$any(formGroup.get('last_name'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Telefon" placeholder="Intast tlf nummer" type="text"
+                    errorMessage="Indtast venligst telefon nummer" hintMessage="+4512341234" [required]="true"
+                    [control]="$any(formGroup.get('phone'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Mail" placeholder="Intast mail" type="text"
+                    errorMessage="Indtast venligst din mailadresse" hintMessage="lars.hansen@gmail.com"
+                    [required]="true" [control]="$any(formGroup.get('email'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Afdeling" placeholder="Intast din afdeling" type="text"
+                    errorMessage="Indtast venligst din afdeling" hintMessage="Ungeafdeling"
+                    [required]="true" [control]="$any(formGroup.get('department'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="EAN-nr" placeholder="Intast EAN-nr" type="text"
+                    errorMessage="Indtast venligst dit EAN-nr" hintMessage="1234-1234"
+                    [required]="true" [control]="$any(formGroup.get('ean_nr'))">
+                </app-input>
+            </div>
             <div>
                 <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
                     <div class="alert-body">

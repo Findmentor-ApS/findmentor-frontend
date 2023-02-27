@@ -4,7 +4,7 @@
     display: flex;
     width: 100%;
     max-width: 100% !important;
-    justify-content: space-between;
+    /* justify-content: first baseline; */
     margin: 0;
 }
 .secondaryNavWrap ul li{
@@ -38,6 +38,7 @@
     color: #353535;
     outline: 0;
     padding: 20px 0;
+    padding-right: 30px;
     border-bottom: 4px solid transparent;
 }
 
@@ -47,6 +48,7 @@
 }
 @media screen and (max-width:992px) {
     .secondaryNavWrap{
-        display: none;
+        /* display: block; */
+        /* display: none; */
     }
 }
