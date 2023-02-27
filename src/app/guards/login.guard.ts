@@ -14,7 +14,7 @@ export class LoginGuard implements CanActivate {
     if (accessToken === null) {
       return true;
     }
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/profile/edit-profile']);
     return false;
   }
   
