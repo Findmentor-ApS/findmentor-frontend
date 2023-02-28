@@ -230,6 +230,21 @@ background-color: #000;
   }
 }
 
+ng-select ::ng-deep .ng-select-container {
+  padding: 0 10px;
+}
+
+.col-md-6{
+  padding: 0 0px;
+}
+
 ng-select ::ng-deep .ng-option {
-  margin-bottom: 10px; /* adjust the value as per your requirement */
+  margin-bottom: 10px; 
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #000;
+}
+
+ng-select ::ng-deep .ng-option:hover {
+  background-color: #f5f5f5;
 }

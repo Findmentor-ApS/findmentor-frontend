@@ -46,9 +46,24 @@
     padding: 20px 0px;
     border-bottom: 4px solid #abcfb2;
 }
+
+/* set toggle-example to right side */
+.secondaryNavWrap .form-group {
+    text-align: right;
+  }
 @media screen and (max-width:992px) {
-    .secondaryNavWrap{
-        /* display: block; */
-        /* display: none; */
+    /* Break the elements of list into blocks */
+    .secondaryNavWrap ul{
+        display: block;
+    }
+    .secondaryNavWrap ul li{
+        display: block;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #cecece;
+    }
+
+    .secondaryNavWrap ul li a.active{
+        padding: 5px 0px;
+        border-bottom: 4px solid #abcfb2;
     }
 }
