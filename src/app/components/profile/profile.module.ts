@@ -8,6 +8,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ExperienceProfileComponent } from './experience-profile/experience-prof
     FormsModule, 
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  providers: [SharedVariablesService],
 })
 export class ProfileModule { }

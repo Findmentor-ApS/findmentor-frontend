@@ -37,8 +37,8 @@
                 </b>
                 <div class="form-group">
 
-                    <input id="toggle-example" type="checkbox" name="toggle-example"
-                        value="1" class="form-toggle" />
+                    <input id="toggle-example" type="checkbox" name="toggle-example" [(ngModel)]="is_avaliable"
+                    value="1" class="form-toggle" (change)="onCheckboxChange()" />
                     <label for="toggle-example" class="form-toggle-label "></label>
                 
                 </div>
