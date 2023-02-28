@@ -1,1 +1,21 @@
-<p>experience-profile works!</p>
+<div class="editprofileWrap">
+    <h3>
+        Erfaring
+    </h3>
+    <div class="editFormWrap">
+        <!-- Select experience -->
+        <div class="filters col-md-6">
+            <div class="supportFilter">
+                <div class="filter-wrap">
+                    <ng-select [multiple]="true" placeholder="Vælg erfaring" notFoundText="Ingen resultater"
+                        [(ngModel)]="selectedTypeExperience">
+                        <ng-option *ngFor="let type of experienceType" [value]="type.id">{{type.name}}</ng-option>
+                    </ng-select>
+                </div>
+                <div class="btnGroup">
+                    <button (click)="updateExperience()" class="save">Gem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

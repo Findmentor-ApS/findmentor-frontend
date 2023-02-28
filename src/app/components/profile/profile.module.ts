@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
   ],
   imports: [
     CommonModule,
+    NgSelectModule,
     ProfileRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
