@@ -8,6 +8,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ExperienceProfileComponent } from './experience-profile/experience-prof
   ],
   imports: [
     CommonModule,
+    NgSelectModule,
     ProfileRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
