@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { parse } from 'path';
 import { experienceType } from 'src/app/general/types';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -19,6 +20,9 @@ export class ExperienceProfileComponent implements OnInit {
 constructor(private route: ActivatedRoute, private profileService: ProfileService) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe((data: { user: any }) => {
+      this.selectedTypeExperience = data.user.experiences.map((exp) => parseInt(exp.experience_type));
+    });
   }
 
   updateExperience() {
@@ -28,7 +32,7 @@ constructor(private route: ActivatedRoute, private profileService: ProfileServic
     }
     
     const userData = {
-      typeExperiences: this.selectedTypeExperience.map(id => ({id}))
+      typeExperiences: this.selectedTypeExperience
     };
   
     this.profileService.updateProfileExperience(userData).subscribe(
