@@ -4,7 +4,7 @@
     display: flex;
     width: 100%;
     max-width: 100% !important;
-    /* justify-content: first baseline; */
+    justify-content: align-self;
     margin: 0;
 }
 .secondaryNavWrap ul li{
@@ -48,9 +48,9 @@
 }
 
 /* set toggle-example to right side */
-.secondaryNavWrap .form-group {
-    text-align: right;
-  }
+#toggle-placement {
+    margin-left: auto;
+}
 @media screen and (max-width:992px) {
     /* Break the elements of list into blocks */
     .secondaryNavWrap ul{
