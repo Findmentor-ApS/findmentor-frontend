@@ -22,7 +22,16 @@ constructor(private route: ActivatedRoute, private profileService: ProfileServic
   }
 
   updateExperience() {
-    this.profileService.updateProfileExperience(this.selectedTypeExperience).subscribe(
+    if (!this.selectedTypeExperience || this.selectedTypeExperience.length === 0) {
+      this.errorMessage = 'Du skal vælge mindst en erfaring';
+      return;
+    }
+    
+    const userData = {
+      typeExperiences: this.selectedTypeExperience.map(id => ({id}))
+    };
+  
+    this.profileService.updateProfileExperience(userData).subscribe(
       {
         next: (res) => {
           this.success = true;
@@ -31,7 +40,12 @@ constructor(private route: ActivatedRoute, private profileService: ProfileServic
         },
         error: (err) => {
           this.success = false;
-          this.errorMessage = err.error.message;
+          let errorMessage = 'Der er opstået en fejl!';
+          if (err.error && err.error.message) {
+            errorMessage = err.error.message;
+            console.log(err.error.message);
+          }
+          this.errorMessage = errorMessage; // Update errorMessage here
           console.log(err);
         },
         complete: () => {
@@ -40,14 +54,15 @@ constructor(private route: ActivatedRoute, private profileService: ProfileServic
       }
     );
   }
+  
 
-  updateArray(type: number): void {
+  /*updateArray(type: number): void {
     const index = this.selectedTypeExperience.indexOf(type);
     if (index === -1) {
       this.selectedTypeExperience.push(type);
     } else {
       this.selectedTypeExperience.splice(index, 1);
     }
-  }
+  }*/
 
 }
