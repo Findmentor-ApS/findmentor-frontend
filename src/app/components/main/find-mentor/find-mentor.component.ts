@@ -61,7 +61,16 @@ updateArray(type: number, arrayType: number[]): void {
 
   languages = [
     { id: 1, name: 'Engelsk' },
-    { id: 2, name: 'Dansk' }
+    { id: 2, name: 'Dansk' },
+    { id: 3, name: 'Arabisk' },
+    { id: 4, name: 'Tyrkisk' },
+    { id: 5, name: 'Kurdisk' },
+    { id: 6, name: 'Farsi' },
+    { id: 7, name: 'Somali' },
+    { id: 8, name: 'Urdu' },
+    { id: 9, name: 'Pashto' },
+    { id: 10, name: 'Ukrainsk' },
+    { id: 11, name: 'Russisk' },
   ];
 
   contacts = [
