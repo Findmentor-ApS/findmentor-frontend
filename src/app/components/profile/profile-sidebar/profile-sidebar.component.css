@@ -30,3 +30,9 @@
 .profileSidebar ul li a.active{
     font-weight: 700;
 }
+
+@media screen and (max-width:992px) {
+    .profileSidebar{
+        padding-top: 0px;
+    }
+}

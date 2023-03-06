@@ -41,9 +41,40 @@
   padding: 0px 50px;
 }
 .mobile-menu-links > a {
+  display: block;
+  margin-left: 0;
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-weight: 600;
+}
+
+#toggle-text{
+  display: block;
+  margin-left: 0;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+#toggle-example{
+  text-align: right;
+}
+
+.form-group input[type=checkbox].form-toggle:checked ~ .form-toggle-label:before{
+  left: 45px;
+  content: url(../../../../assets/svgs/tick.svg);
+}
+
+.form-group label::after{
+  width: 75px;
+  background-color: #cecece;
+}
+
+.form-group input[type=checkbox].form-toggle:checked ~ label::after{
+  background-color: #a8d6b6 !important;
+}
+.form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
+  content: url(../../../../assets/svgs/cross.svg);
 }
 .mobile-menu-links > a > svg {
   margin-right: 5px;
@@ -256,3 +287,52 @@
     display: none !important;
   }
 }
+
+.button-create{
+  width: 150px;
+  margin-left: 30px;
+  background-color: #a8d6b6;
+  color: black;
+  border-radius: 5px;
+  border-color: #a8d6b6;
+  font-weight: 700;
+  color: rgb(65, 65, 65);
+}
+
+.button-secondary {
+  width: 150px;
+  margin-left: 30px;
+  border: 1 px solid black;
+  border-radius: 5px;
+  font-weight: 700;
+  color: rgb(65, 65, 65);
+}
+
+.mobile-menu-links > a{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cecece;
+}
+
+.mobile-menu-links > a.active{
+  content: "";
+  border-bottom: 4px solid #abcfb2;
+  width: 100px;
+  bottom: 0;
+  left: 0;
+  height: 50%;
+}
+
+.navbar-context-actions > #log-out{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10px;
+}
+
+.navbar-context-actions > #login{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 10px;
+}
+

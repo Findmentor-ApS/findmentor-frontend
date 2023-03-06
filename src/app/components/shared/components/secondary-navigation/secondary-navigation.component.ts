@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
 export class SecondaryNavigationComponent implements OnInit {
   type: string;
   is_avaliable: boolean;
+  isSmallScreen = false;
   constructor(private sharedService: SharedVariablesService) { }
 
   onCheckboxChange() {
@@ -20,6 +21,14 @@ export class SecondaryNavigationComponent implements OnInit {
       this.is_avaliable = isAvailable;
     });
     this.type = localStorage.getItem('type');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(window.innerWidth < 992) {
+      this.isSmallScreen = true;
+    }
+    else this.isSmallScreen = false;
   }
 
 }

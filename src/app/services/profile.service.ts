@@ -7,6 +7,23 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ProfileService {
+  
+  setAvailable(isAvailable: boolean) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.put<any>(`/me/avaliable`,isAvailable, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    ); 
+  }
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

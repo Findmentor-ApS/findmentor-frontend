@@ -54,10 +54,10 @@
 @media screen and (max-width:992px) {
     /* Break the elements of list into blocks */
     .secondaryNavWrap ul{
-        display: block;
+        display: none;
     }
-    .secondaryNavWrap ul li{
-        display: block;
+    /* .secondaryNavWrap ul li{
+        display: n;
         padding-bottom: 10px;
         border-bottom: 1px solid #cecece;
     }
@@ -65,5 +65,5 @@
     .secondaryNavWrap ul li a.active{
         padding: 5px 0px;
         border-bottom: 4px solid #abcfb2;
-    }
+    } */
 }

@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Navigation } from 'node_modules/dkfds/dist/js/dkfds.js';
+import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,18 @@ export class HeaderComponent implements OnInit {
 
   signInCondition: boolean = true ;
   isNav = false;
+  name = '';
   isSmallScreen = false;
+  isAvailable = false;
+  type = '';
   // nav: Navigation;
-  constructor() { }
+  constructor(private profileService: ProfileService,private router: Router) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('access_token') && localStorage.getItem('type')){
+      this.name = localStorage.getItem('name');
+      this.type = localStorage.getItem('type');
+      this.name = this.name.replace(/['"]+/g, '')
       this.signInCondition = true;
     }
     else{
@@ -23,7 +30,6 @@ export class HeaderComponent implements OnInit {
     }
     if(window.innerWidth < 992) this.isSmallScreen = true;
     else this.isSmallScreen = false;
-
    }
 
   //  ngAfterViewInit() {
@@ -68,5 +74,25 @@ export class HeaderComponent implements OnInit {
     onResize(event) {
       if(window.innerWidth < 992) this.isSmallScreen = true;
       else this.isSmallScreen = false;
+    }
+
+    onCheckboxChange(){
+      this.isAvailable = !this.isAvailable;
+      this.profileService.setAvailable(this.isAvailable);
+      // console.log(e.target.checked);
+    }
+
+    logout(){
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('type');
+      localStorage.removeItem('name');
+      localStorage.removeItem('id');
+      localStorage.removeItem('isAvailable');
+      this.profileService.setAvailable(false);
+      this.isAvailable = false;
+      this.signInCondition = false;
+      this.name = '';
+      this.type = '';
+      this.router.navigate(['/home']);
     }
 }
