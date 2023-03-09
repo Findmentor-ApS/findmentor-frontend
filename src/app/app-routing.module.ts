@@ -20,6 +20,11 @@ const routes: Routes = [
     component: LayoutComponent,
     loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule)
   },
+  {
+    path: 'chat',
+    component: LayoutComponent,
+    loadChildren: () => import('./components/chat/chat.module').then(m => m.ChatModule)
+  },
 
 ];
 

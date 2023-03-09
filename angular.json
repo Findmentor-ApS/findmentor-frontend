@@ -32,7 +32,8 @@
             ],
             "scripts": [
               "node_modules/dkfds/dist/js/dkfds.js",
-              "node_modules/dkfds/dist/js/dkfds.min.js"
+              "node_modules/dkfds/dist/js/dkfds.min.js",
+              "node_modules/pusher-js/dist/web/pusher.min.js"
             ]
           },
           "configurations": {

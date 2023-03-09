@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://api.findmentor.localhost"
+  apiUrl: "http://api.findmentor.localhost",
+  pusher: {
+    key: 'dbdb62837648a19fb31a',
+    cluster: 'eu',
+  }
 };
 
 /*

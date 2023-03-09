@@ -15,15 +15,15 @@ import { ProfileModule } from './components//profile/profile.module';
 import { APIInterceptor } from './services/http-interceptor.interceptor';
 import { SharedModule } from './components/shared/shared.module';
 import { CommonModule } from '@angular/common';
-
-
+import { ChatModule } from './components/chat/chat.module';
+ 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     LayoutComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +33,8 @@ import { CommonModule } from '@angular/common';
     MainModule,
     ProfileModule,
     SharedModule,
-    CommonModule
+    CommonModule,
+    ChatModule
   ],
   providers: [
     {

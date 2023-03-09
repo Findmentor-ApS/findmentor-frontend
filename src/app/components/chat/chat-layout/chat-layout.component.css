@@ -1,0 +1,10 @@
+.profileWrap{
+    background-color: #f4f4f4;
+    padding-top: 50px;
+}
+
+@media screen and (max-width:992px) {
+    .profileWrap{
+        padding-top: 0px;
+    }
+}
