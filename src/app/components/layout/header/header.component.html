@@ -98,6 +98,13 @@
                                 <label for="toggle-example" class="form-toggle-label "></label>
                             </div>
                     </div>
+                    <div class="nav-actions mobile-menu-links" *ngIf="type == 'commune'">
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Udforsk</a>
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Klienter</a>
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Dokumenter</a>
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Fakturering</a>
+                        <a routerLink="/profile" routerLinkActive="active" class="function-link">Konto</a>
+                    </div>
                     <button id="log-out" (click)="logout()"
                         class="button button-secondary alert-leave d-print-none">
                         Log af
