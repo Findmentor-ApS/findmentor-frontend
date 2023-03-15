@@ -12,18 +12,27 @@ export class SignUpComponent implements OnInit {
   userType: string;
   errorMessage = '';
   success = false;
-  formGroup = new FormGroup({
-    first_name: new FormControl('', [Validators.required]),
-    last_name: new FormControl('', [Validators.required]),
-    street: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
-    email: new FormControl('',[Validators.required, Validators.email]),
-  });
+  formGroup: FormGroup<{
+    first_name: FormControl<string>,
+    last_name:  FormControl<string>,
+    street: FormControl<string>,
+    city:  FormControl<string>,
+    gender: FormControl<boolean>,
+    phone:  FormControl<string>,
+    email:  FormControl<string>,
+  }>;
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private authService: AuthService) { }
   ngOnInit(): void {
     this.userType = this.route.snapshot.paramMap.get('type');
+    this.formGroup = new FormGroup({
+      first_name: new FormControl<string>('',[Validators.required]),
+      last_name: new FormControl<string>('',[Validators.required]),
+      street: new FormControl<string>('',[Validators.required]),
+      city: new FormControl<string>('',[Validators.required]),
+      gender: new FormControl<boolean>(null,[Validators.required]),
+      phone: new FormControl<string>('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+      email: new FormControl<string>('',[Validators.required, Validators.email]),
+    });
   }
   signup(){
     this.authService.register(this.userType, this.formGroup.value).subscribe(

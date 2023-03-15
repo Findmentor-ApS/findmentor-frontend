@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
 
 export interface HasDirtyForm {
-  readonly formGroup: FormGroup;
+  readonly formGroup: UntypedFormGroup;
 }
 
 @Injectable({

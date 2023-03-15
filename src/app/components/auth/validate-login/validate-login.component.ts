@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,7 +15,7 @@ export class ValidateLoginComponent implements OnInit {
   success = false;
   error = false;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private authService: AuthService,private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService,private router: Router) { }
 
   ngOnInit(): void {
     this.userType = this.route.snapshot.paramMap.get('type');

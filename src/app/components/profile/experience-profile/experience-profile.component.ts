@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { parse } from 'path';
 import { experienceType } from 'src/app/general/types';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -15,7 +13,6 @@ export class ExperienceProfileComponent implements OnInit {
   success = false;
   errorMessage = '';
   experienceType = experienceType;
-  formGroup: FormGroup;
 
 constructor(private route: ActivatedRoute, private profileService: ProfileService) { }
 

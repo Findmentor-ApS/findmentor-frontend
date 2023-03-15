@@ -25,9 +25,9 @@ export class AuthService {
     );
   }
 
-  login(userType: string, email: string) {
+  login(userType: string, userData: any) {
     const url = `${'/auth/login/'}${userType}`;
-    return this.http.post(`/auth/login/${userType}`,  email ).pipe(
+    return this.http.post(`/auth/login/${userType}`,  userData ).pipe(
       catchError(error => {
         let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {

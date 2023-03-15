@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from '../layout/layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TypeGuard } from '../../guards/type.guard';
@@ -13,7 +12,7 @@ import { LoginGuard } from 'src/app/guards/login.guard';
 const routes: Routes = [
     {
         path: '', canActivate: [LoginGuard], children: [
-            { path: '', redirectTo: 'create-account' },
+            { path: '', redirectTo: 'create-account', pathMatch: 'full' },
             { path: 'create-account', component: CreateAccountComponent},
             { path: 'login-account', component: LoginAccountComponent},
             { path: 'sign-up/:type', component: SignUpComponent, data: { allowedTypes: ['mentor', 'commune', 'borger'] },  canActivate: [TypeGuard] },

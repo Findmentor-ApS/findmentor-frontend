@@ -12,13 +12,19 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   success = false;
   userType: string;
-  formGroup = new FormGroup({
-    email: new FormControl('',[Validators.required, Validators.email]),
-  });
+
+  formGroup: FormGroup<{
+    email: FormControl<string | null>
+  }>;
+
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.userType = this.route.snapshot.paramMap.get('type');
+    this.formGroup = new FormGroup({
+      email: new FormControl<string | null>('',[Validators.required, Validators.email]),
+    });
+  
   }
 
 
