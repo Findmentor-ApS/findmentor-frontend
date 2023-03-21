@@ -8,12 +8,14 @@ import { ExperienceProfileComponent } from './experience-profile/experience-prof
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 
 const routes: Routes = [
-  {path:'', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
+  {path:'', redirectTo:'account/edit-profile', pathMatch:'full'},
+  {path:'account', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
     {path: '', redirectTo:'edit-profile' ,pathMatch:'full'},
     {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver}},
-  ]
-}
+    ]
+  },
+  // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

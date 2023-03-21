@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mentor-detail',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorDetailComponent implements OnInit {
 
-  constructor() { }
+  mentor: any;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe((data: { mentor: any }) => {
+      this.mentor = data.mentor;
+    });
+    console.log(this.mentor);
   }
 
 }

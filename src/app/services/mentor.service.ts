@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable,map } from 'rxjs';
+import { Observable,map, catchError, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
 
@@ -31,5 +31,22 @@ export class MentorService {
         totalItems: result.totalItems
       }))
     );
+  }
+
+  getMentor(userData: any) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.get(`/mentors/${userData}`, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );  
   }
 }
