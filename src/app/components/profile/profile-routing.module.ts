@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
 import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { ExperienceProfileComponent } from './experience-profile/experience-profile.component';
+import { EditProfileComponent } from './account/edit-profile/edit-profile.component';
+import { ExperienceProfileComponent } from './account/experience-profile/experience-profile.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 
 const routes: Routes = [
