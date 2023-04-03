@@ -10,7 +10,7 @@
                     <a class="breadcrumbs__link" routerLink="find-mentor">Find mentor</a>
                 </li>
         
-                <li class="breadcrumbs__list-item" aria-current="page">Jeppe Mouritzen
+                <li class="breadcrumbs__list-item" aria-current="page">{{ mentor.first_name }} {{ mentor.last_name }}
                 </li>
             </ol>
         </nav>
@@ -22,7 +22,7 @@
                     <div class="detailCard">
                         <div class="imageWrap">
                             <div class="mentorImage">
-                                <img src="../../../assets/images/mentor.JPG" alt="">
+                                <img src="{{ mentor.profile_picture }}" alt="">
                             </div>
                             <div class="actionIcons row align-items-center">
                                 <div class="icon">
@@ -54,7 +54,7 @@
                         <div class="mentorInformation">
                             <div class="mentorName">
                                 <h1 class="mt-0">
-                                    Jeppe Mouritzen
+                                    {{ mentor.first_name }} {{ mentor.last_name }}
                                 </h1>
                             </div>
                             <div class="graduated">
@@ -62,7 +62,7 @@
                                     Uddannet titel
                                 </h3>
                                 <p class="mt-0">
-                                    Socialrådgiver
+                                    {{ mentor.education }}
                                 </p>
                             </div> <!--Graduated End-->
 
@@ -80,7 +80,7 @@
                                     Sprog
                                 </h3>
                                 <p class="mt-0">
-                                    Dansk, Engelsk, Norsk, Tysk
+                                    {{ mentor.languages }}
                                 </p>
                             </div> <!--Language End -->
 
@@ -197,7 +197,7 @@ skrive eller ringe. Jeg ser frem til at høre fra dig!
                     </div>
                 </div>
             </div> <!--Biography Row End-->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-8">
                     <div class="videoWrap">
                         <video
@@ -209,87 +209,18 @@ skrive eller ringe. Jeg ser frem til at høre fra dig!
                  </video>
                     </div>
                 </div>
-            </div><!--- Video Row End-->
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="experienceWrap">
-                        <h3>
-                            Erfaringsområder
-                        </h3>
-                        <div class="tagsWrap">
-                            <div class="tag">
-                                Angst
-                            </div>
-                            <div class="tag">
-                                Depression
-                            </div>
-                            <div class="tag">
-                                Skilsmisse
-                            </div>
-                            <div class="tag">
-                                Stressbelastning
-                            </div>
-                            <div class="tag">
-                                Skolefravær
-                            </div>
-                            <div class="tag">
-                                Personlig udvikling
-                            </div>
-                            <div class="tag">
-                                Sorg
-                            </div>
-                            <div class="tag">
-                                Autisme
-                            </div>
-                            <div class="tag">Demens</div>
-                            <div class="tag">
-                                Autisme
-                            </div>
-                            <div class="tag">
-                                Sorg og tab
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- Exoerience Row End-->
+            </div> -->
             <div class="row">
                 <div class="col-md-8">
                     <div class="clientsWrap">
                         <h3>
                             Erfaringsområder
                         </h3>
-                        <div class="tagsWrap">
-                            <div class="tag">
-                                Angst
+                        <div class="tagsWrap">        
+                            <div class="tag"  *ngFor="let experience of mentor.experiences">
+                                {{ experienceTypeMap[experience] }}
                             </div>
-                            <div class="tag">
-                                Depression
-                            </div>
-                            <div class="tag">
-                                Skilsmisse
-                            </div>
-                            <div class="tag">
-                                Stressbelastning
-                            </div>
-                            <div class="tag">
-                                Skolefravær
-                            </div>
-                            <div class="tag">
-                                Personlig udvikling
-                            </div>
-                            <div class="tag">
-                                Sorg
-                            </div>
-                            <div class="tag">
-                                Autisme
-                            </div>
-                            <div class="tag">Demens</div>
-                            <div class="tag">
-                                Autisme
-                            </div>
-                            <div class="tag">
-                                Sorg og tab
-                            </div>
+
                         </div>
                     </div>
                 </div>
