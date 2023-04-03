@@ -5,15 +5,17 @@ import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
 import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
 import { EditProfileComponent } from './account/edit-profile/edit-profile.component';
 import { ExperienceProfileComponent } from './account/experience-profile/experience-profile.component';
+import { ImageProfileComponent } from './account/image-profile/image-profile.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'account/edit-profile', pathMatch:'full'},
+  {path:'', redirectTo:'account/edit', pathMatch:'full'},
   {path:'account', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
-    {path: '', redirectTo:'edit-profile' ,pathMatch:'full'},
-    {path:'edit-profile', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
+    {path: '', redirectTo:'edit' ,pathMatch:'full'},
+    {path:'edit', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver}},
-    ]
+    {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
+  ]
   },
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];

@@ -10,6 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ExperienceProfileComponent } from './account/experience-profile/experience-profile.component';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ImageProfileComponent } from './account/image-profile/image-profile.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ProfileLayoutComponent,
     ProfileSidebarComponent,
     EditProfileComponent,
-    ExperienceProfileComponent
+    ExperienceProfileComponent,
+    ImageProfileComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +28,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ProfileRoutingModule,
     FormsModule, 
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ImageCropperModule
   ],
   providers: [SharedVariablesService],
 })

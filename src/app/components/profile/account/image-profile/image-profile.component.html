@@ -1,0 +1,50 @@
+<div class="editprofileWrap">
+    <h3>
+        Upload profilbillede
+    </h3>
+    <div class="editFormWrap">
+        <!-- Select experience -->
+        <div class="filters col-md-6">
+
+            <h4 *ngIf="profile_picture">
+                Dit nuværende profilbillede
+            </h4>
+            <img class="profilePicture" [src]="profile_picture" [style.border]="profile_picture ? '1px solid black' : 'none'" />
+
+            <h4>
+                Upload nyt profilbillede
+            </h4>
+            <div class="form-group file-input">
+                <label class="form-label" for="form-fileinput">Vedhæft fil</label>
+                <input type="file" id="form-fileinput" name="file"  (change)="fileChangeEvent($event)" >
+            </div>
+
+            <image-cropper
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="3 / 4"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+            ></image-cropper>
+            <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                <div class="alert-body">
+                    <p class="alert-heading">Fejl</p>
+                    <p class="alert-text">{{ errorMessage }}</p>
+                </div>
+            </div>
+            <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                <div class="alert-body">
+                    <p class="alert-heading">Success</p>
+                    <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                </div>
+            </div>
+            <div class="btnGroup">
+                <button *ngIf="is_loaded" (click)="saveImage()" class="save">Gem</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,79 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ProfileService } from 'src/app/services/profile.service';
+
+@Component({
+  selector: 'app-image-profile',
+  templateUrl: './image-profile.component.html',
+  styleUrls: ['./image-profile.component.css']
+})
+export class ImageProfileComponent {
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  errorMessage: string = '';
+  is_loaded: boolean = false;
+  success: boolean = false;
+  profile_picture: any = '';
+
+  constructor(private profileService: ProfileService,private route: ActivatedRoute,) { }
+
+  ngOnInit(): void {
+    this.route.data.subscribe((data: { user: any }) => {
+      this.profile_picture = data.user.profile_picture;
+    });
+    console.log(this.profile_picture);
+  }
+
+  fileChangeEvent(event: any): void {
+      this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+      this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    this.errorMessage = '';
+    this.is_loaded = true;
+  }
+  cropperReady() {
+  }
+  loadImageFailed() {
+    this.is_loaded = false;
+    this.errorMessage = "Billedet kunne ikke indlæses. Prøv venligst gyldig billede type."
+  }
+
+  // call this method to save the image and call the service to save the image to the server
+  saveImage() {
+    if (!this.is_loaded) {
+      this.errorMessage = 'Du skal vælge et billede først!';
+      return;
+    }
+
+    const userData = {
+      profile_picture: this.croppedImage
+    };
+  
+    this.profileService.updateProfilePicture(userData).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+          console.log(res);
+        },
+        error: (err) => {
+          this.success = false;
+          let errorMessage = 'Der er opstået en fejl!';
+          if (err.error && err.error.message) {
+            errorMessage = err.error.message;
+            console.log(err.error.message);
+          }
+          this.errorMessage = errorMessage; // Update errorMessage here
+          console.log(err);
+        },
+        complete: () => {
+          console.log('complete');
+        }
+      }
+    );
+  }
+}
