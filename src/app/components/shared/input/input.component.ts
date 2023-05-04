@@ -12,7 +12,7 @@ export class InputComponent implements OnInit {
   @Input() inputId: '';
   @Input() type: string = 'text';
   @Input() required: boolean = true;
-  @Input() placeHolder: string = '';
+  @Input() placeholder: string = '';
   @Input() hintMessage: string = '';
   @Input() errorMessage: string = '';
   constructor() { }

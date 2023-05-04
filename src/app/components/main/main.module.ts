@@ -6,7 +6,7 @@ import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { MentorListComponent } from './mentor-list/mentor-list.component';
 import { HomeComponent } from './home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MentorDetailComponent } from './mentor-detail/mentor-detail.component';
 import { OverviewComponent } from './overview/overview.component';
 import { SharedModule } from '../shared/shared.module';
@@ -29,7 +29,8 @@ import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.comp
     MainRoutingModule,
     NgSelectModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }

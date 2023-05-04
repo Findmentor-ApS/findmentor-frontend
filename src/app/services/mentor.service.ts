@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class MentorService {
 
+
   constructor(private http: HttpClient, private authService: AuthService) { 
   }
 
@@ -36,6 +37,23 @@ export class MentorService {
   getMentor(userData: any) {
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
     return this.http.get(`/mentors/${userData}`, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );  
+  }
+
+  bookMentor(userData: any) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.post<any>(`/mentors/book`,userData, {headers}).pipe(
       catchError(error => {
         let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {

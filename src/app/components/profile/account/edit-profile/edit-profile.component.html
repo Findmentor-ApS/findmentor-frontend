@@ -101,10 +101,10 @@
             <div class="form-divider"></div>
             <div class="col-md-6 editProfileComponent">
                 <div class="form-group" id="editDescription">
-                    <label class="form-label" for="input-type-text">
-                        Beskrivelse om dig som mentor
-                    </label>
-                    <textarea name="Beskrivelse" class="form-input" rows="6" formControlName="description"></textarea>
+                    <app-text-area label="Beskrivelse om dig som mentor" placeholder="Beskriv dig selv" type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Jeg har gennem ..." rows="6"
+                        [required]="true" [control]="$any(formGroup.get('description'))">
+                    </app-text-area>
                 </div>
             </div>
 
