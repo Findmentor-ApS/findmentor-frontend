@@ -5,11 +5,13 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { SecondaryNavigationComponent } from './components/secondary-navigation/secondary-navigation.component';
 import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextAreaComponent } from './text-area/text-area.component';
 
 @NgModule({
   declarations: [
     SecondaryNavigationComponent,
     InputComponent,
+    TextAreaComponent,
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports:[
     SecondaryNavigationComponent,
-    InputComponent
+    InputComponent,
+    TextAreaComponent
   ]
 })
 export class SharedModule { }
