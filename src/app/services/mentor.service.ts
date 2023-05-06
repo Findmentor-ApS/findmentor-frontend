@@ -67,4 +67,21 @@ export class MentorService {
       })
     );  
   }
+
+  bookCall(userData: any) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.post<any>(`/mentors/bookcall`,userData, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );  
+  }
 }

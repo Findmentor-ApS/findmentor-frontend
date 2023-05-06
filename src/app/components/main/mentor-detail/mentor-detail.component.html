@@ -157,14 +157,14 @@
                                 300 kr
                             </h3>
                         </div>
-                        <div class="buttonWrap">
-                            <button>
+                        <div class="buttonWrap" *ngIf="type !== 'mentor'" >
+                            <button (click)="openCall()">
                                 Ring mig op
                             </button>
-                            <button (click)="openModal()">
+                            <!-- <button>
                                 Send besked
-                            </button>
-                            <button class="book">
+                            </button> -->
+                            <button class="book"  (click)="openBooking()">
                                 Book mentor
                             </button>
                         </div>
@@ -227,22 +227,22 @@ og hjælper med at bringe det ud af dig
     </div>
 </div>
 
-<div #modal class="fds-modal" id="modal-example" aria-hidden="true" role="dialog"
+<div #modalBooking class="fds-modal" id="modal-example" aria-hidden="true" role="dialog"
     aria-modal="true" aria-labelledby="modal-id-1-title" tabindex="-1">
     <div class="modal-content">
         <div class="modal-header">
             <h3 class="modal-title" id="modal-example-title">
                 Book en session med {{ mentor.first_name }} {{ mentor.last_name }}
             </h3>
-            <button class="modal-close function-link" (click)="closeModal()"
+            <button class="modal-close function-link" (click)="closeBooking()"
                 data-modal-close>X</button>
         </div>
-        <form [formGroup]="formGroup">
-            <div class="modal-body" *ngIf="type === 'mentor'">
+        <form [formGroup]="formGroupBooking">
+            <div class="modal-body" *ngIf="type === 'commune'">
                 <div class="col-md-12">
                     <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
-                        [required]="true" [control]="$any(formGroup.get('help_text'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))">
                     </app-text-area>
                 </div>
                 <hr class="divider">
@@ -250,13 +250,13 @@ og hjælper med at bringe det ud af dig
                     <div class="col-md-6">
                         <app-input label="Fornavn" placeholder="Borgers Fornavn" type="text"
                         errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars"
-                        [required]="true" [control]="$any(formGroup.get('first_name'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('first_name'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="Efternavn" placeholder="Borgers Efternavn" type="text"
                         errorMessage="Indtast venligst et efternavn" hintMessage="eks. Larsen"
-                        [required]="true" [control]="$any(formGroup.get('last_name'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('last_name'))">
                         </app-input>
                     </div>
                 </div>
@@ -264,13 +264,13 @@ og hjælper med at bringe det ud af dig
                     <div class="col-md-6">
                         <app-input label="CPR-Nummer" placeholder="Borgers CPR-Nummer" type="number"
                         errorMessage="Indtast venligst gyldigt CPR-Nummer" hintMessage="eks. Lars"
-                        [required]="true" [control]="$any(formGroup.get('cpr_number'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('cpr_number'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="Telefon nr." placeholder="Borgers telefon nummer" type="text"
                         errorMessage="Indtast venligst et gyldigt telefon nummer" hintMessage="50501010"
-                        [required]="true" [control]="$any(formGroup.get('phone'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('phone'))">
                         </app-input>
                     </div>
                 </div>
@@ -278,13 +278,13 @@ og hjælper med at bringe det ud af dig
                     <div class="col-md-6">
                         <app-input label="Adresse" placeholder="Borgers adresse" type="text"
                             errorMessage="Indtast venligst en korrekt adresse" hintMessage="eks Amagergade 1 st tv"
-                            [required]="true" [control]="$any(formGroup.get('street'))">
+                            [required]="true" [control]="$any(formGroupBooking.get('street'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="By" placeholder="Borgers by" type="text"
                             errorMessage="Indtast venligst en by" hintMessage="eks København"
-                            [required]="true" [control]="$any(formGroup.get('city'))">
+                            [required]="true" [control]="$any(formGroupBooking.get('city'))">
                         </app-input>
                     </div>
                 </div>
@@ -293,13 +293,13 @@ og hjælper med at bringe det ud af dig
                     <div class="col-md-6">
                         <app-input label="Henvisende sagsbehandler" placeholder="Sagsbehandler navn" type="text"
                             errorMessage="Indtast venligst et nav" hintMessage="Lars Larsen"
-                            [required]="true" [control]="$any(formGroup.get('social_worker'))">
+                            [required]="true" [control]="$any(formGroupBooking.get('social_worker'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="EAN-nr" placeholder="Intast EAN-nr" type="text"
                             errorMessage="Indtast venligst dit EAN-nr" hintMessage="1234-1234"
-                            [required]="true" [control]="$any(formGroup.get('ean_nr'))">
+                            [required]="true" [control]="$any(formGroupBooking.get('ean_nr'))">
                         </app-input>
                     </div>
                 </div>
@@ -307,26 +307,36 @@ og hjælper med at bringe det ud af dig
                 <div class="col-md-12">
                     <app-text-area label="Overordnet mål" placeholder="Målbeskrivelse" type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vi ønsker at opnå..." rows="6"
-                        [required]="true" [control]="$any(formGroup.get('goal'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('goal'))">
                     </app-text-area>
                 </div>
                 <hr class="divider">
                 <div class="col-md-12">
                     <app-input label="Vælg startsperiode" type="date"
                         errorMessage="Indtast venligst startsdato" hintMessage="Vælg dato"
-                        [required]="true" [control]="$any(formGroup.get('start_date'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('start_date'))">
                     </app-input>
                 </div>
                 <div class="col-md-12">
                     <app-input label="Vælg slutsperiode" type="date"
                         errorMessage="Indtast venligst slutdato" hintMessage="Vælg dato"
-                        [required]="true" [control]="$any(formGroup.get('end_date'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('end_date'))">
                     </app-input>
                 </div>
             </div>
 
+            <div class="modal-body" *ngIf="type === 'user'">
+                <div class="col-md-12">
+                    <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
+                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))">
+                    </app-text-area>
+                </div>
+                <hr class="divider">
+            </div>
+
             <div class="modal-footer">
-                <div>
+                <div class="col-md-12 row">
                     <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
                         <div class="alert-body">
                             <p class="alert-heading">Fejl</p>
@@ -336,12 +346,73 @@ og hjælper med at bringe det ud af dig
                     <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
                         <div class="alert-body">
                             <p class="alert-heading">Success</p>
-                            <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                            <p class="alert-text">Din booking er nu sendt.</p>
                         </div>
                     </div>
                     <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                     <div class="btnGroup">
-                        <button (click)="bookMentor()" [disabled]="!formGroup.valid" class="save">Send</button>
+                        <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
+                        <!-- <button (click)="reroute()">
+                            Se profil
+                        </button> -->
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div #modalCall class="fds-modal" id="modal-example2" aria-hidden="true" role="dialog"
+    aria-modal="true" aria-labelledby="modal-id-1-title" tabindex="-1">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-example-title">
+                Ring mig op
+            </h3>
+            <button class="modal-close function-link" (click)="closeCall()"
+                data-modal-close>X</button>
+        </div>
+        <form [formGroup]="formGroupCall">
+            <div class="modal-body">
+                <div class="col-md-6">
+                    <app-input label="Hvad nummer vil du træffes på" placeholder="Telefon nr" type="text"
+                    errorMessage="Indtast venligst et gyldigt telefon nummer" hintMessage="50501010"
+                    [required]="true" [control]="$any(formGroupCall.get('phone_to_call'))">
+                    </app-input>
+                </div>
+                <div class="col-md-3">
+                    <app-input label="Tidsrum fra" placeholder="Telefon nr" type="time"
+                    errorMessage="Indtast venligst klokkeslæt" hintMessage="12.00"
+                    [required]="true" [control]="$any(formGroupCall.get('from'))">
+                    </app-input>
+                </div>
+                <div class="col-md-3">
+                    <app-input label="Tidsrum til" placeholder="Telefon nr" type="time"
+                    errorMessage="Indtast venligst klokkeslæt" hintMessage="12.00"
+                    [required]="true" [control]="$any(formGroupCall.get('to'))">
+                    </app-input>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                        <div class="alert-body">
+                            <p class="alert-heading">Fejl</p>
+                            <p class="alert-text">{{ errorMessage }}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                        <div class="alert-body">
+                            <p class="alert-heading">Success</p>
+                            <p class="alert-text">Din anmodning om at blive ringet op er nu sendt..</p>
+                        </div>
+                    </div>
+                    <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
+                    <div class="btnGroup">
+                        <button (click)="bookCall()" [disabled]="!formGroupCall.valid" class="save">Send</button>
                         <!-- <button (click)="reroute()">
                             Se profil
                         </button> -->

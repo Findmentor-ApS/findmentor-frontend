@@ -12,9 +12,12 @@ import { MentorService } from 'src/app/services/mentor.service';
 })
 export class MentorDetailComponent implements OnInit {
 
-  @ViewChild('modal') modal: ElementRef<any>;
+  @ViewChild('modalBooking') modalbooking: ElementRef<any>;
+  @ViewChild('modalCall') modalCall: ElementRef<any>;
+
   mentor: any;
-  formGroup: FormGroup;
+  formGroupBooking: FormGroup;
+  formGroupCall: FormGroup;
   experienceTypeMap: {[key: number]: string} = {};
   type = '';
   success = false;
@@ -32,8 +35,8 @@ export class MentorDetailComponent implements OnInit {
 
     this.route.data.subscribe((data: { mentor: any }) => {
       this.mentor = data.mentor;
-      if(this.type == 'mentor') {
-        this.formGroup = this.fb.group({
+      if(this.type == 'commune') {
+        this.formGroupBooking = this.fb.group({
           help_text: new FormControl('',[Validators.required]),
           first_name: new FormControl('',[Validators.required]),
           last_name: new FormControl('',[Validators.required]),
@@ -48,30 +51,64 @@ export class MentorDetailComponent implements OnInit {
           end_date: new FormControl<Date>(new Date(),[Validators.required]),
         });  
       }
-      if(this.type == 'commune') {
-        this.formGroup = this.fb.group({
-          help_text: new FormControl('',[Validators.required]),
-          first_name: new FormControl('',[Validators.required]),
-          last_name: new FormControl('',[Validators.required]),
+      else if(this.type == 'user') {
+        this.formGroupBooking = this.fb.group({
+          help_text: new FormControl('',[Validators.required])
         });
       }
+      this.formGroupCall = this.fb.group({
+        phone_to_call: new FormControl<string>('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+        from: new FormControl<string>('', [Validators.required]),
+        to: new FormControl<string>('', [Validators.required]),
+      });
   
       this.mentor.experiences = data.mentor.experiences.map((exp) => parseInt(exp.experience_type));
     });
-    this.modal.nativeElement.setAttribute('aria-hidden', 'true');
+    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
+    this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
+
   }
 
-  openModal(){
-    this.modal.nativeElement.setAttribute('aria-hidden', 'false');
+  openBooking(){
+    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'false');
   }
 
-  closeModal() {
-    this.modal.nativeElement.setAttribute('aria-hidden', 'true');
+  closeBooking() {
+    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
+    this.success = false;
+    this.errorMessage = '';
+  }
+
+  openCall(){
+    this.modalCall.nativeElement.setAttribute('aria-hidden', 'false');
+  }
+
+  closeCall() {
+    this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
+    this.success = false;
+    this.errorMessage = '';
   }
 
   bookMentor() {
-    this.formGroup.value.recipient_id = this.mentor.id;
-    this.mentorService.bookMentor(this.formGroup.value).subscribe(
+    this.formGroupBooking.value.recipient_id = this.mentor.id;
+    this.mentorService.bookMentor(this.formGroupBooking.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
+  }
+
+  bookCall() {
+    this.formGroupCall.value.recipient_id = this.mentor.id;
+    this.mentorService.bookCall(this.formGroupCall.value).subscribe(
       {
         next: (res) => {
           this.success = true;

@@ -15,10 +15,10 @@ const routes: Routes = [
             { path: '', redirectTo: 'create-account', pathMatch: 'full' },
             { path: 'create-account', component: CreateAccountComponent},
             { path: 'login-account', component: LoginAccountComponent},
-            { path: 'sign-up/:type', component: SignUpComponent, data: { allowedTypes: ['mentor', 'commune', 'borger'] },  canActivate: [TypeGuard] },
-            { path: 'login/:type', component: LoginComponent, data: { allowedTypes: ['mentor', 'commune', 'borger'] },  canActivate: [TypeGuard] }, 
-            { path: 'validate_login/:type/:login_token', component: ValidateLoginComponent, data: { allowedTypes: ['mentor', 'commune', 'borger'] },  canActivate: [TypeGuard] }, 
-            { path: 'validate_email/:type/:verify_email_token', component: ValidateEmailComponent, data: { allowedTypes: ['mentor', 'commune', 'borger'] },  canActivate: [TypeGuard] }, 
+            { path: 'sign-up/:type', component: SignUpComponent, data: { allowedTypes: ['mentor', 'commune', 'user'] },  canActivate: [TypeGuard] },
+            { path: 'login/:type', component: LoginComponent, data: { allowedTypes: ['mentor', 'commune', 'user'] },  canActivate: [TypeGuard] }, 
+            { path: 'validate_login/:type/:login_token', component: ValidateLoginComponent, data: { allowedTypes: ['mentor', 'commune', 'user'] },  canActivate: [TypeGuard] }, 
+            { path: 'validate_email/:type/:verify_email_token', component: ValidateEmailComponent, data: { allowedTypes: ['mentor', 'commune', 'user'] },  canActivate: [TypeGuard] }, 
         ]
     }
     // {path: '', redirectTo:'home' ,pathMatch:'full' },
