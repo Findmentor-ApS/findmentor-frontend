@@ -34,8 +34,16 @@ export const languages = [
     { id: 11, name: 'Russisk' },
   ];
 
-export const contacts = [
-    { id: 1, name: 'Personlig', selected: false, },
-    { id: 2, name: 'Telefonisk', selected: false, },
-    { id: 3, name: 'Online', selected: false,},
+export const contactsType = [
+    { id: 1, name: 'Personlig'},
+    { id: 2, name: 'Telefonisk'},
+    { id: 3, name: 'Online'},
+  ];
+
+export const primaryTarget = [
+    { id: 1, name: 'Børn U15' },
+    { id: 2, name: 'Unge 16-18' },
+    { id: 3, name: 'Voksne 18+' },
+    { id: 4, name: 'Par' },
+    { id: 5, name: 'Familier' },
   ];

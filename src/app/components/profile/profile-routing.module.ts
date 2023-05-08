@@ -10,6 +10,7 @@ import { ProfileLayoutComponent } from './profile-layout/profile-layout.componen
 import { OverviewComponent } from './mentor/overview/overview.component';
 import { ClientsComponent } from './commune/clients/clients.component';
 import { TypeGuard } from 'src/app/guards/type.guard';
+import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     {path:'edit', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard] },
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
+    {path:'contact', component:EditContactsComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
   {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
