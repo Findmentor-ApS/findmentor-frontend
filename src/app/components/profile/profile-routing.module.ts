@@ -22,7 +22,7 @@ const routes: Routes = [
   ]
   },
   {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
-  {path:'clients', component:ClientsComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
+  {path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];
 

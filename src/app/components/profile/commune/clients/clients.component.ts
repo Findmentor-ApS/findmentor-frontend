@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-clients',
@@ -8,8 +9,16 @@ import { Component } from '@angular/core';
 export class ClientsComponent {
   tableData;
   pageSize;
+  bookings: any;
+
+  constructor(private profileService: ProfileService) {
+  }
 
   ngOnInit(): void {
+    this.profileService.getBookings().subscribe((response: any) => {
+      this.bookings = response;
+    });
+    console.log(this.bookings);
     this.tableData = tableData
     this.pageSize = 10
   }

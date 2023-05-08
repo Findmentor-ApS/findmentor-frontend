@@ -85,12 +85,12 @@
             <div class="navbar" *ngIf="signInCondition && isSmallScreen">
                 <div class="navbar-inner container navbar-context-actions">
                     <div class="nav-actions mobile-menu-links" *ngIf="type == 'mentor'">
-                        <a routerLink="/profile/overview"  routerLinkActive="active" class="function-link">Mit overblik</a>
-                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Klienter</a>
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Mit overblik</a>
+                        <a routerLink="/clientsm"  routerLinkActive="active" class="function-link">Klienter</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Kalender</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Fakturering</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Ressourcer</a>
-                        <a routerLink="/profile" routerLinkActive="active" class="function-link">Profil</a>
+                        <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Profil</a>
                             <div class="form-group" id="toggle-text">
                                 Tilgængelig til booking
                                 <input id="toggle-example" type="checkbox" name="toggle-example" [(ngModel)]="isAvailable"
@@ -99,11 +99,11 @@
                             </div>
                     </div>
                     <div class="nav-actions mobile-menu-links" *ngIf="type == 'commune'">
-                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Udforsk</a>
-                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Klienter</a>
+                        <a routerLink="/find-mentor"  routerLinkActive="active" class="function-link">Udforsk</a>
+                        <a routerLink="/profile/clients"  routerLinkActive="active" class="function-link">Klienter</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Dokumenter</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Fakturering</a>
-                        <a routerLink="/profile" routerLinkActive="active" class="function-link">Konto</a>
+                        <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Konto</a>
                     </div>
                     <button id="log-out" (click)="logout()"
                         class="button button-secondary alert-leave d-print-none">

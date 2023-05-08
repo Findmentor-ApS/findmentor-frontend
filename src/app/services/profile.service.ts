@@ -95,4 +95,20 @@ export class ProfileService {
     );
   }
 
+  getBookings() {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.get(`/me/bookings`, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );  
+  }
 }
