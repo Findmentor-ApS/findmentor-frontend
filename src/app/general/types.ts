@@ -20,7 +20,7 @@ export const locationArr = [
     { id: 4, name: 'Region Syddanmark' },
   ];
 
-export const languages = [
+export const languagesType = [
     { id: 1, name: 'Engelsk' },
     { id: 2, name: 'Dansk' },
     { id: 3, name: 'Arabisk' },

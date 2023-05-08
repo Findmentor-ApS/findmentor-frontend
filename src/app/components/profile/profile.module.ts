@@ -16,6 +16,7 @@ import { OverviewComponent } from './mentor/overview/overview.component';
 import { ClientsComponent } from './commune/clients/clients.component';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
 import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
+import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { EditSettingComponent } from './account/edit-setting/edit-setting.compon
     OverviewComponent,
     ClientsComponent,
     EditContactsComponent,
-    EditSettingComponent
+    EditSettingComponent,
+    EditLanguagesComponent
   ],
   imports: [
     CommonModule,
