@@ -11,8 +11,7 @@ export class TypeGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const allowedTypes = route.data['allowedTypes'];
     const type = route.paramMap.get('type');
-
-    if (allowedTypes.indexOf(type) !== -1) {
+    if (allowedTypes.indexOf(type) !== -1 || allowedTypes.indexOf(localStorage.getItem('type')) !== -1) {
       return true;
     } else {
       this.router.navigate(['/home']);

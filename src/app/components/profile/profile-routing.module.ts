@@ -17,12 +17,12 @@ const routes: Routes = [
   {path:'account', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
     {path: '', redirectTo:'edit' ,pathMatch:'full'},
     {path:'edit', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
-    {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard], },
+    {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard] },
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
   ]
   },
-  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver}},
-  {path:'clients', component:ClientsComponent, resolve: {user: ProfileResolver}},
+  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
+  {path:'clients', component:ClientsComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];
 
