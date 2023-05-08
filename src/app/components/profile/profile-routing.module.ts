@@ -11,6 +11,7 @@ import { OverviewComponent } from './mentor/overview/overview.component';
 import { ClientsComponent } from './commune/clients/clients.component';
 import { TypeGuard } from 'src/app/guards/type.guard';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
+import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard] },
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
     {path:'contact', component:EditContactsComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
+    {path:'language', component:EditLanguagesComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
   {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
