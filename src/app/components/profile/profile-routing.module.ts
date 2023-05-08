@@ -9,6 +9,7 @@ import { ImageProfileComponent } from './account/image-profile/image-profile.com
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 import { OverviewComponent } from './mentor/overview/overview.component';
 import { ClientsComponent } from './commune/clients/clients.component';
+import { TypeGuard } from 'src/app/guards/type.guard';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path:'account', component:ProfileLayoutComponent, canActivate: [AuthGuard], children:[
     {path: '', redirectTo:'edit' ,pathMatch:'full'},
     {path:'edit', component:EditProfileComponent, resolve: {user: ProfileResolver}, canDeactivate: [UnsavedChangesGuard]},
-    {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver}},
+    {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard], },
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
   ]
   },
