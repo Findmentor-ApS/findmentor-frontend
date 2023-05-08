@@ -15,6 +15,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { OverviewComponent } from './mentor/overview/overview.component';
 import { ClientsComponent } from './commune/clients/clients.component';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
+import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { EditContactsComponent } from './account/edit-contacts/edit-contacts.com
     ImageProfileComponent,
     OverviewComponent,
     ClientsComponent,
-    EditContactsComponent
+    EditContactsComponent,
+    EditSettingComponent
   ],
   imports: [
     CommonModule,

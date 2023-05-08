@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
@@ -9,16 +10,16 @@ import { ProfileService } from 'src/app/services/profile.service';
 export class ClientsComponent {
   tableData;
   pageSize;
-  bookings: any;
+  clients: any;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.profileService.getBookings().subscribe((response: any) => {
-      this.bookings = response;
+    this.route.data.subscribe((data: { clients: any }) => {
+      this.clients = Object.values(data.clients);
     });
-    console.log(this.bookings);
+    console.log(this.clients)
     this.tableData = tableData
     this.pageSize = 10
   }

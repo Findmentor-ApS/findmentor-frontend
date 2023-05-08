@@ -36,8 +36,8 @@
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
-                                    <tr *ngFor="let item of tableData; let i = index">
-                                        <ng-container *ngIf="i<pageSize">
+                                    <tr *ngFor="let item of clients">
+                                        <ng-container *ngIf="0<pageSize">
                                             <td>
                                                 <div class="dataWrap">
                                                     <div class="icon">
@@ -51,31 +51,31 @@
 
                                                         </svg>
                                                     </div>
-                                                    {{item.type}}
+                                                    {{item.id}}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
                                                     <div class="tag m-0">
-                                                        {{item.inquiry}}
+                                                        <!-- {{item.inquiry}} -->
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
-                                                    {{item.date}}
+                                                    <!-- {{item.date}} -->
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
-                                                    {{item.name}}
+                                                    <!-- {{item.first_name}} -->
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
                                                     <div class="noteWrap">
                                                         <p class="m-0">
-                                                            {{item.note}}
+                                                            <!-- {{item.note}} -->
                                                         </p>
                                                         <button>
                                                             Besvar

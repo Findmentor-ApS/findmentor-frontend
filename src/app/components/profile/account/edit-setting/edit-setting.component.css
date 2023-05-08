@@ -1,0 +1,231 @@
+#toggle-text{
+    display: block;
+    margin-left: 0;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  #toggle-example{
+    text-align: right;
+  }
+  
+  .form-group input[type=checkbox].form-toggle:checked ~ .form-toggle-label:before{
+    left: 45px;
+    content: url(../../../../../assets/svgs/tick.svg);
+  }
+  
+  .form-group label::after{
+    width: 75px;
+    background-color: #cecece;
+  }
+  
+  .form-group input[type=checkbox].form-toggle:checked ~ label::after{
+    background-color: #a8d6b6 !important;
+  }
+  .form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
+    content: url(../../../../../assets/svgs/cross.svg);
+  }
+
+
+  /* filters side bar  */
+  .filters{
+    width: 85%;
+  }
+  .filters h3{
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
+
+  .filter-wrap{
+    padding: 3px;
+    background-color: #fff;
+    border-radius: 4px;
+  }
+  .supportFilter,.regionFilter,.languageFilter,.mentorFilter, .checkbox-wrap>div{
+    margin-bottom: 30px;
+  }
+  
+  .filters .checkbox  .form-group {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .filters .checkbox-wrap  .form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+  
+   .reset-btn{
+    margin-top: 15px;
+   }
+   .reset-btn button{
+    padding: 8px 25px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: transparent;
+    font-weight: 600;
+   }
+    
+  /* media queries  */
+  @media screen and (max-width:768px) {
+  
+    /* filter dropdown mobile  */
+  
+    .dropdown-container {
+      width: 300px;
+      border-radius: 3px;
+      background: #fff;
+      min-height: 50px;
+      text-align: center;
+      position: relative;
+    }
+  
+    .dropdown-container .filter-label {
+      position: relative;
+      display: block;
+      width: 100%;
+      line-height: 50px;
+      cursor: pointer;
+      background: #446CB3;
+      color: white;
+      user-select: none;
+      padding-right: 10px;
+    }
+    .dropdown-container .filter-label:hover {
+      background: #365690;
+    }
+    .dropdown-container .filter-label:after {
+      content: "\203A";
+      position: absolute;
+      width: 40px;
+      font-size: 32px;
+      right: 0;
+      padding-left: 0px;
+      top: 0;
+      bottom: 0;
+      transform: rotate(90deg);
+    }
+    .dropdown-container .dropdown-filter-wrap {
+      height: 0;
+      max-height: 0px;
+      margin: 0;
+      text-align: left;
+      overflow: hidden;
+      transition: 0.3s linear;
+      position: absolute;
+      z-index: 999;
+      background: #fff;
+    }
+    .dropdown-container .filters{
+      padding: 10px;
+    }
+    .dropdown-container #drop {
+      display: none;
+    }
+    .dropdown-container #drop:checked ~ .dropdown-filter-wrap {
+      height: auto;
+      width: 100%;
+      max-height: 1100px;
+      transition: max-height 1s ease-in;
+      overflow: hidden;
+    }
+    .result-wrap>.row{
+      display: none;
+    }
+  
+  
+  }
+  @media screen and (min-width:769px) {
+    .dropdown-container>input, .dropdown-container>label{
+      display: none;
+    }
+  }
+
+  /* Change the background color for ng-select */
+  ng-select ::ng-deep .ng-select-container {
+    border: 2px solid #d6d6d6;
+    border-radius: 5px;
+    padding: 0 10px;
+  }
+
+  .col-md-6{
+    padding: 0 0px;
+  }
+  
+  ng-select ::ng-deep .ng-option {
+    margin-bottom: 10px; 
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #000;
+  }
+
+  ng-select ::ng-deep .ng-option:hover {
+    background-color: #f5f5f5;
+  }
+
+  .editprofileWrap{
+    padding: 40px;
+    background-color: #fff;
+}
+.editprofileWrap h3{
+    margin: 0;
+}
+.editFormWrap{
+    padding-top: 21px;
+}
+.editFormWrap input.adrs{
+    max-width: 75px;
+}
+.editFormWrap .form-group label span{
+    font-weight: 400;
+}
+.editFormWrap .form-group label span.example{
+    display: block;
+    color: #707070;
+    font-size: 15px;
+    margin-top: -4px;
+}
+.radioBtn .row{
+    margin-left: 0px;
+    column-gap: 10px;
+}
+
+.editFormWrap .form-divider{
+    width: 100%;
+    height: 2px;
+    background-color: #d6d6d6;
+    margin-top: 24px;
+    max-width: 32rem;
+}
+.editFormWrap .btnGroup{
+    margin-top: 50px;
+}
+.editFormWrap .btnGroup button{
+    background-color: transparent;
+    border: 0;
+    border: 1px solid black;
+    padding: 5px 20px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(65, 65, 65);
+
+}
+.editFormWrap .btnGroup button.save{
+    background-color: #a8d6b6;
+    border-color: #a8d6b6;
+    margin-right: 20px;
+}
+
+.editProfileComponent{
+    padding: 0 0px;
+}
+
+#editDescription{
+    margin-top: 10px;
+}

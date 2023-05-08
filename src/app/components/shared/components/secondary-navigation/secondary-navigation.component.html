@@ -31,18 +31,6 @@
                     Profil
                 </b>
             </a></li>
-            <li id="toggle-placement">
-                <b>
-                    Tilgængelig til booking
-                </b>
-                <div class="form-group">
-
-                    <input id="toggle-example" type="checkbox" name="toggle-example" [(ngModel)]="is_avaliable"
-                    value="1" class="form-toggle" (change)="onCheckboxChange()" />
-                    <label for="toggle-example" class="form-toggle-label "></label>
-                
-                </div>
-            </li>
         </ul>
     </div>
     <div class="container" *ngIf="type == 'commune'">

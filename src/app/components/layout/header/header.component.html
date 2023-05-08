@@ -91,12 +91,6 @@
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Fakturering</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Ressourcer</a>
                         <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Profil</a>
-                            <div class="form-group" id="toggle-text">
-                                Tilgængelig til booking
-                                <input id="toggle-example" type="checkbox" name="toggle-example" [(ngModel)]="isAvailable"
-                                value="1" class="form-toggle"[style]="" (change)="onCheckboxChange()" />
-                                <label for="toggle-example" class="form-toggle-label "></label>
-                            </div>
                     </div>
                     <div class="nav-actions mobile-menu-links" *ngIf="type == 'commune'">
                         <a routerLink="/find-mentor"  routerLinkActive="active" class="function-link">Udforsk</a>

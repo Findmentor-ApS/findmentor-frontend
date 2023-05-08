@@ -36,3 +36,17 @@
         padding-top: 0px;
     }
 }
+
+li.isDone {
+    position: relative; /* Set the position property for the li element */
+}
+
+li.isDone::after {
+    content: '✔'; /* Unicode checkmark character */
+    color: #abcfb2; /* Change the color of the checkmark */
+    position: absolute; /* Set the position property for the checkmark */
+    right: 0; /* Place the checkmark on the right side */
+    top: 50%; /* Center the checkmark vertically */
+    transform: translateY(-50%); /* Adjust the checkmark's vertical position */
+    font-weight: bold; /* Make the checkmark bold */
+  }

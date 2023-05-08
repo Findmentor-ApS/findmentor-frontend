@@ -4,7 +4,7 @@
     </h3>
     <div class="sideNavigation">
         <ul>
-            <li>
+            <li [ngClass]="{isDone: profileIsCompleted()}">
                 <a routerLink="edit" routerLinkActive="active">
                     Om mig
                 </a>
@@ -15,12 +15,16 @@
             <li><a >
                 Primære klientgruppe
             </a></li>
-            <li><a routerLink="contact" routerLinkActive="active">
-                Kontaktform
-            </a></li>
-            <li><a routerLink="experience" routerLinkActive="active">
-                Erfaring
-            </a></li>
+            <li [ngClass]="{isDone: user.contacts.length > 0}">
+                <a routerLink="contact" routerLinkActive="active">
+                    Kontaktform
+                </a>
+            </li>
+            <li [ngClass]="{isDone: user.experiences.length > 0}">
+                <a routerLink="experience" routerLinkActive="active">
+                    Erfaring
+                </a>
+            </li>
             <li>
                 <a >
                     Sprog
@@ -32,16 +36,18 @@
             <li><a>
                 Min tilgang
             </a></li>
-            <li><a routerLink="image" routerLinkActive="active">
-                Billeder og video
-            </a></li>
+            <li [ngClass]="{isDone: user.profile_picture}">
+                <a routerLink="image" routerLinkActive="active">
+                    Billeder og video
+                </a>
+            </li>
             <li><a>
                 Hvor jeg arbejder
             </a></li>
             <li><a>
                 Priser
             </a></li>
-            <li><a>
+            <li><a routerLink="settings" routerLinkActive="active">
                 Indstillinger
             </a></li>
         </ul>

@@ -12,14 +12,7 @@ export class SecondaryNavigationComponent implements OnInit {
   isSmallScreen = false;
   constructor(private sharedService: SharedVariablesService) { }
 
-  onCheckboxChange() {
-    this.sharedService.isAvailable$.next(this.is_avaliable);
-  }
-
   ngOnInit(): void {
-    this.sharedService.isAvailable$.subscribe((isAvailable) => {
-      this.is_avaliable = isAvailable;
-    });
     this.type = localStorage.getItem('type');
   }
 

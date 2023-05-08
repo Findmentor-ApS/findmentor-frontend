@@ -76,12 +76,6 @@ export class HeaderComponent implements OnInit {
       else this.isSmallScreen = false;
     }
 
-    onCheckboxChange(){
-      this.isAvailable = !this.isAvailable;
-      this.profileService.setAvailable(this.isAvailable);
-      // console.log(e.target.checked);
-    }
-
     logout(){
       localStorage.removeItem('access_token');
       localStorage.removeItem('type');

@@ -90,7 +90,7 @@ export class MentorDetailComponent implements OnInit {
   }
 
   bookMentor() {
-    this.formGroupBooking.value.recipient_id = this.mentor.id;
+    this.formGroupBooking.value.mentor_id = this.mentor.id;
     this.mentorService.bookMentor(this.formGroupBooking.value).subscribe(
       {
         next: (res) => {
@@ -107,7 +107,8 @@ export class MentorDetailComponent implements OnInit {
   }
 
   bookCall() {
-    this.formGroupCall.value.recipient_id = this.mentor.id;
+    this.formGroupCall.value.mentor_id = this.mentor.id;
+    this.formGroupCall.value.accepted = false;
     this.mentorService.bookCall(this.formGroupCall.value).subscribe(
       {
         next: (res) => {
