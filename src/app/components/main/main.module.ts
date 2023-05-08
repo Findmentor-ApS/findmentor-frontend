@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MentorDetailComponent } from './mentor-detail/mentor-detail.component';
-import { OverviewComponent } from './overview/overview.component';
 import { SharedModule } from '../shared/shared.module';
 import { BlivMentorComponent } from './bliv-mentor/bliv-mentor.component';
 import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.component';
@@ -21,8 +20,7 @@ import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.comp
     HomeComponent,
     BlivMentorComponent,
     WhatIsAMentorComponent,
-    MentorDetailComponent,
-    OverviewComponent
+    MentorDetailComponent
   ],
   imports: [
     CommonModule,

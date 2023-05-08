@@ -6,7 +6,6 @@ import { BlivMentorComponent } from './bliv-mentor/bliv-mentor.component';
 import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { HomeComponent } from './home/home.component';
 import { MentorDetailComponent } from './mentor-detail/mentor-detail.component';
-import { OverviewComponent } from './overview/overview.component';
 import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.component';
 
 const routes: Routes = [
@@ -18,7 +17,6 @@ const routes: Routes = [
             { path: 'hvad-er-en-mentor', component: WhatIsAMentorComponent },
             { path: 'find-mentor', component: FindMentorComponent },
             { path: 'mentors/:id', component: MentorDetailComponent, resolve: {mentor: MentorResolver}, },
-            { path: 'overview', component: OverviewComponent }
         ]
     }
     // {path: '', redirectTo:'home' ,pathMatch:'full' },

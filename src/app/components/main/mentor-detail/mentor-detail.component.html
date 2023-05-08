@@ -332,11 +332,10 @@ og hjælper med at bringe det ud af dig
                         [required]="true" [control]="$any(formGroupBooking.get('help_text'))">
                     </app-text-area>
                 </div>
-                <hr class="divider">
             </div>
-
+            <hr class="divider">
             <div class="modal-footer">
-                <div class="col-md-12 row">
+                <div class="col-md-12">
                     <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
                         <div class="alert-body">
                             <p class="alert-heading">Fejl</p>
@@ -349,12 +348,8 @@ og hjælper med at bringe det ud af dig
                             <p class="alert-text">Din booking er nu sendt.</p>
                         </div>
                     </div>
-                    <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                     <div class="btnGroup">
                         <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
-                        <!-- <button (click)="reroute()">
-                            Se profil
-                        </button> -->
                     </div>
                 </div>
 
@@ -410,12 +405,8 @@ og hjælper med at bringe det ud af dig
                             <p class="alert-text">Din anmodning om at blive ringet op er nu sendt..</p>
                         </div>
                     </div>
-                    <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                     <div class="btnGroup">
                         <button (click)="bookCall()" [disabled]="!formGroupCall.valid" class="save">Send</button>
-                        <!-- <button (click)="reroute()">
-                            Se profil
-                        </button> -->
                     </div>
                 </div>
 

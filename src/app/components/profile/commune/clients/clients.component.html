@@ -1,0 +1,150 @@
+<app-secondary-navigation></app-secondary-navigation>
+<div class="overviewWrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inquiriesWrap">
+                    <div class="topText row justify-content-between align-items-center">
+                        <h5>
+                            Henvendelser
+                        </h5>
+                        <div class="calender row">
+                            <p>
+                                Viser for perioden
+                            </p>
+                            <button>
+                                Seneste
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tableWrap">
+                        <div class="table--responsive-scroll">
+                            <table class="table mt-6" id="sortingTable">
+                                <thead>
+                                    <tr>
+                                        <th aria-sort="ascending" class="table-header-no-wrap">
+                                            Type</th>
+                                        <th aria-sort="none" class="table-header-no-wrap">
+                                            Henvendelse</th>
+                                        <th aria-sort="none" class="table-header-no-wrap">Dato</th>
+                                        <th aria-sort="none">Navn</th>
+                                        <th>Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody aria-live="polite">
+                                    <tr *ngFor="let item of tableData; let i = index">
+                                        <ng-container *ngIf="i<pageSize">
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <div class="icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                                            id="Capa_1" x="0px" y="0px" viewBox="0 0 60 60"
+                                                            style="enable-background:new 0 0 60 60;"
+                                                            xml:space="preserve">
+                                                            <path
+                                                                d="M0,8.5v2.291v38.418V51.5h60v-2.291V10.791V8.5H0z M36.625,30.564l-5.446,5.472c-0.662,0.615-1.698,0.614-2.332,0.026  l-5.473-5.498l0.048-0.047L3.647,10.5h52.719L36.577,30.518L36.625,30.564z M20.524,30.533L2,48.355V11.923L20.524,30.533z   M21.934,31.95l5.523,5.549c0.709,0.661,1.619,0.993,2.533,0.993c0.923,0,1.85-0.339,2.581-1.02l5.496-5.522L56.304,49.5H3.686  L21.934,31.95z M39.477,30.534L58,11.922v36.433L39.477,30.534z" />
+
+                                                        </svg>
+                                                    </div>
+                                                    {{item.type}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <div class="tag m-0">
+                                                        {{item.inquiry}}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    {{item.date}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    {{item.name}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <div class="noteWrap">
+                                                        <p class="m-0">
+                                                            {{item.note}}
+                                                        </p>
+                                                        <button>
+                                                            Besvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="pagination">
+                                                <div class="pageSize">
+                                                    <div class="form-group ">
+                                                        <label class="form-label" for="options">
+                                                            Antal pr. side
+                                                        </label>
+
+                                                        <select #pageSizeValue class=" form-select" name="options"
+                                                            id="options" (change)="changePageSize(pageSizeValue.value)">
+
+                                                            <option value="10">10</option>
+
+                                                            <option value="15">15</option>
+
+                                                            <option value="25">25</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="page">
+                                                    <button>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                                            id="Layer_1" x="0px" y="0px" viewBox="0 0 120 120"
+                                                            enable-background="new 0 0 120 120" xml:space="preserve">
+                                                            <polygon
+                                                                points="34.358,43.299 94.391,103.34 77.732,119.99 17.7,59.957 " />
+                                                            <polygon
+                                                                points="17.606,60.067 77.623,0.011 94.281,16.653 34.256,76.71 " />
+                                                        </svg>
+                                                    </button>
+                                                    <span>
+                                                        2/11
+                                                    </span>
+                                                    <button>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                                                            id="Layer_1" x="0px" y="0px" viewBox="0 0 120 120"
+                                                            enable-background="new 0 0 120 120" xml:space="preserve">
+                                                            <polygon
+                                                                points="102.296,59.957 42.264,119.99 25.605,103.34 85.639,43.299 " />
+                                                            <polygon
+                                                                points="85.74,76.71 25.715,16.653 42.373,0.011 102.391,60.067 " />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

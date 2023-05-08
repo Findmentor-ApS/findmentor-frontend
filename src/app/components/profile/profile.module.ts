@@ -12,6 +12,8 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ImageProfileComponent } from './account/image-profile/image-profile.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { OverviewComponent } from './mentor/overview/overview.component';
+import { ClientsComponent } from './commune/clients/clients.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ProfileSidebarComponent,
     EditProfileComponent,
     ExperienceProfileComponent,
-    ImageProfileComponent
+    ImageProfileComponent,
+    OverviewComponent,
+    ClientsComponent
   ],
   imports: [
     CommonModule,

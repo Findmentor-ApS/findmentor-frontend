@@ -7,6 +7,9 @@ import { EditProfileComponent } from './account/edit-profile/edit-profile.compon
 import { ExperienceProfileComponent } from './account/experience-profile/experience-profile.component';
 import { ImageProfileComponent } from './account/image-profile/image-profile.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
+import { OverviewComponent } from './mentor/overview/overview.component';
+import { ClientsComponent } from './commune/clients/clients.component';
+
 
 const routes: Routes = [
   {path:'', redirectTo:'account/edit', pathMatch:'full'},
@@ -17,6 +20,8 @@ const routes: Routes = [
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
   ]
   },
+  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver}},
+  {path:'clients', component:ClientsComponent, resolve: {user: ProfileResolver}},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];
 
