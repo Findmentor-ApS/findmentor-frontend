@@ -17,6 +17,7 @@ import { ClientsComponent } from './commune/clients/clients.component';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
 import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
 import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
+import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
 
 
 @NgModule({
@@ -41,6 +42,6 @@ import { EditLanguagesComponent } from './account/edit-languages/edit-languages.
     SharedModule,
     ImageCropperModule
   ],
-  providers: [SharedVariablesService],
+  providers: [SharedVariablesService, ProfileResolver],
 })
 export class ProfileModule { }

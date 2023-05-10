@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-profile-sidebar',
@@ -9,13 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 export class ProfileSidebarComponent implements OnInit {
   type: string;
   user: any;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
-    this.route.data.subscribe((data: { user: any }) => {
-      this.user = data.user;
+    this.userDataService.getUser().subscribe((user: any) => {
+      this.user = user;
       console.log(this.user);
+      console.log(this.profileIsCompleted());
     });
   }
 

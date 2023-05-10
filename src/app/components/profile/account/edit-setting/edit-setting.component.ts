@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-edit-setting',
@@ -15,17 +16,17 @@ export class EditSettingComponent {
   success: boolean = false;
   is_available= false;
   userData: any;
-  constructor(private route: ActivatedRoute, private profileService: ProfileService,private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private profileService: ProfileService,
+    private userDataService: UserDataService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
-    this.route.data.subscribe((data: { user: any }) => {
-      console.log("fda");
-      this.user = data.user;
-      if(this.user.is_available == '1') this.is_available = true;
+    this.userDataService.getUser().subscribe((user: any) => {
+      this.user = user;
+      if(this.user.is_available == '1') this.is_available = true
       else this.is_available = false;
-
-      console.log(this.is_available);
+      console.log(this.user);
+      console.log(this.profileIsCompleted());
     });
   }
 

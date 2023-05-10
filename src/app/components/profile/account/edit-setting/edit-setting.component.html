@@ -6,9 +6,8 @@
         <div class="form-group">
             <div class="form-group" id="toggle-text">
                 Tilgængelig til booking
-                <!-- if profileIsCompleted() false, make disable input-->
-                <input *ngIf="user" id="toggle-example" type="checkbox" name="toggle-example"
-                   class="form-toggle" [disabled]="!profileIsCompleted()" [checked]="is_available"/>
+                <input id="toggle-example" type="checkbox" name="toggle-example"
+                   class="form-toggle" [disabled]="!profileIsCompleted()" (click)="onCheckboxChange()" [checked]="is_available"/>
                 <label for="toggle-example" class="form-toggle-label "></label>
                 <div *ngIf="!profileIsCompleted()" class="alert alert-warning" role="alert">
                     <div class="alert-body">

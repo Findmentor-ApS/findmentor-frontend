@@ -24,7 +24,7 @@ const routes: Routes = [
     {path:'experience', component:ExperienceProfileComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard] },
     {path:'image', component:ImageProfileComponent, resolve: {user: ProfileResolver}},
     {path:'contact', component:EditContactsComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
-    {path:'settings', component:EditSettingComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
+    {path:'settings', component:EditSettingComponent,resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
     {path:'language', component:EditLanguagesComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
