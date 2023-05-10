@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-edit-setting',
@@ -7,39 +9,64 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-setting.component.css']
 })
 export class EditSettingComponent {
-  isAvailable = false;
   type: string;
   user: any;
-  
-  constructor(private route: ActivatedRoute) { }
+  errorMessage: string = '';
+  success: boolean = false;
+  is_available= false;
+  userData: any;
+  constructor(private route: ActivatedRoute, private profileService: ProfileService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
     this.route.data.subscribe((data: { user: any }) => {
+      console.log("fda");
       this.user = data.user;
+      if(this.user.is_available == '1') this.is_available = true;
+      else this.is_available = false;
+
+      console.log(this.is_available);
     });
-    this.user.profile_picture = "fasdfa";
-    console.log(this.user);
-    console.log(this.profileIsCompleted());
   }
 
   onCheckboxChange(){
-    this.isAvailable = !this.isAvailable;
-    // console.log(e.target.checked);
+    this.is_available = !this.is_available
   }
 
   profileIsCompleted() {
-    // List of keys to ignore during the check
-    const keysToIgnore = ['street_side', 'street_no', 'linkedin'];
-  
+    // List of keys to have values
+    const keysToHaveValues = ['first_name', 'last_name', 'email', 'phone', 'street',
+    'street_no', 'zip_code', 'city', 'education', 'gender', 'description',
+    'experinces','profile_picture','languages'];
+
     // Iterate through the keys in userData
     for (const key in this.user) {
-      // If the key is not in the keysToIgnore array and the value is null, undefined, or empty, return false
-      if (!keysToIgnore.includes(key) && (this.user[key] === null || this.user[key] === undefined || this.user[key] === '')) {
+      
+      // if the key is in keysToHaveValues, check if the value is null, undefined, or empty
+      if (keysToHaveValues.includes(key) && (this.user[key] === null || this.user[key] === undefined || this.user[key] === '' || this.user[key].length === 0)) {
         return false;
       }
     }
     // If all required fields have values, return true
     return true;
+  }
+
+  updateSettings(){
+    this.userData  = {
+      is_available: this.is_available
+    };
+    this.profileService.updateSettings(this.userData).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
   }
 }

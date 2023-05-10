@@ -60,6 +60,23 @@ export class ProfileService {
     );  
   }
 
+  updateSettings(userData: any) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.put<any>(`/me/settings`,userData, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          errorMessage = error.error;
+          console.log(errorMessage);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );
+  }
+
   updateProfileExperience(userData: any) {
     const headers = new HttpHeaders().set('access_token', this.authService.getAccessToken());
     return this.http.put<any>(`/me/experiences`, userData, { headers }).pipe(

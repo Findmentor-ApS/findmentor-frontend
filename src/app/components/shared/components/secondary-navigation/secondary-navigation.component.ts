@@ -8,7 +8,6 @@ import { SharedVariablesService } from 'src/app/services/shared-variables.servic
 })
 export class SecondaryNavigationComponent implements OnInit {
   type: string;
-  is_avaliable: boolean;
   isSmallScreen = false;
   constructor(private sharedService: SharedVariablesService) { }
 
