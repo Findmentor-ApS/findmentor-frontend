@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { experienceType } from 'src/app/general/types';
-import * as DKFDS from 'dkfds'
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
@@ -31,7 +30,6 @@ export class MentorDetailComponent implements OnInit {
     experienceType.forEach(type => {
       this.experienceTypeMap[type.id] = type.name;
     });
-    new DKFDS.datePicker.on(document.body);
 
     this.route.data.subscribe((data: { mentor: any }) => {
       this.mentor = data.mentor;
@@ -64,9 +62,9 @@ export class MentorDetailComponent implements OnInit {
   
       this.mentor.experiences = data.mentor.experiences.map((exp) => parseInt(exp.experience_type));
     });
+    this.profileVisited()
     this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
     this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
-
   }
 
   openBooking(){
@@ -122,6 +120,24 @@ export class MentorDetailComponent implements OnInit {
         complete: () => console.log('complete')
       }
     )
+  }
+
+  profileVisited() {
+    const userData = {
+      mentor_id: this.mentor.id,
+    }
+    this.mentorService.profileVisited(userData).subscribe(
+      {
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => console.log('complete')
+      }
+    )
+
   }
 
 }
