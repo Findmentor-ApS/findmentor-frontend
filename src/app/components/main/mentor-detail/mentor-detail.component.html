@@ -79,8 +79,8 @@
                                 <h3 class="mt-0">
                                     Sprog
                                 </h3>
-                                <p class="mt-0">
-                                    {{ mentor.languages }}
+                                <p class="mt-0" *ngFor="let language of mentor.languages">
+                                    {{getLanguageName(language.language_type)}}
                                 </p>
                             </div> <!--Language End -->
 
@@ -110,7 +110,7 @@
                             Book mentor
                         </h2>
                         <ul class="contactMentor">
-                            <li>
+                            <li *ngIf="hasContactType(1)">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 436.432 436.432" style="enable-background:new 0 0 436.432 436.432;" xml:space="preserve">
                                         <g>
@@ -120,10 +120,10 @@
                                         </svg>
                                 </div>
                                 <h3>
-                                    Personlig mentorforløb
+                                    Personlig forløb
                                 </h3>
                             </li>
-                            <li>
+                            <li *ngIf="hasContactType(2)">
                                 <div class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" viewBox="0 0 482.6 482.6" style="enable-background:new 0 0 482.6 482.6;" xml:space="preserve">
                                         <g>
@@ -135,12 +135,12 @@
                                     Telefonisk møde
                                 </h3>
                             </li>
-                            <li>
+                            <li *ngIf="hasContactType(3)">
                                 <div class="icon">
                                     <svg _ngcontent-wdr-c69="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" width="20px" x="0px" y="0px" viewBox="0 0 490 490" xml:space="preserve" style="enable-background: new 0 0 490 490;"><g _ngcontent-wdr-c69=""><g _ngcontent-wdr-c69="" id="XMLID_588_"><path _ngcontent-wdr-c69="" d="M344,373H0V114h344V373z M16,359h314V128H16V359z"></path></g><g _ngcontent-wdr-c69="" id="XMLID_589_"><rect _ngcontent-wdr-c69="" x="38" y="329" width="122" height="14"></rect></g><g _ngcontent-wdr-c69="" id="XMLID_590_"><rect _ngcontent-wdr-c69="" x="176" y="329" width="22" height="14"></rect></g><g _ngcontent-wdr-c69="" id="XMLID_592_"><rect _ngcontent-wdr-c69="" x="361" y="166" width="13" height="155"></rect></g><g _ngcontent-wdr-c69="" id="XMLID_612_"><polygon _ngcontent-wdr-c69="" points="490,379.655 391,324.11 391,266 405,266 405,315.122 473,353.573 473,135.754 405,172.141 405,221 391,221     391,162.913 490,110.345   "></polygon></g></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g><g _ngcontent-wdr-c69=""></g></svg>
                                 </div>
                                 <h3>
-                                    Telefonisk møde
+                                    Online møde
                                 </h3>
                             </li>
                         </ul>

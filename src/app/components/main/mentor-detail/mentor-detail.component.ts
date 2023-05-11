@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { experienceType } from 'src/app/general/types';
+import { experienceType, languagesType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class MentorDetailComponent implements OnInit {
   type = '';
   success = false;
   errorMessage = '';
-  
+
 
   constructor(private route: ActivatedRoute,private fb: FormBuilder, private mentorService: MentorService) { }
 
@@ -137,7 +137,14 @@ export class MentorDetailComponent implements OnInit {
         complete: () => console.log('complete')
       }
     )
-
   }
 
+  getLanguageName(id: number): string {
+    const language = languagesType.find(l => l.id == id);
+    return language ? language.name : '';
+  }
+
+  hasContactType(type: number): boolean {
+    return this.mentor.contacts.some(contact => contact.contact_type == type);
+  }
 }
