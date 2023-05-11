@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { languagesType } from 'src/app/general/types';
 import { ProfileService } from 'src/app/services/profile.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-edit-languages',
@@ -14,12 +15,11 @@ export class EditLanguagesComponent {
   errorMessage = '';
   languagesType = languagesType;
 
-constructor(private route: ActivatedRoute, private profileService: ProfileService) { }
+constructor(private route: ActivatedRoute, private profileService: ProfileService, private userDataService: UserDataService) { }
 
 ngOnInit(): void {
-  this.route.data.subscribe((data: { user: any }) => {
-    this.selectedLanguageType = data.user.languages.map((lan) => parseInt(lan.language_type));
-  });
+  const user = this.userDataService.getCurrentUser();
+  this.selectedLanguageType = user.languages.map((con) => parseInt(con.language_type));
 }
 
 updateLanguage() {
@@ -37,7 +37,11 @@ updateLanguage() {
       next: (res) => {
         this.success = true;
         this.errorMessage = '';
-        console.log(res);
+        const user = this.userDataService.getCurrentUser();
+        user.languages =  this.selectedLanguageType.map((type) => {
+          return { language_type: type.toString() };
+        });
+        this.userDataService.setUser(user);
       },
       error: (err) => {
         this.success = false;

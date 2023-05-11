@@ -11,7 +11,7 @@ export class UserDataService {
     this.userSubject.next(user);
   }
 
-  getUser(): Observable<any> {
-    return this.userSubject.asObservable();
+  getCurrentUser(): any {
+    return this.userSubject.getValue();
   }
 }

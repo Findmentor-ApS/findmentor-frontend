@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UnsavedChangesGuard } from 'src/app/guards/unsaved-changes.guard';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,12 +19,11 @@ export class EditProfileComponent implements OnInit {
   type = '';
 
   constructor(private fb: FormBuilder,private route: ActivatedRoute, private sharedService: SharedVariablesService,
-    private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditProfileComponent>) { }
+    private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditProfileComponent>,
+    private userDataService: UserDataService) { }
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
-    this.route.data.subscribe((data: { user: any }) => {
-      this.user = data.user;
-    });
+    this.user = this.userDataService.getCurrentUser();
     if(this.type == 'mentor') {
       this.formGroup = this.fb.group({
         first_name: new FormControl(this.user.first_name, [Validators.required]),
@@ -61,6 +61,8 @@ updateProfile(){
         next: (res) => {
           this.success = true;
           this.errorMessage = '';
+          this.userDataService.setUser(res);
+          console.log(res);
         },
         error: (error) => {
           this.success = false;

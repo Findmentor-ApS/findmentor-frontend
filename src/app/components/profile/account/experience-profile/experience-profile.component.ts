@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { experienceType } from 'src/app/general/types';
 import { ProfileService } from 'src/app/services/profile.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-experience-profile',
@@ -14,12 +15,11 @@ export class ExperienceProfileComponent implements OnInit {
   errorMessage = '';
   experienceType = experienceType;
 
-constructor(private route: ActivatedRoute, private profileService: ProfileService) { }
+constructor(private route: ActivatedRoute, private profileService: ProfileService, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data: { user: any }) => {
-      this.selectedTypeExperience = data.user.experiences.map((exp) => parseInt(exp.experience_type));
-    });
+    const user = this.userDataService.getCurrentUser();
+    this.selectedTypeExperience = user.experiences.map((con) => parseInt(con.experience_type));
   }
 
   updateExperience() {
@@ -37,7 +37,11 @@ constructor(private route: ActivatedRoute, private profileService: ProfileServic
         next: (res) => {
           this.success = true;
           this.errorMessage = '';
-          console.log(res);
+          const user = this.userDataService.getCurrentUser();
+          user.experiences =  this.selectedTypeExperience.map((type) => {
+            return { experience_type: type.toString() };
+          });
+          this.userDataService.setUser(user);
         },
         error: (err) => {
           this.success = false;

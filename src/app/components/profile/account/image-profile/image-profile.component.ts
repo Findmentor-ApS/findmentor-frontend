@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { ProfileService } from 'src/app/services/profile.service';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-image-profile',
@@ -16,14 +18,13 @@ export class ImageProfileComponent {
   success: boolean = false;
   profile_picture: any = '';
 
-  constructor(private profileService: ProfileService,private route: ActivatedRoute,) { }
+  constructor(private profileService: ProfileService,private route: ActivatedRoute, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
-    this.route.data.subscribe((data: { user: any }) => {
-      this.profile_picture = data.user.profile_picture;
-    });
-    console.log(this.profile_picture);
+    const user = this.userDataService.getCurrentUser();
+    this.profile_picture = user.profile_picture;
   }
+  
 
   fileChangeEvent(event: any): void {
       this.imageChangedEvent = event;
@@ -48,32 +49,34 @@ export class ImageProfileComponent {
       this.errorMessage = 'Du skal vælge et billede først!';
       return;
     }
-
+  
     const userData = {
       profile_picture: this.croppedImage
     };
   
-    this.profileService.updateProfilePicture(userData).subscribe(
-      {
-        next: (res) => {
-          this.success = true;
-          this.errorMessage = '';
-          console.log(res);
-        },
-        error: (err) => {
-          this.success = false;
-          let errorMessage = 'Der er opstået en fejl!';
-          if (err.error && err.error.message) {
-            errorMessage = err.error.message;
-            console.log(err.error.message);
-          }
-          this.errorMessage = errorMessage; // Update errorMessage here
-          console.log(err);
-        },
-        complete: () => {
-          console.log('complete');
+    this.profileService.updateProfilePicture(userData).subscribe({
+      next: (res) => {
+        this.success = true;
+        this.errorMessage = '';
+        // update user data in the service
+        const user = this.userDataService.getCurrentUser();
+        user.profile_picture = this.croppedImage;
+        this.userDataService.setUser(user);
+      },
+      error: (err) => {
+        this.success = false;
+        let errorMessage = 'Der er opstået en fejl!';
+        if (err.error && err.error.message) {
+          errorMessage = err.error.message;
+          console.log(err.error.message);
         }
+        this.errorMessage = errorMessage; // Update errorMessage here
+        console.log(err);
+      },
+      complete: () => {
+        console.log('complete');
       }
-    );
+    });
   }
+  
 }

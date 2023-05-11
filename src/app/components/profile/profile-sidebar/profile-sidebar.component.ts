@@ -14,11 +14,8 @@ export class ProfileSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
-    this.userDataService.getUser().subscribe((user: any) => {
-      this.user = user;
-      console.log(this.user);
-      console.log(this.profileIsCompleted());
-    });
+    const user = this.userDataService.getCurrentUser();
+    this.user = user;
   }
 
   profileIsCompleted() {

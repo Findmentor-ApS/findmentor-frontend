@@ -21,13 +21,10 @@ export class EditSettingComponent {
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
-    this.userDataService.getUser().subscribe((user: any) => {
-      this.user = user;
-      if(this.user.is_available == '1') this.is_available = true
-      else this.is_available = false;
-      console.log(this.user);
-      console.log(this.profileIsCompleted());
-    });
+    const user = this.userDataService.getCurrentUser();
+    this.user = user;
+    if(this.user.is_available == '1') this.is_available = true
+    else this.is_available = false;
   }
 
   onCheckboxChange(){
@@ -38,7 +35,7 @@ export class EditSettingComponent {
     // List of keys to have values
     const keysToHaveValues = ['first_name', 'last_name', 'email', 'phone', 'street',
     'street_no', 'zip_code', 'city', 'education', 'gender', 'description',
-    'experinces','profile_picture','languages'];
+    'experinces','profile_picture','languages','contacts'];
 
     // Iterate through the keys in userData
     for (const key in this.user) {
@@ -61,6 +58,10 @@ export class EditSettingComponent {
         next: (res) => {
           this.success = true;
           this.errorMessage = '';
+          
+          const user = this.userDataService.getCurrentUser();
+          user.is_available = this.is_available;
+          this.userDataService.setUser(user);
         },
         error: (error) => {
           this.success = false;
