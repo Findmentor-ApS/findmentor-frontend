@@ -20,6 +20,7 @@ import { EditLanguagesComponent } from './account/edit-languages/edit-languages.
 import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
 import { MessageComponent } from './message/message.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { EditLocationsComponent } from './account/edit-locations/edit-locations.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     EditContactsComponent,
     EditSettingComponent,
     EditLanguagesComponent,
-    MessageComponent
+    MessageComponent,
+    EditLocationsComponent
   ],
   imports: [
     CommonModule,

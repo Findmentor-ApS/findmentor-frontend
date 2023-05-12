@@ -13,7 +13,7 @@ export const searchArr = [
     { id: 2, name: 'SocialMentor' },
   ];
 
-export const locationArr = [
+export const locationsType = [
     { id: 1, name: 'Region Hovedstaden' },
     { id: 2, name: 'Region Sjælland' },
     { id: 3, name: 'Region Midtjylland' },
