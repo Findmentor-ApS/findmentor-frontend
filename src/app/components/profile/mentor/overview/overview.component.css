@@ -23,7 +23,7 @@
 }
 .overviewCard {
   background-color: #fff;
-  width: 180px;
+  width: 250px;
   padding-top: 25px;
   min-height: 250px;
   display: flex;
@@ -40,13 +40,23 @@
   font-size: 16px;
 }
 .overviewCard .count {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   background: #f4f4f4;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.overviewCard .count h2 {
+  position: absolute;
+}
+.overviewCard .count h4{
+  font-size: 1.8rem;
+  color: #4e4f95;
+  position: relative;
+  top: -30%;
+  left: 25%;
 }
 .overviewCard .icon {
   position: relative;
@@ -58,6 +68,10 @@
   left: 50%;
   transform: translateX(-50%);
   fill: #4e4f95;
+}
+
+.opacity {
+  opacity: 0.5;
 }
 
 /* upcoming Agreement  */

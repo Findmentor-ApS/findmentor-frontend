@@ -2,7 +2,7 @@
     <h3>
         Profil
     </h3>
-    <div class="sideNavigation">
+    <div class="sideNavigation" *ngIf="type == 'mentor'">
         <ul>
             <li [ngClass]="{isDone: profileIsCompleted()}">
                 <a routerLink="edit" routerLinkActive="active">
@@ -47,6 +47,18 @@
             <li><a>
                 Priser
             </a></li>
+            <li><a routerLink="settings" routerLinkActive="active">
+                Indstillinger
+            </a></li>
+        </ul>
+    </div>
+    <div class="sideNavigation" *ngIf="type == 'commune'">
+        <ul>
+            <li [ngClass]="{isDone: profileIsCompleted()}">
+                <a routerLink="edit" routerLinkActive="active">
+                    Om mig
+                </a>
+            </li>
             <li><a routerLink="settings" routerLinkActive="active">
                 Indstillinger
             </a></li>

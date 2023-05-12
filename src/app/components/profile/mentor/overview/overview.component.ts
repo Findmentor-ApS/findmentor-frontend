@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-overview',
@@ -6,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
-agreementList;
-tableData;
-pageSize;
-  constructor() { }
+  agreementList;
+  tableData;
+  pageSize;
+  user: any;
+  constructor(private userDataService: UserDataService) { }
 
   ngOnInit(): void {
+    this.user = this.userDataService.getCurrentUser();
     this.agreementList = agreementList;
     this.tableData = tableData
     this.pageSize = 10;
+    console.log(this.user);
   }
   changePageSize(event){
     this.pageSize = event;

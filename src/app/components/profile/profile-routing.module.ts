@@ -29,7 +29,7 @@ const routes: Routes = [
     {path:'language', component:EditLanguagesComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
-  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
+  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
   //{path:'messages', component:MessageComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
   {path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver, clients: ClientsResolver},data: { allowedTypes: ['commune'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}

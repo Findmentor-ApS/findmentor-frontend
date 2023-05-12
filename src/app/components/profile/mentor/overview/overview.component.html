@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="welcomeText">
                     <h1>
-                        Hej Jeppe
+                        Velkommen {{ user.first_name }} {{ user.last_name }}
                     </h1>
                     <P>
                         Her er dit mentor overblik
@@ -21,8 +21,11 @@
                         </h3>
                         <div class="count">
                             <h2>
-                                16
+                                {{ user.visits_total }}
                             </h2>
+                            <h4>
+                                {{ user.visits_total_week }}
+                            </h4>
                         </div>
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
@@ -33,13 +36,13 @@
                                 </svg>
                         </div>
                     </div>
-                    <div class="overviewCard">
+                    <div class="overviewCard opacity">
                         <h3>
-                            Beskeder
+                            Beskeder(kommer snart)
                         </h3>
                         <div class="count">
                             <h2>
-                                22
+                                0
                             </h2>
                         </div>
                         <div class="icon">
@@ -60,8 +63,11 @@
                         </h3>
                         <div class="count">
                             <h2>
-                                18
+                                {{ user.bookings_total }}
                             </h2>
+                            <h4>
+                                {{ user.bookings_total_week }}
+                            </h4>
                         </div>
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 488.4 488.4" style="enable-background:new 0 0 488.4 488.4;" xml:space="preserve">
@@ -77,59 +83,15 @@
 
                     <div class="overviewCard">
                         <h3>
-                            Deling af proil
-                        </h3>
-                        <div class="count">
-                            <h2>
-                                8
-                            </h2>
-                        </div>
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="30px"  viewBox="0 0 422.591 422.591" style="enable-background:new 0 0 422.591 422.591;" xml:space="preserve">
-                                <g>
-                                    <path d="M398.39,393.059c-21.021-42.096-39.688-81.623-37.215-102.68c2.361-20.124-5.47-41.441-17.117-62.436   c4.77-2.618,8.002-7.685,8.002-13.508V15.4c0-8.505-6.894-15.4-15.4-15.4H31.87c-8.505,0-15.399,6.895-15.399,15.4v199.038   c0,8.506,6.894,15.399,15.399,15.399h82.552c0.403,6.162,5.959,14.606,19.42,22.683c23.866,14.319-39.839,72.59,117.77,87.207   C262.162,361.945,281,414.525,281,414.525c1.433,4.786,5.835,8.065,10.831,8.065h102.983c3.903,0,7.528-2.012,9.593-5.322   c2.064-3.31,2.276-7.45,0.562-10.954C402.977,402.244,400.751,397.785,398.39,393.059z M41.881,25.411h284.768v35.378H41.881   V25.411z M41.881,113.28h284.768v86.733c-4.337-6.414-8.768-12.731-13.097-18.898c-7.574-10.79-14.727-20.981-20.586-30.561   c-1.608-2.63-3.271-5.676-4.881-8.623c-3.511-6.434-7.228-13.036-10.65-16.886c-2.176-2.447-5.254-3.845-8.578-3.792   c-3.273,0.038-6.37,1.493-8.489,3.99c-1.596,1.879-3.228,4.319-4.852,7.25c-8.752,15.81-8.513,47.193,4.693,71.934H41.881V113.28z"/>
-                                </g>
-                                </svg>
-                        </div>
-                    </div>
-
-                    <div class="overviewCard">
-                        <h3>
-                            Opkald
-                        </h3>
-                        <div class="count">
-                            <h2>
-                                12
-                            </h2>
-                        </div>
-                        <div class="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="30px"  viewBox="0 0 142.787 142.787" style="enable-background:new 0 0 142.787 142.787;" xml:space="preserve">
-                                <g>
-                                    <g>
-                                        <g>
-                                            <path d="M71.976,19.418H15.993C2.803,19.418,0,22.209,0,35.41v71.965c0,13.192,2.803,15.994,15.993,15.994h53.988v-4.235H15.993     c-10.865,0-11.743-0.881-11.743-11.759V35.41c0-10.87,0.872-11.756,11.743-11.756h55.983c10.872,0,11.751,0.881,11.751,11.756     v69.968h4.248V35.41C87.975,22.209,85.173,19.418,71.976,19.418z"/>
-                                            <polygon points="72.608,120.743 85.333,108.012 72.608,108.012    "/>
-                                            <rect x="12.732" y="58.668" width="44.423" height="3.621"/>
-                                            <rect x="12.732" y="74.768" width="34.216" height="3.639"/>
-                                            <rect x="12.732" y="90.877" width="34.216" height="3.628"/>
-                                            <rect x="12.732" y="106.986" width="44.423" height="3.628"/>
-                                        </g>
-                                        <path d="M134.974,21.754h-0.98h-26.348c-6.434,0-7.81,1.36-7.81,7.812v35.133c0,6.441,1.362,7.809,7.81,7.809h26.348h0.98    c6.439,0,7.812-1.357,7.812-7.809v-0.982V30.535v-0.974C142.781,23.115,141.414,21.754,134.974,21.754z M140.704,63.716v0.978    c0,5.307-0.429,5.734-5.729,5.734h-0.98h-26.348c-5.309,0-5.733-0.428-5.733-5.734V29.561c0-5.308,0.425-5.74,5.733-5.74h26.348    h0.98c5.301,0,5.729,0.432,5.729,5.74v0.974V63.716z"/>
-                                        <polygon points="94.107,42.923 108.118,42.923 108.118,35.919 122.125,47.125 108.118,58.332 108.118,51.328 94.107,51.328   "/>
-                                    </g>
-                                </g>
-                                </svg>
-                        </div>
-                    </div>
-
-                    <div class="overviewCard">
-                        <h3>
                             Ring mig op
                         </h3>
                         <div class="count">
                             <h2>
-                                16
+                                {{ user.calls_total }}
                             </h2>
+                            <h4>
+                                {{ user.calls_total_week }}
+                            </h4>
                         </div>
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 489.2 489.2" style="enable-background:new 0 0 489.2 489.2;" xml:space="preserve">

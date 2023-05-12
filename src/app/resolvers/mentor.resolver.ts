@@ -12,7 +12,7 @@ import { MentorService } from '../services/mentor.service';
 })
 export class MentorResolver implements Resolve<boolean> {
 
-  constructor(private mentorService: MentorService) { }
+  constructor(private mentorService: MentorService,private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>|Promise<any>|any {
     const mentorId = route.paramMap.get('id');
@@ -20,7 +20,11 @@ export class MentorResolver implements Resolve<boolean> {
       map(response => {
         return response;
       }),
-      catchError(error => of(null))
+      catchError(error => {
+        // redirect to the error page
+        this.router.navigate(['/profile']);
+        return of(false);
+      })
     );
   }
 }
