@@ -1,0 +1,36 @@
+<div class="editprofileWrap">
+    <h3>
+        Primære klientgruppe
+    </h3>
+    <div class="editFormWrap">
+        <!-- Select experience -->
+        <div class="filters col-md-6">
+            <div class="supportFilter">
+                <div class="filter-wrap">
+                    <ng-select [multiple]="true" placeholder="Vælg kontaktform" notFoundText="Ingen resultater"
+                        [(ngModel)]="selectedAudienceType">
+                        <ng-option *ngFor="let type of audiencesType" [value]="type.id">{{type.name}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <div>
+                <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Fejl</p>
+                        <p class="alert-text">{{ errorMessage }}</p>
+                    </div>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Success</p>
+                        <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                    </div>
+                </div>
+                <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
+                <div class="btnGroup">
+                    <button (click)="updateAudience()" class="save">Gem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
