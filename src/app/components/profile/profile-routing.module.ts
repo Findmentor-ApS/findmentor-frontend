@@ -14,6 +14,7 @@ import { EditContactsComponent } from './account/edit-contacts/edit-contacts.com
 import { ClientsResolver } from 'src/app/resolvers/clients.resolver';
 import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
 import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
+import { MessageComponent } from './message/message.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   ]
   },
   {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
+  //{path:'messages', component:MessageComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
   {path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver, clients: ClientsResolver},data: { allowedTypes: ['commune'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
 ];

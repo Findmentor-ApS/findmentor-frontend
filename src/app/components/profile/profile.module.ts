@@ -18,6 +18,8 @@ import { EditContactsComponent } from './account/edit-contacts/edit-contacts.com
 import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
 import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
 import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
+import { MessageComponent } from './message/message.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
     ClientsComponent,
     EditContactsComponent,
     EditSettingComponent,
-    EditLanguagesComponent
+    EditLanguagesComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +43,8 @@ import { ProfileResolver } from 'src/app/resolvers/profile.resolver';
     FormsModule, 
     ReactiveFormsModule,
     SharedModule,
-    ImageCropperModule
+    ImageCropperModule,
+    InfiniteScrollModule
   ],
   providers: [SharedVariablesService, ProfileResolver],
 })
