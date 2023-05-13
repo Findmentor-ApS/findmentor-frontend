@@ -44,8 +44,6 @@ export class MentorListComponent implements OnChanges {
         .subscribe((result) => {
           this.mentors = result.result;
           this.totalItems = result.totalItems;
-          console.log(result);
-          console.log(result.totalItems);
         });
     }
   }
