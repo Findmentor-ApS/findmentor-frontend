@@ -141,3 +141,16 @@ font-weight: 600;
     border-left-width:0px ;
   }
 }
+
+.mentor-number p, .sortBy p{
+  color: #949699;
+  font-weight: 600;
+ }
+ .sortBy{
+  column-gap: 10px;
+ }
+ .sortBy select{
+  background-color: transparent;
+  border: 0;
+  font-weight: 600;
+ }

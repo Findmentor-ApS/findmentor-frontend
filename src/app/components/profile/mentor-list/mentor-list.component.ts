@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { experienceType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
@@ -9,12 +10,13 @@ import { MentorService } from 'src/app/services/mentor.service';
 export class MentorListComponent implements OnChanges {
   @Input() index!: number;
   @Input() selectedMentorType: number = 0;
-  @Input() selectedLocationArr: number = 0;
+  @Input() selectedLocationArr: number[] = [];
   @Input() selectedGender: number[] = [];
   @Input() selectedTypeForm: number[] = [];
   @Input() selectedContact: number[] = [];
   @Input() selectedLanguage: number[] = [];
   @Input() selectedTarget: number[] = [];
+  
 
   mentors: any[] = [];
   totalItems: number = 0;
@@ -42,7 +44,14 @@ export class MentorListComponent implements OnChanges {
         .subscribe((result) => {
           this.mentors = result.result;
           this.totalItems = result.totalItems;
+          console.log(result);
+          console.log(result.totalItems);
         });
     }
+  }
+
+  getExperienceName(id: number): string {
+    const experience = experienceType.find(l => l.id == id);
+    return experience ? experience.name : '';
   }
 }

@@ -12,9 +12,11 @@
             <li><a>
                 Meddelelse
             </a></li>
-            <li><a >
-                Primære klientgruppe
-            </a></li>
+            <li [ngClass]="{isDone: user.audiences.length > 0}">
+                <a routerLink="audience" routerLinkActive="active">
+                    Primære klientgruppe
+                </a>
+            </li>
             <li [ngClass]="{isDone: user.contacts.length > 0}">
                 <a routerLink="contact" routerLinkActive="active">
                     Kontaktform
@@ -41,9 +43,11 @@
                     Billeder og video
                 </a>
             </li>
-            <li><a>
-                Hvor jeg arbejder
-            </a></li>
+            <li [ngClass]="{isDone: user.locations.length > 0}">
+                <a routerLink="location" routerLinkActive="active">
+                    Hvor jeg arbejder
+                </a>
+            </li>
             <li><a>
                 Priser
             </a></li>

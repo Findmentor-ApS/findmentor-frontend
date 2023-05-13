@@ -17,6 +17,8 @@ import { EditLanguagesComponent } from './account/edit-languages/edit-languages.
 import { MessageComponent } from './message/message.component';
 import { EditLocationsComponent } from './account/edit-locations/edit-locations.component';
 import { EditAudiencesComponent } from './account/edit-audiences/edit-audiences.component';
+import { FindMentorComponent } from './find-mentor/find-mentor.component';
+import { SearchResolver } from 'src/app/resolvers/search.resolver';
 
 
 const routes: Routes = [
@@ -33,10 +35,11 @@ const routes: Routes = [
     {path:'audience', component:EditAudiencesComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
-  {path:'overview', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
+  {path:'overview',pathMatch:'full', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
   //{path:'messages', component:MessageComponent, resolve: {user: ProfileResolver},  canActivate: [AuthGuard]},
   {path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver, clients: ClientsResolver},data: { allowedTypes: ['commune'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
+  {path:'find-mentor',pathMatch:'full', component:FindMentorComponent,data: { allowedTypes: ['commune', 'user'] }, canActivate: [AuthGuard, TypeGuard]},
 ];
 
 @NgModule({

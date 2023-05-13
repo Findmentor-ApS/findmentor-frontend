@@ -22,6 +22,8 @@ import { MessageComponent } from './message/message.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { EditLocationsComponent } from './account/edit-locations/edit-locations.component';
 import { EditAudiencesComponent } from './account/edit-audiences/edit-audiences.component';
+import { FindMentorComponent } from './find-mentor/find-mentor.component';
+import { MentorListComponent } from './mentor-list/mentor-list.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { EditAudiencesComponent } from './account/edit-audiences/edit-audiences.
     EditLanguagesComponent,
     MessageComponent,
     EditLocationsComponent,
-    EditAudiencesComponent
+    EditAudiencesComponent,
+    FindMentorComponent,
+    MentorListComponent
   ],
   imports: [
     CommonModule,

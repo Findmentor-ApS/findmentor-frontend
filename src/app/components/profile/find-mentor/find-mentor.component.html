@@ -190,23 +190,6 @@
       <!-- results column  -->
       <div class="col-md-9">
         <div class="result-wrap px-4">
-          <div class="row">
-            <div class="col-6">
-              <div class="mentor-number">
-                <p class="m-0">
-                  {{ totalItems }} mentorer matcher dine kriterier
-                </p>
-              </div>
-            </div>
-            <!-- <div class="col-6 text-right">
-              <div class="sortBy d-flex justify-content-end">
-                <p class="m-0">Sortér efter:</p>
-                <select>
-                  <option value="anbefalet">Anbefalet</option>
-                </select>
-              </div>
-            </div> -->
-          </div>
           <div class="results-container" (scrolled)="onScrollDown($event)">
             <app-mentor-list
               [index]="index"
@@ -217,7 +200,6 @@
               [selectedLanguage]="selectedLanguage"
               [selectedContact]="selectedContact"
               [selectedTarget]="selectedTarget"
-
               >
             </app-mentor-list>
           </div>

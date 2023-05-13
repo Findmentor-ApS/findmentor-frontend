@@ -9,7 +9,7 @@ import { MentorService } from 'src/app/services/mentor.service';
 })
 export class FindMentorComponent implements OnInit {
 selectedMentorType: number;
-selectedLocationArr: number;
+selectedLocationArr: number[] = [];
 selectedGender: number[] = [];
 selectedTypeForm: number[] = [];
 selectedLanguage: number[] = [];
@@ -22,6 +22,7 @@ totalItems: number = 0;
 constructor(private router: Router, private mentorService: MentorService) { }
 
 ngOnInit(): void {
+
 }
 
 updateArray(type: number, arrayType: number[]): void {
@@ -95,6 +96,7 @@ updateArray(type: number, arrayType: number[]): void {
       this.index,
       this.perPage
     ).subscribe(mentors => {
+      console.log(mentors);
       this.mentorList.result = this.mentorList.result.concat(mentors.result);
       this.totalItems = mentors.totalItems;
       this.index = this.index + 1;
@@ -116,6 +118,7 @@ updateArray(type: number, arrayType: number[]): void {
         this.index,
         this.perPage
       ).subscribe(mentors => {
+        console.log(mentors);
         // Append the mentors returned from the API to the existing list
         this.mentorList.result = this.mentorList.result.concat(mentors.result);
         this.totalItems = mentors.totalItems;

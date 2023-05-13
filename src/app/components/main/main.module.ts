@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
-import { FindMentorComponent } from './find-mentor/find-mentor.component';
-import { MentorListComponent } from './mentor-list/mentor-list.component';
 import { HomeComponent } from './home/home.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +13,6 @@ import { WhatIsAMentorComponent } from './what-is-a-mentor/what-is-a-mentor.comp
 
 @NgModule({
   declarations: [
-    FindMentorComponent,
-    MentorListComponent,
     HomeComponent,
     BlivMentorComponent,
     WhatIsAMentorComponent,

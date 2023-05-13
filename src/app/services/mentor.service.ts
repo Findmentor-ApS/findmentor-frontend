@@ -12,15 +12,15 @@ export class MentorService {
   constructor(private http: HttpClient, private authService: AuthService) { 
   }
 
-  searchMentors(selectedMentorType: number, selectedLocationArr: number, selectedTypeForm: number[], selectedLanguage: number[], selectedGender: number[],selectedContact: number[], selectedTarget: number[], page: number, perPage = 10): Observable<any> {
+  searchMentors(selectedMentorType: number = 1, selectedLocationArr: number[] = [], selectedTypeForm: number[] = [], selectedLanguage: number[] = [], selectedGender: number[] = [],selectedContact: number[] = [], selectedAudience: number[] = [], page: number = 0, perPage = 10): Observable<any> {
     const params = {
       search: selectedMentorType,
       location: selectedLocationArr,
-      typeForm: selectedTypeForm.join(','),
+      experience: selectedTypeForm.join(','),
       language: selectedLanguage.join(','),
       gender: selectedGender.join(','),
       contact: selectedContact.join(','),
-      target: selectedTarget.join(','),
+      audience: selectedAudience.join(','),
       page: page,
       perpage: perPage
     };
