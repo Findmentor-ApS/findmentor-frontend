@@ -102,7 +102,7 @@
             <div class="col-md-6 editProfileComponent">
                 <div class="form-group" id="editDescription">
                     <app-text-area label="Beskrivelse om dig som mentor" placeholder="Beskriv dig selv" type="text"
-                        errorMessage="Udfyld venligst feltet" hintMessage="Jeg har gennem ..." rows="6"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Jeg har gennem ..." rows="6" maxlength="50"
                         [required]="true" [control]="$any(formGroup.get('description'))">
                     </app-text-area>
                 </div>
