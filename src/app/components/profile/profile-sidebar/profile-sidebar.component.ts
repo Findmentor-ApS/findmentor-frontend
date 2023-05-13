@@ -32,5 +32,6 @@ export class ProfileSidebarComponent implements OnInit {
     // If all required fields have values, return true
     return true;
   }
+  
 
 }

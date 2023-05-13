@@ -48,7 +48,8 @@
                     Hvor jeg arbejder
                 </a>
             </li>
-            <li><a>
+            <li [ngClass]="{isDone: user.price}">
+                <a routerLink="price" routerLinkActive="active">
                 Priser
             </a></li>
             <li><a routerLink="settings" routerLinkActive="active">

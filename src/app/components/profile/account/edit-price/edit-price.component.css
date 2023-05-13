@@ -1,0 +1,61 @@
+.editprofileWrap{
+    padding: 40px;
+    background-color: #fff;
+}
+.editprofileWrap h3{
+    margin: 0;
+}
+.editFormWrap{
+    padding-top: 21px;
+}
+.editFormWrap input.adrs{
+    max-width: 75px;
+}
+.editFormWrap .form-group label span{
+    font-weight: 400;
+}
+.editFormWrap .form-group label span.example{
+    display: block;
+    color: #707070;
+    font-size: 15px;
+    margin-top: -4px;
+}
+.radioBtn .row{
+    margin-left: 0px;
+    column-gap: 10px;
+}
+
+.editFormWrap .form-divider{
+    width: 100%;
+    height: 2px;
+    background-color: #d6d6d6;
+    margin-top: 24px;
+    max-width: 32rem;
+}
+.editFormWrap .btnGroup{
+    margin-top: 50px;
+}
+.editFormWrap .btnGroup button{
+    background-color: transparent;
+    border: 0;
+    border: 1px solid black;
+    padding: 5px 20px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(65, 65, 65);
+
+}
+.editFormWrap .btnGroup button.save{
+    background-color: #a8d6b6;
+    border-color: #a8d6b6;
+    margin-right: 20px;
+}
+
+.editProfileComponent{
+    padding: 0 0px;
+}
+
+#editDescription{
+    margin-top: 10px;
+}
