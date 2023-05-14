@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable,map, catchError, throwError } from 'rxjs';
+import { Observable,map, catchError, throwError, BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
 
 
@@ -8,7 +8,15 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class MentorService {
+  private mentorList: BehaviorSubject<any> = new BehaviorSubject(null);
 
+  setMentors(mentorList: any): void {
+    this.mentorList.next(mentorList);
+  }
+
+  getMentorList(): any {
+    return this.mentorList.getValue();
+  }
   constructor(private http: HttpClient, private authService: AuthService) { 
   }
 

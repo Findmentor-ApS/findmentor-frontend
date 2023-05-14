@@ -191,7 +191,7 @@
       <!-- results column  -->
       <div class="col-md-9">
         <div class="result-wrap px-4">
-          <div class="results-container" (scrolled)="onScrollDown($event)">
+          <div class="results-container">
             <app-mentor-list
               [index]="index"
               [selectedMentorType]="selectedMentorType"
@@ -201,6 +201,7 @@
               [selectedLanguage]="selectedLanguage"
               [selectedContact]="selectedContact"
               [selectedTarget]="selectedTarget"
+              [mentors]="mentors"
               >
             </app-mentor-list>
           </div>

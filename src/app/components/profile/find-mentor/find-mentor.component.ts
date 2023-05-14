@@ -17,7 +17,7 @@ selectedContact: number[] = [];
 selectedTarget: number[] = [];
 
 
-mentorList: any;
+mentors: any[] = [];
 totalItems: number = 0;
 constructor(private router: Router, private mentorService: MentorService) { }
 
@@ -85,6 +85,7 @@ updateArray(type: number, arrayType: number[]): void {
 
 
   searchMentors() {
+    this.totalItems = 0;
     this.mentorService.searchMentors(
       this.selectedMentorType,
       this.selectedLocationArr,
@@ -96,34 +97,8 @@ updateArray(type: number, arrayType: number[]): void {
       this.index,
       this.perPage
     ).subscribe(mentors => {
-      console.log(mentors);
-      this.mentorList.result = this.mentorList.result.concat(mentors.result);
+      this.mentors = this.mentors.concat(mentors.result);
       this.totalItems = mentors.totalItems;
-      this.index = this.index + 1;
     });
-  }
-
-  onScrollDown(ev?) {
-    console.log(ev);
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      console.log(ev);
-      this.mentorService.searchMentors(
-        this.selectedMentorType,
-        this.selectedLocationArr,
-        this.selectedTypeForm,
-        this.selectedLanguage,
-        this.selectedGender,
-        this.selectedContact,
-        this.selectedTarget,
-        this.index,
-        this.perPage
-      ).subscribe(mentors => {
-        console.log(mentors);
-        // Append the mentors returned from the API to the existing list
-        this.mentorList.result = this.mentorList.result.concat(mentors.result);
-        this.totalItems = mentors.totalItems;
-        this.index = this.index + 1;
-      });
-    }
   }
 }
