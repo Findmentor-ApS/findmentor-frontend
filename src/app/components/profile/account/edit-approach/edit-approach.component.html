@@ -1,20 +1,14 @@
 <div class="editprofileWrap">
     <h3>
-        Indstillinger
+        Min tilgang
     </h3>
     <div class="editFormWrap">
-        <div class="form-group">
-            <div class="form-group" id="toggle-text">
-                Tilgængelig til booking
-                <input id="toggle-example" type="checkbox" name="toggle-example"
-                   class="form-toggle" [disabled]="!profileIsCompleted()" (click)="onCheckboxChange()" [checked]="is_available"/>
-                <label for="toggle-example" class="form-toggle-label "></label>
-                <div *ngIf="!profileIsCompleted()" class="alert alert-warning" role="alert">
-                    <div class="alert-body">
-                        <h3 class="alert-heading">Advarsel</h3>
-                        <p class="alert-text">Du kan ikke tilgængeligegøre din profil, før du har udfyldt alle felterne</p>
-                    </div>
-                </div>
+        <form [formGroup]="formGroup" *ngIf="type == 'mentor'">
+            <div class="col-md-6 editProfileComponent">
+                <app-text-area label="Beskriv din tilgang" placeholder="Beskriv dig selv" type="text"
+                    errorMessage="Udfyld venligst feltet" hintMessage="Jeg har gennem ..." rows="6" [maxlength]="500"
+                    [required]="true" [control]="$any(formGroup.get('approach'))">
+                </app-text-area>
             </div>
             <div>
                 <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
@@ -26,17 +20,17 @@
                 <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
                     <div class="alert-body">
                         <p class="alert-heading">Success</p>
-                        <p class="alert-text">Din profil er nu tilgængelig</p>
+                        <p class="alert-text">Dine oplysninger er nu gemt.</p>
                     </div>
                 </div>
                 <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
                 <div class="btnGroup">
-                    <button (click)="updateSettings()" class="save">Gem</button>
+                    <button (click)="updateApproach()" [disabled]="!formGroup.valid" class="save">Gem</button>
                     <!-- <button (click)="reroute()">
                         Se profil
                     </button> -->
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

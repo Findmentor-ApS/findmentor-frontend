@@ -15,7 +15,7 @@ export class TextAreaComponent implements OnInit{
   @Input() hintMessage: string = '';
   @Input() errorMessage: string = '';
   @Input() rows: string = '6';
-  @Input() maxLength: number = 30;
+  @Input() maxlength: number;
 
   constructor() { }
 

@@ -20,6 +20,7 @@ import { EditAudiencesComponent } from './account/edit-audiences/edit-audiences.
 import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { SearchResolver } from 'src/app/resolvers/search.resolver';
 import { EditPriceComponent } from './account/edit-price/edit-price.component';
+import { EditApproachComponent } from './account/edit-approach/edit-approach.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     {path:'location', component:EditLocationsComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
     {path:'audience', component:EditAudiencesComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
     {path:'price', component:EditPriceComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
+    {path:'approach', component:EditApproachComponent, resolve: {user: ProfileResolver}, data: { allowedTypes: ['mentor'] },  canActivate: [TypeGuard]},
   ]
   },
   {path:'overview',pathMatch:'full', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},

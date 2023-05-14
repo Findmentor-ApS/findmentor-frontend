@@ -1,17 +1,23 @@
 
-<div [ngClass]="{'form-error' : displayErrors()}" class="form-group"  >
-    <label class="form-label" for="form-error">
-        {{ label }}
-    </label>
-    <span *ngIf="!required">
-                        (frivilligt)
-                    </span>
-    <span *ngIf="displayErrors()" class="form-hint" id="form-error-hint">
-        {{ hintMessage }}
-    </span>
-    <span *ngIf="displayErrors()" class="form-error-message" id="form-error-error">
-        <span class="sr-only">Fejl:</span> {{ errorMessage }}
-    </span>
-    <textarea class="form-input" aria-invalid="true" aria-describedby="form-error-hint form-error-error "
-    [formControl]="control" [placeholder]="placeholder" [required]="required" [rows]="rows" [maxlength]="maxLength"></textarea>
+<div class="textarea-wrapper">
+    <div [ngClass]="{'form-error' : displayErrors()}" class="form-group"  >
+        <label class="form-label" for="form-error">
+            {{ label }}
+        </label>
+        <span *ngIf="!required">
+                            (frivilligt)
+                        </span>
+        <span *ngIf="displayErrors()" class="form-hint" id="form-error-hint">
+            {{ hintMessage }}
+        </span>
+        <span *ngIf="displayErrors()" class="form-error-message" id="form-error-error">
+            <span class="sr-only">Fejl:</span> {{ errorMessage }}
+        </span>
+        <textarea class="form-input" aria-invalid="true" aria-describedby="form-error-hint form-error-error "
+        [formControl]="control" #myInput [placeholder]="placeholder" [required]="required" [rows]="rows" [maxlength]="maxlength">
+        
+    </textarea>
+    </div>
+    <label class="count">{{myInput.value.length}} /{{maxlength}}</label>
+
 </div>

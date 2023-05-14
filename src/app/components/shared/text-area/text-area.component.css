@@ -1,6 +1,7 @@
 textarea {
     max-width: 100%;
     margin-bottom: 25px;
+    resize: none;
 }
 
 .form-label {
@@ -8,3 +9,12 @@ textarea {
     color: #404040;
     font-size: 18px;
 }
+
+.textarea-wrapper {
+    position:relative;
+ }
+ .count {
+ position:absolute;
+ bottom: 10px;
+ right:10px;
+ }

@@ -9,9 +9,6 @@
                     Om mig
                 </a>
             </li>
-            <li><a>
-                Meddelelse
-            </a></li>
             <li [ngClass]="{isDone: user.audiences.length > 0}">
                 <a routerLink="audience" routerLinkActive="active">
                     Primære klientgruppe
@@ -32,12 +29,11 @@
                     Sprog
                 </a>
             </li>
-            <li><a>
-                Erfaringsområder
-            </a></li>
-            <li><a>
-                Min tilgang
-            </a></li>
+            <li [ngClass]="{isDone: user.approach}">
+                <a routerLink="approach" routerLinkActive="active">
+                    Min tilgang
+                </a>
+            </li>
             <li [ngClass]="{isDone: user.profile_picture}">
                 <a routerLink="image" routerLinkActive="active">
                     Billeder og video
@@ -50,11 +46,13 @@
             </li>
             <li [ngClass]="{isDone: user.price}">
                 <a routerLink="price" routerLinkActive="active">
-                Priser
+                    Priser
             </a></li>
-            <li><a routerLink="settings" routerLinkActive="active">
-                Indstillinger
-            </a></li>
+            <li [ngClass]="{isDone: user.is_available == true}">
+                <a routerLink="settings" routerLinkActive="active">
+                    Indstillinger
+                </a>
+            </li>
         </ul>
     </div>
     <div class="sideNavigation" *ngIf="type == 'commune'">

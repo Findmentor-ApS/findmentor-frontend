@@ -35,7 +35,7 @@ export class EditSettingComponent {
     // List of keys to have values
     const keysToHaveValues = ['first_name', 'last_name', 'email', 'phone', 'street',
     'street_no', 'zip_code', 'city', 'education', 'gender', 'description',
-    'experinces','profile_picture','languages','contacts'];
+    'experiences','profile_picture','languages','contacts', 'price','approach','audiences','locations'];
 
     // Iterate through the keys in userData
     for (const key in this.user) {

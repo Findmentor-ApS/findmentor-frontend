@@ -8,11 +8,11 @@ import { UserDataService } from 'src/app/services/user-data.service';
 
 
 @Component({
-  selector: 'app-edit-price',
-  templateUrl: './edit-price.component.html',
-  styleUrls: ['./edit-price.component.css']
+  selector: 'app-edit-approach',
+  templateUrl: './edit-approach.component.html',
+  styleUrls: ['./edit-approach.component.css']
 })
-export class EditPriceComponent {
+export class EditApproachComponent {
   formGroup: FormGroup;
   user: any;
   success = false;
@@ -20,26 +20,24 @@ export class EditPriceComponent {
   type = '';
 
   constructor(private fb: FormBuilder,private route: ActivatedRoute, private sharedService: SharedVariablesService,
-    private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditPriceComponent>,
+    private profileService: ProfileService, private unsavedChanges: UnsavedChangesGuard<EditApproachComponent>,
     private userDataService: UserDataService) { }
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
     this.user = this.userDataService.getCurrentUser();
-    if(this.type == 'mentor') {
-      this.formGroup = this.fb.group({
-        price: new FormControl(this.user.price, [Validators.required]),
-      });  
-    }
+    this.formGroup = this.fb.group({
+      approach: new FormControl(this.user.approach, [Validators.required]),
+    });  
   }
 
-  updatePrice(){
-    this.profileService.updatePrice(this.formGroup.value).subscribe(
+  updateApproach(){
+    this.profileService.updateApproach(this.formGroup.value).subscribe(
       {
         next: (res) => {
           this.success = true;
           this.errorMessage = '';
           const user = this.userDataService.getCurrentUser();
-          user.price = res.price;
+          user.approach = res.approach;
           this.userDataService.setUser(user);
         },
         error: (error) => {

@@ -25,6 +25,7 @@ import { EditAudiencesComponent } from './account/edit-audiences/edit-audiences.
 import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { MentorListComponent } from './mentor-list/mentor-list.component';
 import { EditPriceComponent } from './account/edit-price/edit-price.component';
+import { EditApproachComponent } from './account/edit-approach/edit-approach.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { EditPriceComponent } from './account/edit-price/edit-price.component';
     EditAudiencesComponent,
     FindMentorComponent,
     MentorListComponent,
-    EditPriceComponent
+    EditPriceComponent,
+    EditApproachComponent
   ],
   imports: [
     CommonModule,
