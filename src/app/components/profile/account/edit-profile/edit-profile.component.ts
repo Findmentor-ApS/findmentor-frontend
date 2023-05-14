@@ -53,6 +53,20 @@ export class EditProfileComponent implements OnInit {
         ean_nr: new FormControl(this.user.ean_nr, [Validators.required]),
       });
     }
+    if(this.type == 'user'){
+      this.formGroup = this.fb.group({
+        first_name: new FormControl(this.user.first_name, [Validators.required]),
+        last_name: new FormControl(this.user.last_name, [Validators.required]),
+        street: new FormControl(this.user.street, [Validators.required]),
+        street_no: new FormControl(this.user.street_no, [Validators.required]),
+        street_side: new FormControl(this.user.street_side, [Validators.required]),
+        post_code: new FormControl(this.user.post_code, [Validators.required]),
+        city: new FormControl(this.user.city, [Validators.required]),
+        gender: new FormControl(this.user.gender, [Validators.required]),
+        phone: new FormControl(this.user.phone, [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
+        email: new FormControl(this.user.email,[Validators.required, Validators.email]),
+      });
+    }
 
   }
 updateProfile(){

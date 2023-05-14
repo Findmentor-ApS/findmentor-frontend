@@ -67,4 +67,18 @@
             </a></li>
         </ul>
     </div>
+    <div class="sideNavigation" *ngIf="type == 'user'">
+        <ul>
+            <li [ngClass]="{isDone: profileIsCompleted()}">
+                <a routerLink="edit" routerLinkActive="active">
+                    Om mig
+                </a>
+            </li>
+            <li>
+                <a routerLink="settings" routerLinkActive="active">
+                    Indstillinger
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>

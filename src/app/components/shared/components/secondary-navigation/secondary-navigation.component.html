@@ -40,14 +40,16 @@
                     Udforsk
                 </b>
             </a></li>
+            <li>
+                <a href="">
+                    <b>
+                        Forespørgsler
+                    </b>
+                </a>
+            </li>
             <li><a routerLink="/profile/clients" routerLinkActive="active">
                 <b>
                     Klienter
-                </b>
-            </a></li>
-            <li><a href="">
-                <b>
-                    Dokumenter
                 </b>
             </a></li>
             <li><a routerLink="/profile/account" routerLinkActive="active">
@@ -55,6 +57,28 @@
                     Konto
                 </b>
             </a></li>
+        </ul>
+    </div>
+    <div class="container" *ngIf="type == 'user'">
+        <ul>
+            <li><a routerLink="/profile/find-mentor" routerLinkActive="active">
+                <b>
+                    Udforsk
+                </b>
+            </a></li>
+            <li>
+                <a href="">
+                    <b>
+                        Forespørgsler
+                    </b>
+                </a>
+            </li>
+            <li><a routerLink="/profile/account" routerLinkActive="active">
+                <b>
+                    Konto
+                </b>
+            </a></li>
+
         </ul>
     </div>
 </div>

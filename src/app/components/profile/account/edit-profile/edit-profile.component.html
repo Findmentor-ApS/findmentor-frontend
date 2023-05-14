@@ -199,5 +199,108 @@
             </div>
 
         </form>
+
+        <!--edit profile user-->
+        <form [formGroup]="formGroup" *ngIf="type == 'user'">
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Fornavn" placeholder="Indtast dit fornavn" type="text"
+                    errorMessage="Indtast venligst dit fornavn" hintMessage="eks. Mathias" [required]="true"
+                    [control]="$any(formGroup.get('first_name'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Efternavn" placeholder="Indtast efternavn" type="text"
+                    errorMessage="Indtast venligst et efternavn" hintMessage="eks. Hansen" [required]="true"
+                    [control]="$any(formGroup.get('last_name'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Gade" placeholder="Indtast gade" type="text"
+                    errorMessage="Indtast venligst gade" hintMessage="eks. Abel Cathrinesgade" [required]="true"
+                    [control]="$any(formGroup.get('street'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Gade nr" placeholder="Indtast gade nr" type="text"
+                    errorMessage="Indtast venligst gade nr" hintMessage="eks. 17"
+                    [required]="true" [control]="$any(formGroup.get('street_no'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Side" placeholder="Indtast venligst side" type="text"
+                    errorMessage="Indtast venligst hvilken side du bor på" hintMessage="eks. TH"
+                    [required]="false" [control]="$any(formGroup.get('street_side'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Postnummer" placeholder="Intast venligst postnummer" type="number"
+                    errorMessage="Indtast venligst postnummer" hintMessage="eks. 2620"
+                    [required]="true" [control]="$any(formGroup.get('post_code'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="By" placeholder="Indtast venligst by" type="text"
+                    errorMessage="Indtast venligst by" hintMessage="eks. Albertslund"
+                    [required]="true" [control]="$any(formGroup.get('city'))">
+                </app-input>
+            </div>
+            <div class="form-group radioBtn" style="margin-bottom: 30px;">
+                <fieldset>
+                    <legend class="form-label">Køn</legend>
+                    <ul class="nobullet-list">
+                        <li>
+                            <div class="form-group-radio">
+                                <input id="radio-1" type="radio" name="gender" value="1" class="form-radio radio-large "
+                                    formControlName="gender" />
+                                <label for="radio-1" id="form-label-radio-1" class="">Mand </label>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group-radio">
+                                <input id="radio-2" type="radio" name="gender" value="2" class="form-radio radio-large "
+                                    formControlName="gender" />
+                                <label for="radio-2" id="form-label-radio-2" class="">Kvinde </label>
+
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Telefonnummer" placeholder="Indtast venligst telefonnummer" type="number"
+                    errorMessage="Indtast venligst telefonnummer" hintMessage="eks. 12345678"
+                    [required]="false" [control]="$any(formGroup.get('phone'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Mail" placeholder="Intast mail" type="text"
+                    errorMessage="Indtast venligst din mailadresse" hintMessage="lars.hansen@gmail.com"
+                    [required]="true" [control]="$any(formGroup.get('email'))">
+                </app-input>
+            </div>
+            <div>
+                <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Fejl</p>
+                        <p class="alert-text">{{ errorMessage }}</p>
+                    </div>
+                </div>
+                <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                    <div class="alert-body">
+                        <p class="alert-heading">Success</p>
+                        <p class="alert-text">Dine oplysninger er nu gemt.</p>
+                    </div>
+                </div>
+                <!-- <input type="submit" value="Gem" [disabled]="!formGroup.valid" /> -->
+                <div class="btnGroup">
+                    <button (click)="updateProfile()" [disabled]="!formGroup.valid" class="save">Gem</button>
+                    <!-- <button (click)="reroute()">
+                        Se profil
+                    </button> -->
+                </div>
+            </div>
+        </form>
+
     </div>
 </div>

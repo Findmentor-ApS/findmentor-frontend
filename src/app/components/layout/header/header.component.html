@@ -97,6 +97,13 @@
                         <a routerLink="/profile/clients"  routerLinkActive="active" class="function-link">Klienter</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Dokumenter</a>
                         <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Konto</a>
+                        <a routerLink="/profile/request" routerLinkActive="active" class="function-link">forespørgsler</a>
+                    </div>
+                    <div class="nav-actions mobile-menu-links" *ngIf="type == 'user'">
+                        <a routerLink="/profile/find-mentor"  routerLinkActive="active" class="function-link">Udforsk</a>
+                        <a routerLink="/overview"  routerLinkActive="active" class="function-link">Dokumenter</a>
+                        <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Konto</a>
+                        <a routerLink="/profile/request" routerLinkActive="active" class="function-link">forespørgsler</a>
                     </div>
                     <button id="log-out" (click)="logout()"
                         class="button button-secondary alert-leave d-print-none">
