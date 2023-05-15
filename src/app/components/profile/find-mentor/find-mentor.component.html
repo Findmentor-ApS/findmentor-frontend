@@ -75,10 +75,10 @@
             <div class="filters">
               <div class="supportFilter">
                 <h3>
-                  Støtteform
+                  Kompetencer
                 </h3>
                 <div class="filter-wrap">
-                  <ng-select [multiple]="true" placeholder="Vælg støtteform"
+                  <ng-select [multiple]="true" placeholder="Vælg kompetencer"
                   notFoundText="Ingen resultater" [(ngModel)]="selectedTypeForm">
                     <ng-option *ngFor="let type of typeForm" [value]="type.id">{{type.name}}</ng-option>
                   </ng-select>

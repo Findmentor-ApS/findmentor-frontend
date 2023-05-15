@@ -10,12 +10,13 @@
                     [control]="$any(formGroup.get('price'))">
                 </app-input>
             </div>
-            <div class="alert alert-warning" role="alert">
+            <!-- FJERN NÅR KOMMUNER SKAL MED -->
+            <!-- <div class="alert alert-warning" role="alert">
                 <div class="alert-body">
                     <h3 class="alert-heading">Advarsel</h3>
                     <p class="alert-text">Husk at prisen for kommunen er 10% mindre, men det udregnes automatisk.</p>
                 </div>
-            </div>
+            </div> -->
             <div>
                 <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
                     <div class="alert-body">

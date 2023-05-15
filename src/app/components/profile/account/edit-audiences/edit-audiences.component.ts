@@ -24,7 +24,7 @@ ngOnInit(): void {
 
 updateAudience() {
   if (!this.selectedAudienceType || this.selectedAudienceType.length === 0) {
-    this.errorMessage = 'Du skal vælge mindst et sprog!';
+    this.errorMessage = 'Du skal vælge mindst en klientgruppe!';
     return;
   }
   
