@@ -242,7 +242,7 @@ og hjælper med at bringe det ud af dig
                 <div class="col-md-12">
                     <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
-                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
                     </app-text-area>
                 </div>
                 <hr class="divider">
@@ -302,12 +302,20 @@ og hjælper med at bringe det ud af dig
                             [required]="true" [control]="$any(formGroupBooking.get('ean_nr'))">
                         </app-input>
                     </div>
+                    <div class="col-md-6">
+                        <div class="filter-wrap">
+                            <ng-select [multiple]="false" placeholder="Vælg erfaring" notFoundText="Ingen resultater"
+                                [(ngModel)]="selectedTypeExperience" class="form-input" required="true">
+                                <ng-option *ngFor="let type of experienceType" [value]="type.id">{{type.name}}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
                 </div>
                 <hr class="divider">
                 <div class="col-md-12">
                     <app-text-area label="Overordnet mål" placeholder="Målbeskrivelse" type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vi ønsker at opnå..." rows="6"
-                        [required]="true" [control]="$any(formGroupBooking.get('goal'))">
+                        [required]="true" [control]="$any(formGroupBooking.get('goal'))" [maxlength]="250">
                     </app-text-area>
                 </div>
                 <hr class="divider">

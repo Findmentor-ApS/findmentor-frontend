@@ -201,9 +201,13 @@ export class ProfileService {
     );
   }
 
-  getBookings() {
+  getBookings(page: number = 1, perPage = 10) {
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
-    return this.http.get(`/me/bookings`, {headers}).pipe(
+    const params = {
+      page: page,
+      perpage: perPage
+    };
+    return this.http.get(`/me/bookings`, {params,headers }).pipe(
       catchError(error => {
         let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {

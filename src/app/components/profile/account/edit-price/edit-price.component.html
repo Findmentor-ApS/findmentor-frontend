@@ -4,11 +4,12 @@
     </h3>
     <div class="editFormWrap">
         <form [formGroup]="formGroup" *ngIf="type == 'mentor'">
-            <div class="col-md-6 editProfileComponent">
+            <div class="col-md-6 editProfileComponent form-input-wrapper form-input-wrapper--suffix">
                 <app-input label="Pris" placeholder="Indtast venligst din time pris" type="number"
                     errorMessage="Indtast din time pris" hintMessage="eks. 250" [required]="true"
                     [control]="$any(formGroup.get('price'))">
                 </app-input>
+                <div class="form-input-suffix" aria-hidden="true">DKK</div>
             </div>
             <!-- FJERN NÅR KOMMUNER SKAL MED -->
             <!-- <div class="alert alert-warning" role="alert">
