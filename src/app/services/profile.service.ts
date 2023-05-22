@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
