@@ -14,4 +14,8 @@ export class UserDataService {
   getCurrentUser(): any {
     return this.userSubject.getValue();
   }
+
+  logout(): void {
+    this.userSubject.next(null);
+  }
 }

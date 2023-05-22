@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
   isAvailable = false;
   type = '';
   // nav: Navigation;
-  constructor(private profileService: ProfileService,private router: Router, private sharedService: SharedVariablesService) { }
+  constructor(private profileService: ProfileService,private router: Router, 
+    private userDataService: UserDataService, private sharedService: SharedVariablesService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('access_token') && localStorage.getItem('type')){
@@ -94,6 +96,7 @@ export class HeaderComponent implements OnInit {
       this.signInCondition = false;
       this.name = '';
       this.type = '';
+      this.userDataService.logout();
       this.router.navigate(['/home']);
     }
 }
