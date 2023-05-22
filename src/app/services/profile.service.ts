@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -238,4 +239,34 @@ export class ProfileService {
       })
     );
   }
+
+  searchCompany(cvr: string) {
+    const headers = new HttpHeaders().set('access_token', this.authService.getAccessToken());
+    const body = {
+        cvr: cvr,
+    };
+
+    return this.http.post<any>('/search/company', body, { headers }).pipe(
+        catchError(error => {
+            let errorMessage = 'Der er opstået en fejl!';
+            if (error.error) {
+                errorMessage = error.error;
+                console.log(errorMessage);
+            }
+            return throwError(() => new Error(errorMessage));
+        }),
+        map(response => {
+            console.log(response); // log the response object
+            return response;
+        })
+    );  
 }
+
+}
+  
+  
+  
+  
+  
+  
+  

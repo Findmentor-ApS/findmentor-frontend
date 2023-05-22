@@ -15,6 +15,7 @@ export class InputComponent implements OnInit {
   @Input() placeholder: string = '';
   @Input() hintMessage: string = '';
   @Input() errorMessage: string = '';
+  @Input() disabled: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
