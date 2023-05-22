@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -23,6 +23,8 @@ export class ProfileService {
       })
     ); 
   }
+
+  public profileDeletedEvent: EventEmitter<void> = new EventEmitter();
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -230,6 +232,25 @@ export class ProfileService {
         return throwError(() => new Error(errorMessage));
       }),
       map(response => {
+        return response;
+      })
+    );
+  }
+
+  deleteProfile() {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.delete<any>(`/me/delete`, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          console.log(error.error);
+          errorMessage = error.error;
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        // Emit the event when profile is successfully deleted
+        this.profileDeletedEvent.emit();
         return response;
       })
     );

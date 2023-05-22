@@ -222,6 +222,12 @@
     margin-right: 20px;
 }
 
+.editFormWrap .btnGroup button.delete{
+  background-color: #CC0000;
+  border-color: #CC0000;
+  margin-right: 20px;
+}
+
 .editProfileComponent{
     padding: 0 0px;
 }

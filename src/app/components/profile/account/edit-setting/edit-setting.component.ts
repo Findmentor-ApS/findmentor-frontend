@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { SharedVariablesService } from 'src/app/services/shared-variables.service';
 
 @Component({
   selector: 'app-edit-setting',
@@ -17,7 +18,7 @@ export class EditSettingComponent {
   is_available= false;
   userData: any;
   constructor(private route: ActivatedRoute, private profileService: ProfileService,
-    private userDataService: UserDataService,private fb: FormBuilder) { }
+    private userDataService: UserDataService,private fb: FormBuilder, private sharedService: SharedVariablesService) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
@@ -71,4 +72,23 @@ export class EditSettingComponent {
       }
     )
   }
+
+  //delete profile
+  deleteProfile(){
+    this.profileService.deleteProfile().subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+          this.sharedService.profileDeleted();
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
+  }
+  
 }
