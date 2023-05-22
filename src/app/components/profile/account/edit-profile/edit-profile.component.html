@@ -100,6 +100,20 @@
 
             <div class="form-divider"></div>
             <div class="col-md-6 editProfileComponent">
+                <app-input label="CVR" placeholder="Intast CVR nummer" type="number"
+                    errorMessage="Indtast venligst CVR Nummer" hintMessage="40416005"
+                    [required]="true" [control]="$any(formGroup.get('cvr'))">
+                </app-input>
+            </div>
+            <div class="col-md-6 editProfileComponent">
+                <app-input label="Firmanavn" placeholder="" type="text"
+                    errorMessage="Firmanavn ikke gyldigt" hintMessage=""
+                    [required]="true" [control]="$any(formGroup.get('company_name'))" [disabled]=true>
+                </app-input>
+            </div>
+
+            <div class="form-divider"></div>
+            <div class="col-md-6 editProfileComponent">
                 <div class="form-group" id="editDescription">
                     <app-text-area label="Beskrivelse om dig som mentor" placeholder="Beskriv dig selv" type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Jeg har gennem ..." rows="6" [maxlength]="100"

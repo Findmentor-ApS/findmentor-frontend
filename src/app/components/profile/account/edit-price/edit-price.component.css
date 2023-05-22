@@ -59,3 +59,8 @@
 #editDescription{
     margin-top: 10px;
 }
+
+.form-input-suffix {
+    margin-bottom: 25px;
+    margin-top: 32px;
+}

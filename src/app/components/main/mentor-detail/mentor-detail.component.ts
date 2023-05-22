@@ -21,6 +21,8 @@ export class MentorDetailComponent implements OnInit {
   type = '';
   success = false;
   errorMessage = '';
+  experienceType = experienceType;
+  selectedTypeExperience: any;
 
 
   constructor(private route: ActivatedRoute,private fb: FormBuilder, private mentorService: MentorService) { }
@@ -89,6 +91,7 @@ export class MentorDetailComponent implements OnInit {
 
   bookMentor() {
     this.formGroupBooking.value.mentor_id = this.mentor.id;
+    this.formGroupBooking.value.experience_type = this.selectedTypeExperience;
     this.mentorService.bookMentor(this.formGroupBooking.value).subscribe(
       {
         next: (res) => {
@@ -107,6 +110,7 @@ export class MentorDetailComponent implements OnInit {
   bookCall() {
     this.formGroupCall.value.mentor_id = this.mentor.id;
     this.formGroupCall.value.accepted = false;
+    this
     this.mentorService.bookCall(this.formGroupCall.value).subscribe(
       {
         next: (res) => {
