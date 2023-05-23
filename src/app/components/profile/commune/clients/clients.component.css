@@ -139,7 +139,6 @@
   /* Inquiries Wrap  */
   .inquiriesWrap {
     margin-top: 50px;
-    margin-bottom: 150px;
   }
   .inquiriesWrap .topText h5 {
     margin: 0;
@@ -296,8 +295,9 @@
   .tableWrap .pagination .page button:focus {
     outline: 0;
   }
-  .tableWrap .pagination .page button svg {
-    width: 12px;
+  .tableWrap .pagination .page button img {
+    width: 24px;
+    margin-bottom: -5px;
   }
   .tableWrap .pagination .page span {
     color: #b9babf;
