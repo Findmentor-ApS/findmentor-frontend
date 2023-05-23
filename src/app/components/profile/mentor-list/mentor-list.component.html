@@ -37,10 +37,14 @@
           Erfaring med
         </h4>
         <div class="tags">
-          <p *ngFor="let experience of mentor.experiences">
-              {{experience.experience_type}}
-              {{getExperienceName(experience.experience_type)}}
+          <p *ngFor="let item of mentor.experiences | keyvalue">
+            {{getExperienceName(item.value['experience_type'])}}
           </p>
+        <!-- <p *ngFor="let experience of mentor.experiences">
+            {{experience.experience_type}}
+            {{getExperienceName(experience.experience_type)}}
+        </p> -->
+
 
         </div>
       </div>
@@ -49,120 +53,29 @@
     <div class="mentor-contact d-flex">
     <div class="upper-detail">
       <div class="icons">
-        <div class="location">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 395.71 395.71" style="enable-background:new 0 0 395.71 395.71;" xml:space="preserve">
-            <g>
-              <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738   c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388   C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191   c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            </svg>
-        </div>
-        <div class="call">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="15" height="15" viewBox="0 0 256 256" xml:space="preserve">
-            <desc>Created with Fabric.js 1.7.22</desc>
-            <defs>
-            </defs>
-            <g transform="translate(128 128) scale(0.72 0.72)">
-              <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)">
-              <path d="M 20.334 2 c 0.392 0 0.761 0.212 0.963 0.552 l 11.285 19.017 c 0.199 0.336 0.208 0.759 0.024 1.103 l -6.997 13.034 c -1.077 2.006 -0.719 4.434 0.891 6.044 l 10.876 10.876 l 10.876 10.876 c 0.967 0.967 2.254 1.5 3.623 1.5 c 0.842 0 1.679 -0.211 2.422 -0.609 l 13.034 -6.997 c 0.163 -0.087 0.346 -0.133 0.53 -0.133 c 0.201 0 0.399 0.054 0.572 0.157 l 19.017 11.285 c 0.487 0.289 0.683 0.895 0.457 1.409 c -1.654 3.763 -4.605 10.528 -5.789 13.547 c -0.147 0.374 -0.34 0.667 -0.575 0.871 C 78.885 86.833 75.455 88 71.345 88 c -11.841 0 -28.805 -9.608 -44.271 -25.074 C 17.172 53.024 9.436 42.21 5.291 32.476 C 2.19 25.191 -0.297 15.111 5.47 8.459 c 0.204 -0.235 0.497 -0.429 0.871 -0.575 C 9.36 6.7 16.125 3.748 19.888 2.095 C 20.031 2.032 20.181 2 20.334 2 M 20.334 0 c -0.419 0 -0.844 0.085 -1.25 0.264 C 15.386 1.889 8.607 4.847 5.611 6.022 C 4.98 6.269 4.402 6.637 3.958 7.149 c -10.986 12.674 2.4 37.89 21.701 57.191 C 40.159 78.84 57.994 90 71.345 90 c 4.421 0 8.353 -1.225 11.506 -3.958 c 0.512 -0.444 0.88 -1.022 1.127 -1.652 c 1.175 -2.996 4.133 -9.775 5.758 -13.473 c 0.635 -1.444 0.089 -3.128 -1.268 -3.933 L 69.452 55.699 c -0.49 -0.291 -1.041 -0.437 -1.593 -0.437 c -0.507 0 -1.015 0.123 -1.476 0.371 L 53.349 62.63 c -0.465 0.25 -0.972 0.371 -1.476 0.371 c -0.809 0 -1.608 -0.314 -2.208 -0.914 L 38.789 51.211 L 27.913 40.335 c -0.974 -0.974 -1.194 -2.471 -0.543 -3.684 l 6.997 -13.034 c 0.517 -0.964 0.493 -2.129 -0.066 -3.07 L 23.017 1.531 C 22.438 0.556 21.405 0 20.334 0 L 20.334 0 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
-            </g>
-            </g>
-            </svg>
-        </div>
-        <div class="video">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" width="15px" height="15px" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-            <g>
-              <g id="XMLID_588_">
-                <path d="M344,373H0V114h344V373z M16,359h314V128H16V359z"/>
-              </g>
-              <g id="XMLID_589_">
-                <rect x="38" y="329" width="122" height="14"/>
-              </g>
-              <g id="XMLID_590_">
-                <rect x="176" y="329" width="22" height="14"/>
-              </g>
-              <g id="XMLID_592_">
-                <rect x="361" y="166" width="13" height="155"/>
-              </g>
-              <g id="XMLID_612_">
-                <polygon points="490,379.655 391,324.11 391,266 405,266 405,315.122 473,353.573 473,135.754 405,172.141 405,221 391,221     391,162.913 490,110.345   "/>
-              </g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            <g>
-            </g>
-            </svg>
+        <div *ngFor="let item of mentor.contacts | keyvalue">
+          <div class="location" *ngIf="item.value['contact_type'] == 1">
+            <img class=""src="{{ assetPath }}/svgs/svg-icons/location-on.svg">
+          </div>
+          <div class="call" *ngIf="item.value['contact_type'] == 2">
+            <img class=""src="{{ assetPath }}/svgs/svg-icons/phone-iphone.svg">
+          </div>
+          <div class="video" *ngIf="item.value['contact_type'] == 3">
+            <img class=""src="{{ assetPath }}/svgs/svg-icons/videocam.svg">
+          </div>
         </div>
       </div>
       <div class="availability">
         <div *ngIf="mentor.status== 'waiting'">
           <div _ngcontent-rid-c63="" class="waiting available-status"><p _ngcontent-rid-c63="" class="m-0"> Tilgængelig </p><div _ngcontent-rid-c63="" class="availablity-icon"><svg _ngcontent-rid-c63="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 488 488" xml:space="preserve" style="enable-background: new 0 0 488 488;"><g _ngcontent-rid-c63="" transform="translate(0 -540.36)"><g _ngcontent-rid-c63=""><g _ngcontent-rid-c63=""><path _ngcontent-rid-c63="" d="M351.1,846.96l-97.1-67.9v-116.7c0-5.5-4.5-10-10-10s-10,4.5-10,10v122c0,3.3,1.6,6.3,4.3,8.2l101.4,70.9     c1.7,1.2,3.7,1.8,5.7,1.8v0c3.1,0,6.2-1.5,8.2-4.4C356.7,856.36,355.6,850.16,351.1,846.96z"></path><path _ngcontent-rid-c63="" d="M416.4,611.96L416.4,611.96c-46.2-46.2-107.4-71.6-172.4-71.6s-126.2,25.4-172.4,71.6C25.4,658.16,0,719.36,0,784.36     s25.4,126.2,71.6,172.4c46.2,46.2,107.4,71.6,172.4,71.6s126.2-25.4,172.4-71.6s71.6-107.4,71.6-172.4S462.6,658.16,416.4,611.96     z M254,1008.16L254,1008.16v-40.8c0-5.5-4.5-10-10-10s-10,4.5-10,10v40.8c-115.6-5.1-208.7-98.2-213.8-213.8H61     c5.5,0,10-4.5,10-10s-4.5-10-10-10H20.2c5.1-115.6,98.2-208.7,213.8-213.8v40.8c0,5.5,4.5,10,10,10s10-4.5,10-10v-40.8     c115.6,5.1,208.7,98.2,213.8,213.8H427c-5.5,0-10,4.5-10,10s4.5,10,10,10h40.8C462.7,909.96,369.6,1003.06,254,1008.16z"></path></g></g></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g><g _ngcontent-rid-c63=""></g></svg></div></div>
       </div>
-      <div *ngIf="mentor.status== 'available'">
+      <div *ngIf="mentor.is_available">
         <div class="accessible available-status">
           <p class="m-0">
             Tilgængelig
           </p>
           <div class="availablity-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-              <polyline points="2.75 8.75,6.25 12.25,13.25 4.75"/>
-              </svg>
+            <img src="{{ assetPath }}/svgs/svg-icons/check.svg">
           </div>
         </div>
       </div>

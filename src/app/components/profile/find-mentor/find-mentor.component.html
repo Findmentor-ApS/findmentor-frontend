@@ -7,32 +7,7 @@
         <div class="search-wrap">
           <div class="searchInput">
             <div class="icon">
-              <svg _ngcontent-ymh-c64="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 487.95 487.95" xml:space="preserve"
-                style="enable-background: new 0 0 487.95 487.95;">
-                <g _ngcontent-ymh-c64="">
-                  <g _ngcontent-ymh-c64="">
-                    <path _ngcontent-ymh-c64=""
-                      d="M481.8,453l-140-140.1c27.6-33.1,44.2-75.4,44.2-121.6C386,85.9,299.5,0.2,193.1,0.2S0,86,0,191.4s86.5,191.1,192.9,191.1    c45.2,0,86.8-15.5,119.8-41.4l140.5,140.5c8.2,8.2,20.4,8.2,28.6,0C490,473.4,490,461.2,481.8,453z M41,191.4    c0-82.8,68.2-150.1,151.9-150.1s151.9,67.3,151.9,150.1s-68.2,150.1-151.9,150.1S41,274.1,41,191.4z">
-                    </path>
-                  </g>
-                </g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-                <g _ngcontent-ymh-c64=""></g>
-              </svg>
+              <img class="" src="{{ assetPath }}/svgs/svg-icons/search.svg">
             </div>
             <ng-select [multiple]="false" [(ngModel)]="selectedMentorType" [searchable]="false" notFoundText="Ingen resultater"
               placeholder="Hvilken type mentor ønsker du?">
@@ -41,14 +16,7 @@
           </div>
           <div class="locationInput">
             <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                viewBox="0 0 349.661 349.661" enable-background="new 0 0 349.661 349.661">
-                <g>
-                  <path
-                    d="M174.831,0C102.056,0,42.849,59.207,42.849,131.981c0,30.083,21.156,74.658,62.881,132.485   c30.46,42.215,61.363,76.607,61.671,76.95l7.429,8.245l7.429-8.245c0.309-0.342,31.211-34.734,61.671-76.95   c41.725-57.828,62.881-102.402,62.881-132.485C306.812,59.207,247.605,0,174.831,0z M174.83,319.617   c-37.058-42.692-111.98-139.048-111.98-187.636C62.849,70.235,113.084,20,174.831,20s111.981,50.235,111.981,111.981   C286.812,180.54,211.888,276.915,174.83,319.617z" />
-                  <circle cx="174.831" cy="131.982" r="49.696" />
-                </g>
-              </svg>
+              <img class=""src="{{ assetPath }}/svgs/svg-icons/location-on.svg">
             </div>
             <ng-select [multiple]="false" [(ngModel)]="selectedLocationArr" [searchable]="false" notFoundText="Ingen resultater"
               placeholder="Hvor skal du bruge en mentor">
@@ -179,11 +147,11 @@
             </div>
           </div>
         </div>
-        <div class="sortBy d-flex justify-content-end d-block d-md-none">
+        <!-- <div class="sortBy d-flex justify-content-end d-block d-md-none">
           <p _ngcontent-lpe-c63="" class="m-0">Sortér efter:</p><select _ngcontent-lpe-c63="">
             <option _ngcontent-lpe-c63="" value="anbefalet" ng-reflect-value="anbefalet">Anbefalet</option>
           </select>
-        </div>
+        </div> -->
 
 
       </div>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MentorService } from 'src/app/services/mentor.service';
-
 @Component({
   selector: 'app-find-mentor',
   templateUrl: './find-mentor.component.html',
@@ -19,7 +18,7 @@ selectedTarget: number[] = [];
 
 mentors: any[] = [];
 totalItems: number = 0;
-constructor(private router: Router, private mentorService: MentorService) { }
+constructor(private router: Router, private mentorService: MentorService,@Inject('ASSET_PATH') public assetPath: string) { }
 
 ngOnInit(): void {
 
@@ -97,7 +96,7 @@ updateArray(type: number, arrayType: number[]): void {
       this.index,
       this.perPage
     ).subscribe(mentors => {
-      this.mentors = this.mentors.concat(mentors.result);
+      this.mentors = mentors.result;
       this.totalItems = mentors.totalItems;
     });
   }

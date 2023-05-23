@@ -161,7 +161,8 @@ background-color: #000;
   /* filter dropdown mobile  */
 
   .dropdown-container {
-    width: 300px;
+    width: 80%;
+    margin: auto;
     border-radius: 3px;
     background: #fff;
     min-height: 50px;

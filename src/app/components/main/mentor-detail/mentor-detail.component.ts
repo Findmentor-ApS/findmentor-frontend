@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { experienceType, languagesType } from 'src/app/general/types';
@@ -25,7 +25,8 @@ export class MentorDetailComponent implements OnInit {
   selectedTypeExperience: any;
 
 
-  constructor(private route: ActivatedRoute,private fb: FormBuilder, private mentorService: MentorService) { }
+  constructor(private route: ActivatedRoute,private fb: FormBuilder, 
+    private mentorService: MentorService,@Inject('ASSET_PATH') public assetPath: string) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');

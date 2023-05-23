@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { experienceType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
@@ -23,7 +23,7 @@ export class MentorListComponent implements OnChanges {
   private pageNumber: number = 1; // Start from page 1
   private pageSize: number = 10; // Items per page
 
-  constructor(private mentorService: MentorService) {}
+  constructor(private mentorService: MentorService,@Inject('ASSET_PATH') public assetPath: string) {}
 
   onScroll() {
     this.pageNumber++; // Increment the page number

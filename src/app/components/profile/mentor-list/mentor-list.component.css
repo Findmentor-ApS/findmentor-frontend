@@ -39,7 +39,7 @@
   padding: 4px 7px ;
   font-weight: 600;
   background-color: #e4e0fc;
-border-radius: 8px;
+  border-radius: 8px;
 }
 
 /* contact detail mentor  */
@@ -58,7 +58,6 @@ border-radius: 8px;
 .icons>div{
   width: 30px;
   height: 30px;
-  background-color: #000;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -133,13 +132,18 @@ font-weight: 600;
   }
   .mentor-detail{
     text-align: center;
+      width: 50%;
+      padding-left: 0%;
   }
-  .mentor-detail>p,.detail-divider,.tags-container,.upper-detail{
-    display: none;
-  }
+
   .mentor-contact{
     border-left-width:0px ;
   }
+
+  .mentor-detail .m-0{
+    padding-right: 0%;
+  }
+  
 }
 
 .mentor-number p, .sortBy p{

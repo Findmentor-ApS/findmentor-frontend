@@ -6,6 +6,7 @@ import { SecondaryNavigationComponent } from './components/secondary-navigation/
 import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextAreaComponent } from './text-area/text-area.component';
+import { ASSET_PATH } from 'src/app/general/config';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { TextAreaComponent } from './text-area/text-area.component';
     SecondaryNavigationComponent,
     InputComponent,
     TextAreaComponent
-  ]
+  ],
+  providers: [
+    { provide: 'ASSET_PATH', useValue: ASSET_PATH }
+  ],
 })
 export class SharedModule { }
