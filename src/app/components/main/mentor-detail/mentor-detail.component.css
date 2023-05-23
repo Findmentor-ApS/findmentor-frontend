@@ -288,3 +288,8 @@ p.mt-0
 {
     display:inline;
 }
+
+.list:not(:last-child)::after {
+    /* Add a comma after each item except the last one */
+    content: ',';
+}

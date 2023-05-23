@@ -1,3 +1,4 @@
+<app-secondary-navigation></app-secondary-navigation>
 <div class="mentorDetailWrap">
     <div class="breadCrumbsWrap py-8">
         <nav class="breadcrumbs container" aria-label="Brødkrumme">
@@ -7,7 +8,7 @@
                 </li>
         
                 <li class="breadcrumbs__list-item">
-                    <a class="breadcrumbs__link" routerLink="find-mentor">Find mentor</a>
+                    <a class="breadcrumbs__link" routerLink="/profile/find-mentor">Find mentor</a>
                 </li>
         
                 <li class="breadcrumbs__list-item" aria-current="page">{{ mentor.first_name }} {{ mentor.last_name }}
@@ -70,8 +71,8 @@
                                 <h3 class="mt-0">
                                     Område
                                 </h3>
-                                <p class="mt-0">
-                                    2100 København Ø, Region Hovedstaden
+                                <p class="mt-0 list" *ngFor="let location of mentor.locations">
+                                    {{getLocationName(location.location_type)}}
                                 </p>
                             </div><!--Department End-->
 
@@ -79,7 +80,7 @@
                                 <h3 class="mt-0">
                                     Sprog
                                 </h3>
-                                <p class="mt-0" *ngFor="let language of mentor.languages">
+                                <p class="mt-0 list" *ngFor="let language of mentor.languages">
                                     {{getLanguageName(language.language_type)}}
                                 </p>
                             </div> <!--Language End -->
@@ -88,18 +89,18 @@
                                 <h3 class="mt-0">
                                     Særlig erfaring med klientgruppe
                                 </h3>
-                                <p class="mt-0">
-                                    Unge, Børn, Voksne, Ældre, Pårørende
+                                <p class="mt-0 list" *ngFor="let audience of mentor.audiences">
+                                    {{getAudienceName(audience.audience_type)}}
                                 </p>
                             </div><!-- Experience End-->
-                            <div class="waitingTime">
+                            <!-- <div class="waitingTime">
                                 <h3 class="mt-0">
                                     Ventetid
                                 </h3>
                                 <p class="mt-0">
                                     Har akuttider
                                 </p>
-                            </div>
+                            </div> -->
                             
                         </div><!-- Mentor Information -->
                     </div><!--Mentor Detail Card-->

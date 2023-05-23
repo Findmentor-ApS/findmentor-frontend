@@ -9,7 +9,7 @@
 //   title = 'angular13';
 // }
 import {Component, OnInit} from '@angular/core';
-import * as DKFDS from 'dkfds'
+// import * as DKFDS from 'dkfds'
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -21,6 +21,6 @@ export class AppComponent implements OnInit{
     constructor() { }
 
     ngOnInit() {
-      new DKFDS.Navigation();
+      // new DKFDS.Navigation();
     }
 }

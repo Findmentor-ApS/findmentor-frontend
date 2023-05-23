@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { experienceType, languagesType } from 'src/app/general/types';
+import { audiencesType, contactsType, experienceType, languagesType, locationsType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
@@ -147,6 +147,17 @@ export class MentorDetailComponent implements OnInit {
   getLanguageName(id: number): string {
     const language = languagesType.find(l => l.id == id);
     return language ? language.name : '';
+  }
+
+
+  getAudienceName(id: number): string {
+    const audience = audiencesType.find(a => a.id == id);
+    return audience ? audience.name : '';
+  }
+
+  getLocationName(id: number): string {
+    const location = locationsType.find(l => l.id == id);
+    return location ? location.name : '';
   }
 
   hasContactType(type: number): boolean {
