@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { audiencesType, contactsType, experienceType, languagesType, locationsType } from 'src/app/general/types';
+import { audiencesType, experienceType, languagesType, locationsType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
@@ -11,8 +11,10 @@ import { MentorService } from 'src/app/services/mentor.service';
 })
 export class MentorDetailComponent implements OnInit {
 
+
   @ViewChild('modalBooking') modalbooking: ElementRef<any>;
   @ViewChild('modalCall') modalCall: ElementRef<any>;
+  @ViewChild('modalPhone') modalPhone: ElementRef<any>;
 
   mentor: any;
   formGroupBooking: FormGroup;
@@ -23,6 +25,7 @@ export class MentorDetailComponent implements OnInit {
   errorMessage = '';
   experienceType = experienceType;
   selectedTypeExperience: any;
+  showToast= false
 
 
   constructor(private route: ActivatedRoute,private fb: FormBuilder, 
@@ -68,6 +71,7 @@ export class MentorDetailComponent implements OnInit {
     this.profileVisited()
     this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
     this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
+    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'true');
   }
 
   openBooking(){
@@ -83,6 +87,30 @@ export class MentorDetailComponent implements OnInit {
   openCall(){
     this.modalCall.nativeElement.setAttribute('aria-hidden', 'false');
   }
+
+  closePhone() {
+    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'true');
+    this.showToast = false
+  }
+
+  callMentor(){
+    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'false');
+    const userData = {
+      mentor_id: this.mentor.id,
+    }
+    this.mentorService.profileCalled(userData).subscribe(
+      {
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => console.log('complete')
+      }
+    )
+  }
+
 
   closeCall() {
     this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
@@ -162,5 +190,19 @@ export class MentorDetailComponent implements OnInit {
 
   hasContactType(type: number): boolean {
     return this.mentor.contacts.some(contact => contact.contact_type == type);
+  }
+
+  copyPhone() {
+    navigator.clipboard.writeText(this.mentor.phone)
+      .then(() => {
+        this.showToast = true;
+
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Error copying text to clipboard: ', error);
+      });
   }
 }

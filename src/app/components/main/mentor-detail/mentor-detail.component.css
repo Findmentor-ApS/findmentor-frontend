@@ -146,6 +146,12 @@
     background-color: #a8d6b6;
     border-color: #a8d6b6;
 }
+
+.buttonWrap button.call{
+    background-color: #ceccea;
+    border-color: #ceccea;
+}
+
 .buttonWrap button:focus{
     outline: 0;
 }
@@ -267,6 +273,10 @@
     margin-bottom: 25px;
 }
 
+.modal-content{
+    padding-bottom: 10px;
+}
+
 .modal-footer .btnGroup button{
     border: 0;
     border: 1px solid black;
@@ -283,6 +293,11 @@
     margin-right: 20px;
     float: right;
 }
+.modal-footer .btnGroup button.cancel{
+    background-color: transparent;
+    border-color: #333333;
+    float: left;
+}
 
 p.mt-0
 {
@@ -292,4 +307,11 @@ p.mt-0
 .list:not(:last-child)::after {
     /* Add a comma after each item except the last one */
     content: ',';
+}
+
+.toast-info{
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
 }

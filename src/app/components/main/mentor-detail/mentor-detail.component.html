@@ -153,8 +153,11 @@
                             <!-- <button>
                                 Send besked
                             </button> -->
-                            <button class="book"  (click)="openBooking()">
+                            <button class="book" (click)="openBooking()">
                                 Book mentor
+                            </button>
+                            <button class="call" (click)="callMentor()" *ngIf="type === 'commune'">
+                                Se mentorens tlf nr.
                             </button>
                         </div>
                     </div>
@@ -346,6 +349,7 @@ og hjælper med at bringe det ud af dig
                         </div>
                     </div>
                     <div class="btnGroup">
+                        <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
                         <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
                     </div>
                 </div>
@@ -403,12 +407,49 @@ og hjælper med at bringe det ud af dig
                         </div>
                     </div>
                     <div class="btnGroup">
+                        <button class="cancel" (click)="closeCall()" data-modal-close>Annuller</button>
                         <button (click)="bookCall()" [disabled]="!formGroupCall.valid" class="save">Send</button>
                     </div>
                 </div>
-
             </div>
         </form>
 
+    </div>
+</div>
+
+<div #modalPhone class="fds-modal" id="modal-example2" aria-hidden="true" role="dialog"
+    aria-modal="true" aria-labelledby="modal-id-1-title" tabindex="-1">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-example-title">
+                Mentorens telefon nummer
+            </h3>
+            <button class="modal-close function-link" (click)="closePhone()"
+                data-modal-close>X</button>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-12">
+                <label class="form-label" for="form-error">
+                    Telefon nummer
+                </label>
+                <input #phoneInput disabled class="form-input" placeholder="{{ mentor.phone }}" type="text">     
+            </div>
+        </div>
+        <hr class="divider">
+        <div class="modal-footer">
+            <div class="col-md-12">
+                <div *ngIf="showToast" class="toast toast-info show" aria-atomic="true">
+                    <div class="toast-icon"></div>
+                    <div class="toast-message">
+                        <p><strong id="notification-info-heading">Telefon nummeret er kopieret</strong></p>
+                        <!-- <button class="toast-close" aria-describedby="notification-info-heading">Luk</button> -->
+                    </div>
+                </div>
+                <div class="btnGroup">
+                    <button class="cancel" (click)="closePhone()">Annuller</button>
+                    <button (click)="copyPhone()" class="save">Kopier</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
