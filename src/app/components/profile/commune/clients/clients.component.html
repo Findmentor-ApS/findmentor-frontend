@@ -40,23 +40,24 @@
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
-                                    <tr *ngFor="let item of bookings">
+                                    <tr *ngFor="let booking of bookings">
                                         <ng-container *ngIf="0<pageSizeBookings">
                                             <td>
                                                 <div class="dataWrap">
-                                                    {{item.first_name}} {{item.last_name}}
+                                                    {{booking.users.first_name}} {{booking.users.last_name}}
                                                 </div>
                                             </td>
                                             <td *ngIf="userType == 'commune' || userType == 'user'">
                                                 <div class="dataWrap">
                                                     <div>
-                                                        {{item.mentor.first_name}} {{item.mentor.last_name}}
+                                                        {{booking.mentor.first_name}} {{booking.mentor.last_name}}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
                                                     <!-- {{item.date}} -->
+                                                    {{booking.created_at | date: 'dd-MM-yyyy'}}
                                                 </div>
                                             </td>
                                             <td>
@@ -68,7 +69,7 @@
                                                 <div class="dataWrap">
                                                     <div class="noteWrap">
                                                         <p class="m-0">
-                                                            <!-- {{item.note}} -->
+                                                            {{booking.help_text}}
                                                         </p>
                                                         <button>
                                                             Besvar
@@ -146,11 +147,11 @@
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
-                                    <tr *ngFor="let item of calls">
+                                    <tr *ngFor="let call of calls">
                                         <ng-container *ngIf="0<pageSizeCalls">
                                             <td>
                                                 <div class="dataWrap">
-                                                    {{item.first_name}} {{item.last_name}}
+                                                    {{call.phone_to_call}}
                                                 </div>
                                             </td>
                                             <td *ngIf="userType == 'commune'">
@@ -162,12 +163,12 @@
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
-                                                    <!-- {{item.date}} -->
+                                                    {{call.users.first_name}} {{call.users.last_name}}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
-                                                    <!-- {{item.first_name}} -->
+                                                    {{call.from}} til {{call.to}}
                                                 </div>
                                             </td>
                                             <td>
