@@ -1,10 +1,27 @@
-<div class="chat">
-  <div class="messages">
-    <div *ngFor="let message of messages">{{ message.content }}</div>
-  </div>
-  
-  <div class="input">
-    <input type="text" [(ngModel)]="messageText" placeholder="Type your message..." />
-    <button (click)="sendMessage()">Send</button>
+<div class="container mt-5">
+  <div class="row">
+    <!-- Contacts Section -->
+    <div class="col-md-3">
+      <div class="list-group">
+        <button *ngFor="let contact of contacts" type="button" class="list-group-item list-group-item-action" (click)="loadMessagesForContact(contact)">
+          {{ contact.first_name }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Messages Section -->
+    <div class="col-md-9">
+      <div *ngIf="selectedContact" class="messages-container mb-3">
+        <div *ngFor="let message of messages" class="message">
+          <p><strong>{{ message.sender_name }}</strong>: {{ message.content }}</p>
+        </div>
+      </div>
+
+      <!-- Message Input -->
+      <div *ngIf="selectedContact" class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Type a message...">
+        <button class="btn btn-primary" type="button" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
   </div>
 </div>
