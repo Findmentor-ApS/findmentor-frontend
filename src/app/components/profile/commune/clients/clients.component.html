@@ -42,7 +42,7 @@
                                 <tbody aria-live="polite">
                                     <tr *ngFor="let booking of bookings">
                                         <ng-container *ngIf="0<pageSizeBookings">
-                                            <td>
+                                            <td *ngIf="userType == 'mentor'">
                                                 <div class="dataWrap">
                                                     {{booking.users.first_name}} {{booking.users.last_name}}
                                                 </div>

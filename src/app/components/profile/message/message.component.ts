@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/services/messaging.service';
+import { MessagingService } from 'src/app/services/messaging.service';
 
 @Component({
   selector: 'app-message',
@@ -7,55 +7,42 @@ import { MessageService } from 'src/app/services/messaging.service';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  selectedUser: { userType: string, id: number };
-  chatHistory: any[] = [];
-  newMessage: string = '';
-  page: number = 0;
 
-  constructor(private messageService: MessageService) { }
+  public messages: any;
+  public messageText: string = '';
+
+  constructor(private messagingService: MessagingService) { }
 
   ngOnInit(): void {
-    // Initialize the selected user here (mentor, commune, or user)
-    this.selectedUser = { userType: 'mentor', id: 124 };
 
-    this.loadChatHistory(this.page);
-    
-  }
-
-  loadChatHistory(page: number) {
-    this.messageService.getMessages(this.selectedUser.userType, this.selectedUser.id, page).subscribe((messages: any[]) => {
-      const messagesArray = Object.entries(messages).map(([key, value]) => ({
-        id: value.id,
-        sender_type: value.sender_type,
-        sender_id: value.sender_id,
-        receiver_type: value.receiver_type,
-        receiver_id: value.receiver_id,
-        content: value.content,
-        created_at: value.created_at,
-        info: value.info
-      }));
+    this.messagingService.getMessages().subscribe((messages: any) => {
       console.log(messages);
-      if (page === 0) {
-          this.chatHistory = messagesArray;
-        } else {
-          this.chatHistory = [...messagesArray, ...this.chatHistory];
-        }
+      // console.log(messages);
+      this.messages = messages;
+    });
+
+
+    const channel = this.messagingService.getChannel();
+    channel.bind('new-message', (message: any) => {
+      console.log('Received message: ', message); // Log received messages
+      console.log(this.messages);
+      this.messages.push(message);
+      console.log(this.messages);
+    });
+  }
+
+  sendMessage(): void {
+    const userData = {
+      content: this.messageText,
+      receiver_id: 101,
+      receiver_type: 'commune',
+      sender_id: 125,
+      sender_type: 'mentor'
+    }
+    if (this.messageText.trim() !== '') {
+      this.messagingService.sendMessage(userData).subscribe(() => {
+        this.messageText = '';
       });
-    console.log(this.chatHistory);
-  }
-  
-
-  sendMessage() {
-    this.messageService.sendMessage(this.selectedUser.userType, this.selectedUser.id, this.newMessage)
-        .subscribe(result => {
-            this.newMessage = ''; // clear the message input field
-            this.loadChatHistory(0); // load the chat history to display the new message
-        });
-  }
-
-  onScroll() {
-    this.page++;
-    this.loadChatHistory(this.page);
+    }
   }
 }
-

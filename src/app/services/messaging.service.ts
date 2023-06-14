@@ -1,49 +1,74 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Pusher from 'pusher-js/with-encryption';
 import { AuthService } from './auth.service';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class MessagingService {
 
-  constructor(private http: HttpClient, private authService: AuthService) { 
+  private pusher: any;
+  private channel: any;
+
+  
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.pusher = new Pusher('dbdb62837648a19fb31a', {
+      cluster: 'eu',
+      forceTLS: true
+    });
+    console.log('Pusher instance: ', this.pusher); // Log Pusher instance
+
+    this.channel = this.pusher.subscribe('chat-channel');
+    console.log('Channel: ', this.channel); // Log channel
+
+    this.channel.bind('new-message', (message: any) => {
+      console.log('Received message: ', message); // Log received messages
+    });
+
+    // Log errors
+    this.pusher.connection.bind('error', function(err: any) {
+      console.error('Pusher connection error: ', err);
+    });
   }
-  getMessages(targetUserType: string, targetUserId: number, page: number) {
-    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
 
-    return this.http.get(`/messages/${targetUserType}/${targetUserId}?page=${page}`,  {headers}).pipe(
+  sendMessage(userData: any) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.post<any>(`/message/send_message`,userData, {headers}).pipe(
       catchError(error => {
-        let errorMessage = 'Error loading messages!';
+        let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {
           errorMessage = error.error;
+          console.log(errorMessage);
         }
         return throwError(() => new Error(errorMessage));
       }),
       map(response => {
         return response;
       })
-    );
+    );  
   }
 
-  sendMessage(targetUserType: string, targetUserId: number, message: string) {
+  getMessages() {
+    // Replace with the URL of your PHP backend's get_messages endpoint
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
-    const userData = {
-      message: message,
-    }
-    return this.http.post(`/messages/${targetUserType}/${targetUserId}`,userData, {headers}).pipe(
+    return this.http.get<any>(`/message/get_messages`, {headers}).pipe(
       catchError(error => {
-        let errorMessage = 'Error sending message!';
+        let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {
           errorMessage = error.error;
+          console.log(errorMessage);
         }
         return throwError(() => new Error(errorMessage));
       }),
       map(response => {
         return response;
       })
-    );
+    );   
   }
 
+  getChannel() {
+    return this.pusher.subscribe('chat-channel');
+  }
 }

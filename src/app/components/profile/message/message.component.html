@@ -1,20 +1,10 @@
-<form (ngSubmit)="sendMessage()">
-    <input type="text" [(ngModel)]="newMessage" name="newMessage" required>
-    <button type="submit">Send</button>
-</form>
-
-<ul>
-    <li *ngFor="let recipient of chatHistory">
-      <a (click)="selectedUser = recipient">
-        {{ recipient.info.first_name }}
-      </a>
-    </li>
-  </ul>
-
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
-  <div *ngFor="let message of chatHistory">
-    <p>{{ message.content }}</p>
-    <p>From: {{ message.sender_id }}</p>
-    <p>To: {{ message.receiver_id }}</p>
+<div class="chat">
+  <div class="messages">
+    <div *ngFor="let message of messages">{{ message.content }}</div>
+  </div>
+  
+  <div class="input">
+    <input type="text" [(ngModel)]="messageText" placeholder="Type your message..." />
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
