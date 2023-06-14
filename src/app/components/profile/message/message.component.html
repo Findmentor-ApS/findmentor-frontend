@@ -1,27 +1,45 @@
-<div class="container mt-5">
-  <div class="row">
+<app-secondary-navigation></app-secondary-navigation>
+<div class="overviewWrap">
+  <div class="container">
+      <div class="row">
     <!-- Contacts Section -->
-    <div class="col-md-3">
-      <div class="list-group">
-        <button *ngFor="let contact of contacts" type="button" class="list-group-item list-group-item-action" (click)="loadMessagesForContact(contact)">
-          {{ contact.first_name }}
-        </button>
-      </div>
-    </div>
+        <div class="col-md-3">
+          <h3>Beskeder</h3>
+          <div class="list-group">
+            <ul class="contacts">
+              <li *ngFor="let contact of contacts" (click)="loadMessagesForContact(contact)" [ngClass]="{ 'active': contact === selectedContact }">
+                <h5><b>{{ contact.first_name }} {{ contact.last_name }}</b></h5>
+                <h6>{{ contact.last_message_content }} </h6>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-    <!-- Messages Section -->
-    <div class="col-md-9">
-      <div *ngIf="selectedContact" class="messages-container mb-3">
-        <div *ngFor="let message of messages" class="message">
-          <p><strong>{{ message.sender_name }}</strong>: {{ message.content }}</p>
+        <!-- Messages Section -->
+        <div class="col-md-9" *ngIf="!selectedContact">
+          Tom
+        </div>
+        <div class="col-md-9 chat" *ngIf="selectedContact">
+          <div class="name">
+            <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
+          </div>
+          <div *ngIf="selectedContact" class="messages-container mb-3">
+            <div *ngFor="let message of messages" [ngClass]="{ 'message': true, 'sent-message': message.sender_id === user.id, 'received-message': message.sender_id !== user.id }">
+              <div *ngIf="message.sender_id === user.id" class="sent-message">
+                <p>{{ message.content }}</p>
+              </div>
+              <div *ngIf="message.sender_id !== user.id" class="received-message">
+                <p>{{ message.content }}</p>
+              </div>
+              </div>
+          </div>
+
+          <!-- Message Input -->
+          <div *ngIf="selectedContact" class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Type a message...">
+            <button class="btn btn-primary" type="button" (click)="sendMessage()">Send</button>
+          </div>
         </div>
       </div>
-
-      <!-- Message Input -->
-      <div *ngIf="selectedContact" class="input-group">
-        <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Type a message...">
-        <button class="btn btn-primary" type="button" (click)="sendMessage()">Send</button>
-      </div>
-    </div>
   </div>
 </div>

@@ -9,57 +9,71 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class MessageComponent implements OnInit {
 
-  public messages: any = [];
-  public contacts: any = [];
-  public messageText: string = '';
-  public selectedContact: any = null;
-  private user: any = null;
-  constructor(private messagingService: MessagingService, private userDataService: UserDataService) { }
+  // MessageComponent
 
-  ngOnInit(): void {
-    // Load contacts
+public messages: any = [];
+public contacts: any = [];
+public messageText: string = '';
+public selectedContact: any = null;
+user: any = null;
+currentChannel: any;
+
+constructor(private messagingService: MessagingService, private userDataService: UserDataService) { }
+
+ngOnInit(): void {
     this.messagingService.getContacts().subscribe((contacts: any) => {
-      this.contacts = contacts;
-      console.log(contacts);
+        this.contacts = contacts;
     });
     this.user = this.userDataService.getCurrentUser();
-    // Listen for real-time messages
-    const channel = this.messagingService.getChannel();
-    channel.bind('new-message', (message: any) => {
-      // If the message belongs to the currently selected contact, push it to the messages array.
-      if (this.selectedContact && (message.sender_id === this.selectedContact.contact_id || message.receiver_id === this.selectedContact.contact_id )) {
-        this.messages.push(message);
-      }
-    });
-  }
+}
 
-  loadMessagesForContact(contact: any): void {
+loadMessagesForContact(contact: any): void {
     this.selectedContact = contact;
 
-    // Load messages for the selected contact
-    // Here, you could filter or query messages based on the selected contact
-    // I'm using a simplified example assuming you have a method to get messages by contact.
-    console.log(contact.contact_id);
-    this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
-      console.log(messages);
-      this.messages = messages;
-    });
-  }
+    // Unsubscribe from the previous channel
+    if (this.currentChannel) {
+        this.currentChannel.unbind('new-message');
+        this.messagingService.pusher.unsubscribe(this.currentChannel.name);
+    }
 
-  sendMessage(): void {
-    console.log(this.user)
+    // Subscribe to a new channel
+    this.currentChannel = this.messagingService.subscribeToChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
+    this.currentChannel.bind('new-message', (message: any) => {
+        this.messages.push(message);
+
+        const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
+        if (contact) {
+            contact.last_message_content = message.content;
+        }
+    });
+
+    // Load messages for the selected contact
+    this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
+        this.messages = messages.reverse();
+    });
+}
+
+sendMessage(): void {
     const userData = {
-      content: this.messageText,
-      receiver_id: this.selectedContact.contact_id,
-      receiver_type: this.selectedContact.contact_type,
-      sender_id: this.user.id,
-      sender_type: localStorage.getItem('type')
+        content: this.messageText,
+        receiver_id: this.selectedContact.contact_id,
+        receiver_type: this.selectedContact.contact_type,
+        sender_id: this.user.id,
+        sender_type: localStorage.getItem('type')
     }
 
     if (this.messageText.trim() !== '') {
-      this.messagingService.sendMessage(userData).subscribe(() => {
-        this.messageText = '';
-      });
+        this.messagingService.sendMessage(userData).subscribe(() => {
+
+            // const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
+            // if (contact) {
+            //     contact.last_message_content = this.messageText;
+            // }
+
+            this.messageText = '';
+
+        });
     }
-  }
+}
+
 }

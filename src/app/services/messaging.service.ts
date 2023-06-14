@@ -9,8 +9,8 @@ import { catchError, map, throwError } from 'rxjs';
 })
 export class MessagingService {
 
-  private pusher: any;
-  private channel: any;
+  public pusher: any;
+  public channel: any;
 
   
   constructor(private http: HttpClient, private authService: AuthService) {
@@ -107,5 +107,26 @@ export class MessagingService {
         return response;
       })
     );
+  }  
+
+
+  subscribeToChannel(userType1: string, userId1: number, userType2: string, userId2: number) {
+    const channelName = this.createChannelName(userType1, userId1, userType2, userId2);
+    return this.pusher.subscribe(channelName);
   }
+
+  private createChannelName(userType1: string, userId1: number, userType2: string, userId2: number): string {
+    const participants: [string, number][] = [[userType1, userId1], [userType2, userId2]];
+
+    participants.sort((a, b) => {
+        if (a[0] === b[0]) {
+            return a[1] - b[1];
+        } else {
+            return a[0].localeCompare(b[0]);
+        }
+    });
+
+    return `chat-channel-${participants[0][0]}${participants[0][1]}-${participants[1][0]}${participants[1][1]}`;
+  }
+
 }
