@@ -35,23 +35,25 @@
                 <div class="spinner-status" role="status">Arbejder</div>
               </div>
             </div>
-            <div *ngFor="let message of messages" [ngClass]="{ 'message': true, 'sent-message': message.sender_id === user.id, 'received-message': message.sender_id !== user.id }">
-              <div *ngIf="message.sender_id === user.id" class="sent-message">
-                <p class="message-content">{{ message.content }}</p>
-                <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
+<!-- ... -->
 
-              </div>
-              <div *ngIf="message.sender_id !== user.id" class="received-message">
-                <p class="message-content">{{ message.content }}</p>
-                <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
-              </div>
-              </div>
+<div *ngFor="let message of messages" class="message" [ngClass]="{ 'sent-message': message.sender_id === user.id, 'received-message': message.sender_id !== user.id }">
+
+  <div class="bubble">
+    <p class="message-content">{{ message.content }}</p>
+    <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
+  </div>
+
+</div>
+
+<!-- ... -->
+
           </div>
 
           <!-- Message Input -->
           <div *ngIf="selectedContact" class="input-group send-message-container">
             <div class="form-group">
-              <textarea class="form-control message-text" (keydown.enter)="sendMessage()" [(ngModel)]="messageText" placeholder="Skriv din besked"></textarea>
+              <textarea class="form-control message-text"  (keydown)="onTextareaKeydown($event)" [(ngModel)]="messageText" placeholder="Skriv din besked"></textarea>
               <img src="{{ assetPath }}/svgs/svg-icons/send.svg" 
               class="btn btn-primary" 
               (click)="sendMessage()" 

@@ -49,28 +49,8 @@ export class MessagingService {
       })
     );  
   }
-
-// // GEt messages by id and type
-//   getMessages(id: any, usertype: any) {
-//     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
-//     return this.http.get<any>(`/message/get_messages/${id}/${usertype}`, {headers}).pipe(
-//       catchError(error => {
-//         let errorMessage = 'Der er opstået en fejl!';
-//         if (error.error) {
-//           errorMessage = error.error;
-//           console.log(errorMessage);
-//         }
-//         return throwError(() => new Error(errorMessage));
-//       }),
-//       map(response => {
-//         return response;
-//       })
-//     );
-//   }
   
-  // get_contacts
   getContacts() {
-
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
     return this.http.get<any>(`/message/get_contacts`, {headers}).pipe(
       catchError(error => {

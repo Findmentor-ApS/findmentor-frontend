@@ -47,6 +47,7 @@ export class MessageComponent implements OnInit {
           if (contact) {
               contact.last_message_content = message.content;
           }
+          this.scrollToBottom();
       });
 
       this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
@@ -56,7 +57,6 @@ export class MessageComponent implements OnInit {
   }
 
   onScroll() {
-    console.log("scrolled");
     if (!this.loading) {
         this.loading = true;
         this.page++;
@@ -67,7 +67,7 @@ export class MessageComponent implements OnInit {
                 this.loading = false;
             });
     }
-}
+  }
 
 
   sendMessage(): void {
@@ -104,6 +104,13 @@ export class MessageComponent implements OnInit {
     setTimeout(() => {
       this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     });
+  }
+
+  onTextareaKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.sendMessage();
+    }
   }
 
 }

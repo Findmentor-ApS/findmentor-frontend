@@ -315,16 +315,39 @@
   }
 }
 
-.sent-message {
-  text-align: right;
-  margin-right: 1rem;
-  /* Additional styling for sent messages */
+/* Flex container for messages */
+.message {
+  display: flex;
+  justify-content: flex-start; /* Default alignment */
 }
 
-.received-message {
-  text-align: left;
-  /* Additional styling for received messages */
+/* Align sent message to the right */
+.sent-message {
+  justify-content: flex-end;
 }
+
+/* Common styling for both sent and received bubbles */
+.bubble {
+  display: inline-block; /* Make it take only as much width as it needs */
+  max-width: 70%; /* Maximum width */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Padding inside the bubble */
+  margin-bottom: 5px; /* Space between messages */
+  word-wrap: break-word; /* Breaks the text into new line when it reaches max width */
+}
+
+/* Specific styling for sent message bubble */
+.sent-message .bubble {
+  background-color: #e2f2ea; /* Green background */
+  color: white; /* Text color */
+}
+
+/* Specific styling for received message bubble */
+.received-message .bubble {
+  background-color: #e3e5e8; /* Gray background */
+}
+
+
 
 .list-group{
   background-color: white;
@@ -416,6 +439,10 @@
 
 .message-text::placeholder{
   color: #aca5a5
+}
+
+.message-text:focus{
+  outline: none;
 }
 
 .btn-primary{
