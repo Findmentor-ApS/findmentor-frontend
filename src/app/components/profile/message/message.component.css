@@ -358,3 +358,24 @@
 .chat.name{
   border-bottom: #000000 1px solid;
 }
+
+.snippet{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.snippetDate{
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.message-timestamp {
+  font-size: 10px;
+  color: #999;
+  margin-top: 0.1rem;
+}
+
+.message-content{
+  margin-bottom: 0px;
+}

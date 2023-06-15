@@ -3,21 +3,22 @@
   <div class="container">
       <div class="row">
     <!-- Contacts Section -->
-        <div class="col-md-3">
+        <div class="col-md-3 contact">
           <h3>Beskeder</h3>
           <div class="list-group">
             <ul class="contacts">
               <li *ngFor="let contact of contacts" (click)="loadMessagesForContact(contact)" [ngClass]="{ 'active': contact === selectedContact }">
-                <h5><b>{{ contact.first_name }} {{ contact.last_name }}</b></h5>
-                <h6>{{ contact.last_message_content }} </h6>
+                <h4><b>{{ contact.first_name }} {{ contact.last_name }}</b></h4>
+                <h6 class="snippet">{{ contact.last_message_content }} </h6>
+                <h6 class="snippetDate">{{ contact.last_message_at | date: 'dd. MMMM yyyy - HH:mm' }}</h6>
               </li>
             </ul>
           </div>
         </div>
 
         <!-- Messages Section -->
-        <div class="col-md-9" *ngIf="!selectedContact">
-          Tom
+        <div class="col-md-9 chat" *ngIf="!selectedContact">
+          <h3>Vælg en kontakt</h3>
         </div>
         <div class="col-md-9 chat" *ngIf="selectedContact">
           <div class="name">
@@ -26,10 +27,14 @@
           <div *ngIf="selectedContact" class="messages-container mb-3">
             <div *ngFor="let message of messages" [ngClass]="{ 'message': true, 'sent-message': message.sender_id === user.id, 'received-message': message.sender_id !== user.id }">
               <div *ngIf="message.sender_id === user.id" class="sent-message">
-                <p>{{ message.content }}</p>
+                <p class="message-content">{{ message.content }}</p>
+                <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
+
               </div>
               <div *ngIf="message.sender_id !== user.id" class="received-message">
-                <p>{{ message.content }}</p>
+                <p class="message-content">{{ message.content }}</p>
+                <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
+
               </div>
               </div>
           </div>

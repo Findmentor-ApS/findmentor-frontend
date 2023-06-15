@@ -67,7 +67,6 @@ export class HeaderComponent implements OnInit {
       bodyTag.classList.remove('mobile_nav-active');
     }
     this.isNav = !this.isNav;
-    console.log("fads");
     // bodyTag.classList.add('nav login is-visible');
    }
 
