@@ -24,7 +24,7 @@
           <div class="name">
             <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
           </div>
-          <div *ngIf="selectedContact" class="messages-container mb-3" infiniteScroll
+          <div *ngIf="selectedContact" class="messages-container mb-3" infiniteScroll #messagesContainer
           [infiniteScrollUpDistance]="1"
           [infiniteScrollThrottle]="300"
           [scrollWindow]="false"
@@ -44,15 +44,20 @@
               <div *ngIf="message.sender_id !== user.id" class="received-message">
                 <p class="message-content">{{ message.content }}</p>
                 <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
-
               </div>
               </div>
           </div>
 
           <!-- Message Input -->
-          <div *ngIf="selectedContact" class="input-group">
-            <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Type a message...">
-            <button class="btn btn-primary" type="button" (click)="sendMessage()">Send</button>
+          <div *ngIf="selectedContact" class="input-group send-message-container">
+            <div class="form-group">
+              <textarea class="form-control message-text" (keydown.enter)="sendMessage()" [(ngModel)]="messageText" placeholder="Skriv din besked"></textarea>
+              <img src="{{ assetPath }}/svgs/svg-icons/send.svg" 
+              class="btn btn-primary" 
+              (click)="sendMessage()" 
+              [class.disabled]="isSending" 
+              alt="Send Message">
+            </div>
           </div>
         </div>
       </div>
