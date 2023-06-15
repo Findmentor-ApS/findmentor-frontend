@@ -24,7 +24,17 @@
           <div class="name">
             <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
           </div>
-          <div *ngIf="selectedContact" class="messages-container mb-3">
+          <div *ngIf="selectedContact" class="messages-container mb-3" infiniteScroll
+          [infiniteScrollUpDistance]="1"
+          [infiniteScrollThrottle]="300"
+          [scrollWindow]="false"
+          (scrolledUp)="onScroll()">
+            <div *ngIf="loading">
+              <div class="spinner-container">
+                <div class="spinner"></div>
+                <div class="spinner-status" role="status">Arbejder</div>
+              </div>
+            </div>
             <div *ngFor="let message of messages" [ngClass]="{ 'message': true, 'sent-message': message.sender_id === user.id, 'received-message': message.sender_id !== user.id }">
               <div *ngIf="message.sender_id === user.id" class="sent-message">
                 <p class="message-content">{{ message.content }}</p>

@@ -91,10 +91,13 @@ export class MessagingService {
     return this.pusher.subscribe('chat-channel');
   }
 
-  getMessagesForContact(id: any, usertype: any) {
+  getMessagesForContact(id: any, usertype: any, page: number = 0) {
     // Replace with the URL of your PHP backend's get_messages endpoint
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
-    return this.http.get<any>(`/message/get_messages_for_contact/${usertype}/${id}`, {headers}).pipe(
+    return this.http.get<any>(`/message/get_messages_for_contact/${usertype}/${id}`, {
+      params: { page: page.toString() },
+      headers: headers
+    }).pipe(
       catchError(error => {
         let errorMessage = 'Der er opstået en fejl!';
         if (error.error) {

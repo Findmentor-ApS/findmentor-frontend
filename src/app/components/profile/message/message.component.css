@@ -379,3 +379,8 @@
 .message-content{
   margin-bottom: 0px;
 }
+
+.messages-container {
+  max-height: 500px; /* You can set this to whatever height you like */
+  overflow-y: auto;
+}

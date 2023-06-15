@@ -15,6 +15,8 @@ export class MessageComponent implements OnInit {
   public contacts: any = [];
   public messageText: string = '';
   public selectedContact: any = null;
+  page: number = 0;
+  loading: boolean = false;
   user: any = null;
   currentChannel: any;
 
@@ -29,7 +31,7 @@ export class MessageComponent implements OnInit {
 
   loadMessagesForContact(contact: any): void {
       this.selectedContact = contact;
-
+      this.page = 0; // Reset page number
       // Unsubscribe from the previous channel
       if (this.currentChannel) {
           this.currentChannel.unbind('new-message');
@@ -47,11 +49,25 @@ export class MessageComponent implements OnInit {
           }
       });
 
-      // Load messages for the selected contact
       this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
-          this.messages = messages.reverse();
+        this.messages = messages.reverse();
       });
   }
+
+  onScroll() {
+    console.log("scrolled");
+    if (!this.loading) {
+        this.loading = true;
+        this.page++;
+        this.messagingService.getMessagesForContact(this.selectedContact.contact_id, this.selectedContact.contact_type, this.page)
+            .subscribe((messages: any) => {
+                // Prepend new messages to the start of the array
+                this.messages = [...messages, ...this.messages];
+                this.loading = false;
+            });
+    }
+}
+
 
   sendMessage(): void {
       const userData = {
@@ -59,7 +75,8 @@ export class MessageComponent implements OnInit {
           receiver_id: this.selectedContact.contact_id,
           receiver_type: this.selectedContact.contact_type,
           sender_id: this.user.id,
-          sender_type: localStorage.getItem('type')
+          sender_type: localStorage.getItem('type'),
+          created_at: new Date()
       }
 
       if (this.messageText.trim() !== '') {
