@@ -14,11 +14,14 @@ export class MessageComponent implements OnInit {
   public contacts: any = [];
   public messageText: string = '';
   public selectedContact: any = null;
+  currentFocusedContactId: number | null = null; // Add this outside of ngOnInit
+
   page: number = 0;
   loading: boolean = false;
   isSending: boolean = false;
   user: any = null;
-  currentChannel: any;
+  messageChannel: any;
+  contactsChannel: any;
 
   constructor(private messagingService: MessagingService, private userDataService: UserDataService,@Inject('ASSET_PATH') public assetPath: string) { }
 
@@ -27,21 +30,42 @@ export class MessageComponent implements OnInit {
           this.contacts = contacts;
       });
       this.user = this.userDataService.getCurrentUser();
+
+      // Subscribe to contacts channel
+      this.contactsChannel = this.messagingService.subscribeToContactsChannel(this.user.id.toString(), localStorage.getItem('type'));
+
+      this.contactsChannel.bind('update-contacts', (data: any) => {
+        // Store the ID of the currently focused contact
+        if (this.selectedContact) {
+          this.currentFocusedContactId = this.selectedContact.contact_id;
+        }
+      
+        // Update the contacts array
+        this.contacts = data.updated_contacts;
+      
+        // If there was a previously focused contact, set it as the selected contact
+        if (this.currentFocusedContactId) {
+          this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId);
+        }
+      });
+
   }
 
   loadMessagesForContact(contact: any): void {
       this.selectedContact = contact;
       this.page = 0; // Reset page number
       // Unsubscribe from the previous channel
-      if (this.currentChannel) {
-          this.currentChannel.unbind('new-message');
-          this.messagingService.pusher.unsubscribe(this.currentChannel.name);
+      if (this.messageChannel) {
+          this.messageChannel.unbind('new-message');
+          this.messagingService.pusher.unsubscribe(this.messageChannel.name);
       }
 
       // Subscribe to a new channel
-      this.currentChannel = this.messagingService.subscribeToChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
-      this.currentChannel.bind('new-message', (message: any) => {
+      this.messageChannel = this.messagingService.subscribeToChatChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
+      console.log(this.messageChannel);
+      this.messageChannel.bind('new-message', (message: any) => {
           this.messages.push(message);
+          this.messageText = '';
 
           const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
           if (contact) {
@@ -86,16 +110,7 @@ export class MessageComponent implements OnInit {
     if (this.messageText.trim() !== '') {
         this.isSending = true;
         this.messagingService.sendMessage(userData).subscribe(() => {
-
-            // const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
-            // if (contact) {
-            //     contact.last_message_content = this.messageText;
-            // }
-
             this.isSending = false;
-            this.messageText = '';
-            this.scrollToBottom();
-
         });
     }
   }

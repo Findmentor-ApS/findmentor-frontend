@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Pusher from 'pusher-js/with-encryption';
 import { AuthService } from './auth.service';
 import { catchError, map, throwError } from 'rxjs';
+import { UserDataService } from './user-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +12,22 @@ export class MessagingService {
 
   public pusher: any;
   public channel: any;
+  userContactsChannel: any;
 
   
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, private userDataService: UserDataService) {
     this.pusher = new Pusher('dbdb62837648a19fb31a', {
       cluster: 'eu',
       forceTLS: true
     });
-    console.log('Pusher instance: ', this.pusher); // Log Pusher instance
+    // console.log('Pusher instance: ', this.pusher); // Log Pusher instance
 
-    this.channel = this.pusher.subscribe('chat-channel');
-    console.log('Channel: ', this.channel); // Log channel
+    // this.channel = this.pusher.subscribe('chat-channel');
+    // console.log('Channel: ', this.channel); // Log channel
 
-    this.channel.bind('new-message', (message: any) => {
-      console.log('Received message: ', message); // Log received messages
-    });
+    // this.channel.bind('new-message', (message: any) => {
+    //   console.log('Received message: ', message); // Log received messages
+    // });
 
     // Log errors
     this.pusher.connection.bind('error', function(err: any) {
@@ -66,10 +68,6 @@ export class MessagingService {
       })
     );
   }
-  
-  getChannel() {
-    return this.pusher.subscribe('chat-channel');
-  }
 
   getMessagesForContact(id: any, usertype: any, page: number = 0) {
     // Replace with the URL of your PHP backend's get_messages endpoint
@@ -93,7 +91,7 @@ export class MessagingService {
   }  
 
 
-  subscribeToChannel(userType1: string, userId1: number, userType2: string, userId2: number) {
+  subscribeToChatChannel(userType1: string, userId1: number, userType2: string, userId2: number) {
     const channelName = this.createChannelName(userType1, userId1, userType2, userId2);
     return this.pusher.subscribe(channelName);
   }
@@ -111,5 +109,12 @@ export class MessagingService {
 
     return `chat-channel-${participants[0][0]}${participants[0][1]}-${participants[1][0]}${participants[1][1]}`;
   }
+
+  subscribeToContactsChannel(userId: string, userType: string) {
+    const userContactsChannel = userType + '-' + userId +'-contacts-channel';
+
+    return this.pusher.subscribe(userContactsChannel);
+  }
+
 
 }
