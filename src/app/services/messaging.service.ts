@@ -116,5 +116,13 @@ export class MessagingService {
     return this.pusher.subscribe(userContactsChannel);
   }
 
-
+  subscribeToContactsChannelNotification(userId: string, userType: string) {
+    const channelName = userType + '-' + userId +'-contacts-channel';
+    const channel = this.pusher.subscribe(channelName);
+    
+    // bind events on the channel, example:
+    channel.bind('update-contacts', (data: any) => {
+      console.log('Contacts updated:', data);
+    });
+  }
 }

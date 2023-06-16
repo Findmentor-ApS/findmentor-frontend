@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-validate-login',
@@ -15,7 +16,8 @@ export class ValidateLoginComponent implements OnInit {
   success = false;
   error = false;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService,private router: Router) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService,
+    private router: Router, private userDataService: UserDataService) { }
 
   ngOnInit(): void {
     this.userType = this.route.snapshot.paramMap.get('type');
@@ -27,9 +29,14 @@ export class ValidateLoginComponent implements OnInit {
           this.success = true;
           this.error = false;
           this.errorMessage = '';
+          localStorage.setItem('access_token', res['access_token']);
+          localStorage.setItem('type', this.userType);
+          localStorage.setItem('name', res['first_name'] + ' ' + res['last_name']);
+          // console.log(res);
+          this.userDataService.setUser(res);
+
           setTimeout(() => {
             this.router.navigate(['/profile']);
-            
           }, 5000);
         },
         error: (error) => {
