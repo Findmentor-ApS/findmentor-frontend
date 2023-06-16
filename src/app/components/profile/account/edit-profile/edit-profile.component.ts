@@ -32,39 +32,41 @@ export class EditProfileComponent implements OnInit {
     this.createForm();
 
     // Listen for the blur event on the 'cvr' form control
-    this.formGroup.get('cvr').valueChanges.pipe(
-      debounceTime(500),  // Delay by 500ms (can adjust as needed)
-      distinctUntilChanged(),  // Only emit if value has changed
-      switchMap(newValue => this.profileService.searchCompany(newValue))  // Call the searchCompany method
-    )
-    .subscribe(
-      {
-        next: (res) => {
-          let companyName;
-          if (res.hits && res.hits.hits && res.hits.hits.length > 0) {
-              let company = res.hits.hits[0]._source.Vrvirksomhed;
-              if (company.navne) {
-                  for (let navn of company.navne) {
-                      if (navn.periode.gyldigTil == null) {
-                          companyName = navn.navn;
-                          break;
-                      }
-                  }
-              }
-          }
-          else {
-              companyName = 'Ikke gyldigt CVR-nummer';
-          }
+    if(this.type == 'mentor'){
+      this.formGroup.get('cvr').valueChanges.pipe(
+        debounceTime(500),  // Delay by 500ms (can adjust as needed)
+        distinctUntilChanged(),  // Only emit if value has changed
+        switchMap(newValue => this.profileService.searchCompany(newValue))  // Call the searchCompany method
+      )
+      .subscribe(
+        {
+          next: (res) => {
+            let companyName;
+            if (res.hits && res.hits.hits && res.hits.hits.length > 0) {
+                let company = res.hits.hits[0]._source.Vrvirksomhed;
+                if (company.navne) {
+                    for (let navn of company.navne) {
+                        if (navn.periode.gyldigTil == null) {
+                            companyName = navn.navn;
+                            break;
+                        }
+                    }
+                }
+            }
+            else {
+                companyName = 'Ikke gyldigt CVR-nummer';
+            }
 
-          this.formGroup.get('company_name').setValue(companyName);
-          console.log(this.formGroup.get('company_name').value);
-        },
-        error: (error) => {
-          this.success = false;
-          this.errorMessage = error.message
+            this.formGroup.get('company_name').setValue(companyName);
+            console.log(this.formGroup.get('company_name').value);
+          },
+          error: (error) => {
+            this.success = false;
+            this.errorMessage = error.message
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   private commonControls() {
@@ -82,7 +84,7 @@ export class EditProfileComponent implements OnInit {
       // specific form controls for mentor
       street: new FormControl(this.user.street, [Validators.required]),
       street_no: new FormControl(this.user.street_no, [Validators.required]),
-      street_floor: new FormControl(this.user.street_side),
+      street_floor: new FormControl(this.user.street_floor),
       street_side: new FormControl(this.user.street_side),
       post_code: new FormControl(this.user.post_code, [Validators.required]),
       city: new FormControl(this.user.city, [Validators.required]),
@@ -111,7 +113,7 @@ export class EditProfileComponent implements OnInit {
       // specific form controls for user
       street: new FormControl(this.user.street, [Validators.required]),
       street_no: new FormControl(this.user.street_no, [Validators.required]),
-      street_side: new FormControl(this.user.street_side, [Validators.required]),
+      street_side: new FormControl(this.user.street_side),
       post_code: new FormControl(this.user.post_code, [Validators.required]),
       city: new FormControl(this.user.city, [Validators.required]),
       gender: new FormControl(this.user.gender, [Validators.required]),
@@ -139,11 +141,12 @@ export class EditProfileComponent implements OnInit {
 
 
   updateProfile(){
-    console.log(this.formGroup.get('company_name').value);
-    if(this.formGroup.get('company_name').value == 'Ikke gyldigt CVR-nummer'){
-      this.errorMessage = 'Ikke gyldigt CVR-nummer';
-      this.success = false;
-      return;
+    if(this.type == 'mentor'){
+      if(this.formGroup.get('company_name').value == 'Ikke gyldigt CVR-nummer'){
+        this.errorMessage = 'Ikke gyldigt CVR-nummer';
+        this.success = false;
+        return;
+      }
     }
     this.profileService.updateProfile(this.formGroup.getRawValue()).subscribe(
       {
