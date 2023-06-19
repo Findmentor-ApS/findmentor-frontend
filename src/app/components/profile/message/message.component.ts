@@ -43,17 +43,16 @@ export class MessageComponent implements OnInit {
     }
 
     // Subscribe to contacts channel
-    // this.contactsChannel = this.messagingService.subscribeToContactsChannel(this.user.id.toString(), localStorage.getItem('type'));
     this.messagingService.subscribeToContactsChannelNotification(this.user.id, localStorage.getItem('type'));
     this.messagingService.messageReceived$.subscribe(data => {
       if (this.selectedContact) {
         this.currentFocusedContactId = this.selectedContact.contact_id;
         this.currentFocusedContactType = this.selectedContact.contact_type;
       }
-    
+
       // Update the contacts array
       this.contacts = data['updated_contacts'];
-    
+
       // If there was a previously focused contact, set it as the selected contact
       if (this.currentFocusedContactId) {
         this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId && contact.contact_type === this.currentFocusedContactType);
@@ -70,11 +69,11 @@ loadMessagesForContact(contact: any): void {
         this.messagingService.pusher.unsubscribe(this.messageChannel.name);
     }
 
-    // Subscribe to a new channel
+    // Subscribe to messages channel
     this.messageChannel = this.messagingService.subscribeToChatChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
-    console.log(this.messageChannel);
     this.messageChannel.bind('new-message', (message: any) => {
-        this.messages.push(message);
+        // push if received message is for the selected contact
+        if (message.sender_id == this.selectedContact.contact_id && message.sender_type == this.selectedContact.contact_type) this.messages.push(message);
         this.messageText = '';
 
         const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
@@ -86,9 +85,39 @@ loadMessagesForContact(contact: any): void {
 
     this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
       this.messages = messages.reverse();
+
+          // Only include message IDs where the current user is the receiver
+      
+      const messageIds = messages.filter(message => message.receiver_id == this.user.id && message.receiver_type == localStorage.getItem('type')).map(message => message.id);
+      if (messageIds.length > 0) {
+        const userData = {
+          receiver_id: this.selectedContact.contact_id,
+          receiver_type: this.selectedContact.contact_type,
+          sender_id: this.user.id,
+          sender_type: localStorage.getItem('type'),
+          message_ids: messageIds
+        }
+
+        // call function the set this.messages to response
+        this.messagingService.markMessagesAsSeen(userData).subscribe((response: any) => {
+          // console.log(response);
+        });
+      }
+
+
       this.scrollToBottom();
     });
-    console.log(this.selectedContact);
+
+    this.messagingService.pusher.bind('message-seen', (data: any) => {
+
+      // set the seen property of the message to true
+      this.messages = this.messages.map((message: any) => {
+        if (data.message_ids.includes(message.id)) {
+          message.seen = true;
+        }
+        return message;
+      });
+    });
   }
 
   onScroll() {
@@ -115,13 +144,18 @@ loadMessagesForContact(contact: any): void {
         receiver_type: this.selectedContact.contact_type,
         sender_id: this.user.id,
         sender_type: localStorage.getItem('type'),
-        created_at: new Date()
+        created_at: new Date(),
+        seen: false
     }
+
+    // add the sent message to the messages array
 
     if (this.messageText.trim() !== '') {
         this.isSending = true;
-        this.messagingService.sendMessage(userData).subscribe(() => {
+        this.messagingService.sendMessage(userData).subscribe((response: any) => {
+            this.messages.push(response);
             this.isSending = false;
+            this.scrollToBottom();
         });
     }
   }

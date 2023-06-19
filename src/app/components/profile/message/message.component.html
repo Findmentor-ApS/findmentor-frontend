@@ -42,6 +42,10 @@
             <div class="bubble">
               <p class="message-content">{{ message.content }}</p>
               <span class="message-timestamp">{{ message.created_at | date: 'dd. MMMM yyyy - HH:mm' }}</span>
+              <img *ngIf="message.sender_id === user.id && message.seen == false" src="{{ assetPath }}/svgs/svg-icons/check.svg"
+                class="message-status" alt="Message Status">
+              <img *ngIf="message.sender_id === user.id && message.seen == true" src="{{ assetPath }}/svgs/svg-icons/check-circle.svg"
+                class="message-status" alt="Message Status">
             </div>
 
           </div>

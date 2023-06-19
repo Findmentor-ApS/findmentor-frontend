@@ -70,6 +70,25 @@ export class MessagingService {
     );
   }
 
+    // This method is used to mark messages as seen
+    markMessagesAsSeen(userData: any) {
+      const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+      return this.http.post<any>(`/message/mark_messages_as_seen`, userData, {headers}).pipe(
+        catchError(error => {
+          let errorMessage = 'Der er opstået en fejl!';
+          if (error.error) {
+            errorMessage = error.error;
+            console.log(errorMessage);
+          }
+          return throwError(() => new Error(errorMessage));
+        }),
+        map(response => {
+          console.log(response);
+          return response;
+        })
+      );
+    }
+
   getMessagesForContact(id: any, usertype: any, page: number = 0) {
     // Replace with the URL of your PHP backend's get_messages endpoint
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
@@ -111,12 +130,6 @@ export class MessagingService {
     return `chat-channel-${participants[0][0]}${participants[0][1]}-${participants[1][0]}${participants[1][1]}`;
   }
 
-  subscribeToContactsChannel(userId: string, userType: string) {
-    const userContactsChannel = userType + '-' + userId +'-contacts-channel';
-
-    return this.pusher.subscribe(userContactsChannel);
-  }
-
   subscribeToContactsChannelNotification(userId: string, userType: string) {
     const channelName = userType + '-' + userId +'-contacts-channel';
     const channel = this.pusher.subscribe(channelName);
@@ -126,4 +139,6 @@ export class MessagingService {
       this.messageReceivedSource.next(data);
     });
   }
+
+
 }
