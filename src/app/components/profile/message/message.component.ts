@@ -1,4 +1,5 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MessagingService } from 'src/app/services/messaging.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 
@@ -23,17 +24,33 @@ export class MessageComponent implements OnInit {
   messageChannel: any;
   contactsChannel: any;
 
-  constructor(private messagingService: MessagingService, private userDataService: UserDataService,@Inject('ASSET_PATH') public assetPath: string) { }
+  constructor(private messagingService: MessagingService, private userDataService: UserDataService,
+    @Inject('ASSET_PATH') public assetPath: string,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
       this.messagingService.getContacts().subscribe((contacts: any) => {
           this.contacts = contacts;
       });
       this.user = this.userDataService.getCurrentUser();
+      // console.log(this.route.snapshot.paramMap.get('id'));
+      // this.selectedContact = this.route.snapshot.paramMap.get('id');
 
       // Subscribe to contacts channel
       this.contactsChannel = this.messagingService.subscribeToContactsChannel(this.user.id.toString(), localStorage.getItem('type'));
-
+      this.messagingService.subscribeToContactsChannelNotification(this.user.id, localStorage.getItem('type'));
+      this.messagingService.messageReceived$.subscribe(data => {
+        if (this.selectedContact) {
+          this.currentFocusedContactId = this.selectedContact.contact_id;
+        }
+      
+        // Update the contacts array
+        this.contacts = data['updated_contacts'];
+      
+        // If there was a previously focused contact, set it as the selected contact
+        if (this.currentFocusedContactId) {
+          this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId);
+        }
+      });
       this.contactsChannel.bind('update-contacts', (data: any) => {
         // Store the ID of the currently focused contact
         if (this.selectedContact) {

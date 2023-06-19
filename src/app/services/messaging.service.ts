@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Pusher from 'pusher-js/with-encryption';
 import { AuthService } from './auth.service';
-import { catchError, map, throwError } from 'rxjs';
+import { Subject, catchError, map, throwError } from 'rxjs';
 import { UserDataService } from './user-data.service';
 
 @Injectable({
@@ -12,7 +12,8 @@ export class MessagingService {
 
   public pusher: any;
   public channel: any;
-  userContactsChannel: any;
+  private messageReceivedSource = new Subject<string>();
+  public messageReceived$ = this.messageReceivedSource.asObservable();
 
   
   constructor(private http: HttpClient, private authService: AuthService, private userDataService: UserDataService) {
@@ -122,7 +123,7 @@ export class MessagingService {
     
     // bind events on the channel, example:
     channel.bind('update-contacts', (data: any) => {
-      console.log('Contacts updated:', data);
+      this.messageReceivedSource.next(data);
     });
   }
 }
