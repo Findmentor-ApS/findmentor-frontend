@@ -14,8 +14,9 @@ export class MessageComponent implements OnInit {
   public messages: any = [];
   public contacts: any = [];
   public messageText: string = '';
-  public selectedContact: any = null;
+  public selectedContact = { contact_id: null, contact_type: null, first_name: null, last_name: null };
   currentFocusedContactId: number | null = null; // Add this outside of ngOnInit
+  currentFocusedContactType: string | null = null; // Add this outside of ngOnInit
 
   page: number = 0;
   loading: boolean = false;
@@ -23,90 +24,83 @@ export class MessageComponent implements OnInit {
   user: any = null;
   messageChannel: any;
   contactsChannel: any;
+  initializedId : any = null;
+  initializedType : any = null;
 
   constructor(private messagingService: MessagingService, private userDataService: UserDataService,
     @Inject('ASSET_PATH') public assetPath: string,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-      this.messagingService.getContacts().subscribe((contacts: any) => {
-          this.contacts = contacts;
-      });
-      this.user = this.userDataService.getCurrentUser();
-      // console.log(this.route.snapshot.paramMap.get('id'));
-      // this.selectedContact = this.route.snapshot.paramMap.get('id');
+    this.messagingService.getContacts().subscribe((contacts: any) => {
+      this.contacts = contacts;
+    });
+    this.user = this.userDataService.getCurrentUser();
 
-      // Subscribe to contacts channel
-      this.contactsChannel = this.messagingService.subscribeToContactsChannel(this.user.id.toString(), localStorage.getItem('type'));
-      this.messagingService.subscribeToContactsChannelNotification(this.user.id, localStorage.getItem('type'));
-      this.messagingService.messageReceived$.subscribe(data => {
-        if (this.selectedContact) {
-          this.currentFocusedContactId = this.selectedContact.contact_id;
-        }
-      
-        // Update the contacts array
-        this.contacts = data['updated_contacts'];
-      
-        // If there was a previously focused contact, set it as the selected contact
-        if (this.currentFocusedContactId) {
-          this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId);
-        }
-      });
-      this.contactsChannel.bind('update-contacts', (data: any) => {
-        // Store the ID of the currently focused contact
-        if (this.selectedContact) {
-          this.currentFocusedContactId = this.selectedContact.contact_id;
-        }
-      
-        // Update the contacts array
-        this.contacts = data.updated_contacts;
-      
-        // If there was a previously focused contact, set it as the selected contact
-        if (this.currentFocusedContactId) {
-          this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId);
-        }
-      });
+    if(this.route.snapshot.paramMap.get('id') && this.route.snapshot.paramMap.get('type')){
+      this.initializedId = this.route.snapshot.paramMap.get('id');
+      this.initializedType = this.route.snapshot.paramMap.get('type');
+      this.loadMessagesForContact({ contact_id: this.initializedId, contact_type: this.initializedType });
+    }
 
-  }
-
-  loadMessagesForContact(contact: any): void {
-      this.selectedContact = contact;
-      this.page = 0; // Reset page number
-      // Unsubscribe from the previous channel
-      if (this.messageChannel) {
-          this.messageChannel.unbind('new-message');
-          this.messagingService.pusher.unsubscribe(this.messageChannel.name);
+    // Subscribe to contacts channel
+    // this.contactsChannel = this.messagingService.subscribeToContactsChannel(this.user.id.toString(), localStorage.getItem('type'));
+    this.messagingService.subscribeToContactsChannelNotification(this.user.id, localStorage.getItem('type'));
+    this.messagingService.messageReceived$.subscribe(data => {
+      if (this.selectedContact) {
+        this.currentFocusedContactId = this.selectedContact.contact_id;
+        this.currentFocusedContactType = this.selectedContact.contact_type;
       }
+    
+      // Update the contacts array
+      this.contacts = data['updated_contacts'];
+    
+      // If there was a previously focused contact, set it as the selected contact
+      if (this.currentFocusedContactId) {
+        this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId && contact.contact_type === this.currentFocusedContactType);
+      }
+    });
+}
 
-      // Subscribe to a new channel
-      this.messageChannel = this.messagingService.subscribeToChatChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
-      console.log(this.messageChannel);
-      this.messageChannel.bind('new-message', (message: any) => {
-          this.messages.push(message);
-          this.messageText = '';
+loadMessagesForContact(contact: any): void {
+    this.selectedContact = contact;
+    this.page = 0; // Reset page number
+    // Unsubscribe from the previous channel
+    if (this.messageChannel) {
+        this.messageChannel.unbind('new-message');
+        this.messagingService.pusher.unsubscribe(this.messageChannel.name);
+    }
 
-          const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
-          if (contact) {
-              contact.last_message_content = message.content;
-          }
-          this.scrollToBottom();
-      });
+    // Subscribe to a new channel
+    this.messageChannel = this.messagingService.subscribeToChatChannel(localStorage.getItem('type'), this.user.id, contact.contact_type, contact.contact_id);
+    console.log(this.messageChannel);
+    this.messageChannel.bind('new-message', (message: any) => {
+        this.messages.push(message);
+        this.messageText = '';
 
-      this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
-        this.messages = messages.reverse();
+        const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
+        if (contact) {
+            contact.last_message_content = message.content;
+        }
         this.scrollToBottom();
-      });
+    });
+
+    this.messagingService.getMessagesForContact(contact.contact_id, contact.contact_type).subscribe((messages: any) => {
+      this.messages = messages.reverse();
+      this.scrollToBottom();
+    });
+    console.log(this.selectedContact);
   }
 
   onScroll() {
     if (!this.loading) {
-        this.loading = true;
-        this.page++;
-        this.messagingService.getMessagesForContact(this.selectedContact.contact_id, this.selectedContact.contact_type, this.page)
-            .subscribe((messages: any) => {
-                // Prepend new messages to the start of the array
-                this.messages = [...messages, ...this.messages];
-                this.loading = false;
-            });
+      this.loading = true;
+      this.page++;
+      this.messagingService.getMessagesForContact(this.selectedContact.contact_id, this.selectedContact.contact_type, this.page)
+          .subscribe((messages: any) => {
+              // Prepend new messages to the start of the array
+              this.messages = [...messages, ...this.messages];
+              this.loading = false;
+          });
     }
   }
 

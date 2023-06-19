@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MessagingService } from 'src/app/services/messaging.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-toast',
@@ -8,17 +9,27 @@ import { MessagingService } from 'src/app/services/messaging.service';
 })
 export class ToastComponent {
   showMessage: boolean = false;
-  messageContent: string;
+  lastMessage: any = null;
 
-  constructor(private messagingService: MessagingService) {
-    this.messagingService.messageReceived$.subscribe(message => {
-      this.showMessage = true;
-      this.messageContent = message;
+  constructor(private messagingService: MessagingService, private userDataService: UserDataService) {
+    this.messagingService.messageReceived$.subscribe(contacts => {
+
       
+      // console.log('contacts: ', contacts['updated_contacts']);
+      this.lastMessage = contacts['updated_contacts'][0];
+      console.log(this.lastMessage['is_receiver'])
+      if(this.lastMessage['is_receiver'] == 1){
+        this.showMessage = true;
+      }
       // Optionally, hide the message after a few seconds
       setTimeout(() => {
         this.showMessage = false;
       }, 5000);
     });
+  }
+
+  // set showmessage to false
+  hideMessage() {
+    this.showMessage = false;
   }
 }

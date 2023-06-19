@@ -8,7 +8,7 @@
         <div class="list-group">
           <ul class="contacts">
             <li *ngFor="let contact of contacts" (click)="loadMessagesForContact(contact)"
-              [ngClass]="{ 'active': contact === selectedContact }">
+              [ngClass]="{ 'active': contact.contact_type === selectedContact.contact_type && contact.contact_id === selectedContact.contact_id }">
               <h4><b>{{ contact.first_name }} {{ contact.last_name }}</b></h4>
               <h6 class="snippet">{{ contact.last_message_content }} </h6>
               <h6 class="snippetDate">{{ contact.last_message_at | date: 'dd. MMMM yyyy - HH:mm' }}</h6>
@@ -18,10 +18,10 @@
       </div>
 
       <!-- Messages Section -->
-      <div class="col-md-9 chat" *ngIf="!selectedContact">
+      <div class="col-md-9 chat" *ngIf="!selectedContact.contact_type ||  !selectedContact.contact_id">
         <h3>Vælg en kontakt</h3>
       </div>
-      <div class="col-md-9 chat" *ngIf="selectedContact">
+      <div class="col-md-9 chat" *ngIf="selectedContact.contact_type && selectedContact.contact_id">
         <div class="name">
           <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
         </div>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Message Input -->
-        <div *ngIf="selectedContact" class="input-group send-message-container">
+        <div *ngIf="selectedContact.contact_type && selectedContact.contact_id" class="input-group send-message-container">
           <div class="form-group">
             <textarea class="form-control message-text" (keydown)="onTextareaKeydown($event)" [(ngModel)]="messageText"
               placeholder="Skriv din besked"></textarea>

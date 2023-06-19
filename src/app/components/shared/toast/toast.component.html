@@ -1,10 +1,9 @@
 <div class="toast toast-info show" aria-atomic="true" *ngIf="showMessage">
     <div class="toast-icon"></div>
     <div class="toast-message">
-        <p><span class="sr-only">Information:
-            </span><strong id="notification-info-heading">Du har fået en besked</strong></p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-            doloremque laudantium.</p>
-        <button class="toast-close" aria-describedby="notification-info-heading">Luk</button>
+        <p><span class="sr-only">Ny Besked:
+            </span><strong id="notification-info-heading">{{ lastMessage.first_name }}</strong></p>
+        <p>{{ lastMessage.last_message_content }} </p>
+        <button class="toast-close" aria-describedby="notification-info-heading" (click)="hideMessage()">Luk</button>
     </div>
 </div>
