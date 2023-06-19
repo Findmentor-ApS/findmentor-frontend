@@ -62,6 +62,10 @@ export class MessageComponent implements OnInit {
 
 loadMessagesForContact(contact: any): void {
     this.selectedContact = contact;
+    const con = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
+    con.last_message_seen = true;
+    // this.selectedContact.last_message_seen = true;
+    console.log(this.selectedContact);
     this.page = 0; // Reset page number
     // Unsubscribe from the previous channel
     if (this.messageChannel) {
@@ -76,9 +80,8 @@ loadMessagesForContact(contact: any): void {
         if (message.sender_id == this.selectedContact.contact_id && message.sender_type == this.selectedContact.contact_type) this.messages.push(message);
         this.messageText = '';
 
-        const contact = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
-        if (contact) {
-            contact.last_message_content = message.content;
+        if (con) {
+          con.last_message_content = message.content;
         }
         this.scrollToBottom();
     });
@@ -162,7 +165,7 @@ loadMessagesForContact(contact: any): void {
 
   scrollToBottom(): void {
     setTimeout(() => {
-      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight + 10;
     });
   }
 

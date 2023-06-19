@@ -8,10 +8,13 @@
         <div class="list-group">
           <ul class="contacts">
             <li *ngFor="let contact of contacts" (click)="loadMessagesForContact(contact)"
-              [ngClass]="{ 'active': contact.contact_type === selectedContact.contact_type && contact.contact_id === selectedContact.contact_id }">
+              [ngClass]="{ 'active': contact.contact_type === selectedContact.contact_type && contact.contact_id === selectedContact.contact_id}">
               <h4><b>{{ contact.first_name }} {{ contact.last_name }}</b></h4>
               <h6 class="snippet">{{ contact.last_message_content }} </h6>
               <h6 class="snippetDate">{{ contact.last_message_at | date: 'dd. MMMM yyyy - HH:mm' }}</h6>
+              <div *ngIf="contact.last_message_seen != true && contact.is_receiver != false" class="bubble">
+                Ny
+              </div>
             </li>
           </ul>
         </div>
