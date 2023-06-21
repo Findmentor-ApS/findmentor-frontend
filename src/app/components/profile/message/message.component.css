@@ -374,6 +374,21 @@
   background-color: #f8f4f4; /* Add your desired background color */
 }
 
+
+.list-group li .bubble {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 35px; /* Adjust the width as needed */
+  height: 35px; /* Adjust the height as needed */
+  background-color: #6224db; /* Customize the background color */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Customize the text color */
+}
+
 .chat{
   background-color: white;
   margin-top: 20px;
