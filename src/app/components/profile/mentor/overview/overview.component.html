@@ -36,14 +36,17 @@
                                 </svg>
                         </div>
                     </div>
-                    <div class="overviewCard opacity">
+                    <div class="overviewCard">
                         <h3>
-                            Beskeder(kommer snart)
+                            Beskeder
                         </h3>
                         <div class="count">
                             <h2>
-                                0
+                                {{ user.messages_total }}
                             </h2>
+                            <h4>
+                                {{ user.messages_total_week }}
+                            </h4>
                         </div>
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30px" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 552.841 552.841" style="enable-background:new 0 0 552.841 552.841;" xml:space="preserve">

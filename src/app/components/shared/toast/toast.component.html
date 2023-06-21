@@ -3,7 +3,7 @@
     <div class="toast-message">
         <p><span class="sr-only">Ny Besked:
             </span><strong id="notification-info-heading">{{ lastMessage.first_name }}</strong></p>
-        <p>{{ lastMessage.last_message_content }} </p>
+        <p (click)="goToMessage()">{{ lastMessage.last_message_content }} </p>
         <button class="toast-close" aria-describedby="notification-info-heading" (click)="hideMessage()">Luk</button>
     </div>
 </div>
