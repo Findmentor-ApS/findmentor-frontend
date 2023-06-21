@@ -58,13 +58,22 @@ export class MessageComponent implements OnInit {
         this.selectedContact = this.contacts.find(contact => contact.contact_id === this.currentFocusedContactId && contact.contact_type === this.currentFocusedContactType);
       }
     });
-    
-}
+  }
 
 loadMessagesForContact(contact: any): void {
     this.selectedContact = contact;
+    console.log(this.selectedContact);
     const con = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
-    con.last_message_seen = true;
+    if(!con){
+      this.selectedContact.first_name = localStorage.getItem('first_name')
+      this.selectedContact.last_name = localStorage.getItem('last_name')
+      localStorage.removeItem('first_name')
+      localStorage.removeItem('last_name')
+    } else {
+      this.selectedContact.first_name = con.first_name;
+      this.selectedContact.last_name = con.last_name;
+      con.last_message_seen = true;
+    }
     // this.selectedContact.last_message_seen = true;
     this.page = 0; // Reset page number
     // Unsubscribe from the previous channel

@@ -205,12 +205,14 @@ export class MentorDetailComponent implements OnInit {
         }, 3000);
       })
       .catch((error) => {
-        console.error('Error copying text to clipboard: ', error);
+        console.error('Der er opstået en fejl', error);
       });
   }
 
   // redirect to a message page with mentor 
   goToMessage() {
+    localStorage.setItem('first_name', this.mentor.first_name);
+    localStorage.setItem('last_name', this.mentor.last_name);
     this.router.navigate(['profile', 'messages', this.mentor.id , 'mentor']);
   }
 
