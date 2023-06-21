@@ -44,7 +44,6 @@ export class BookingModalComponent implements OnInit {
     else if(this.type == 'user') {
       this.formGroupBooking = this.fb.group({
         help_text: new FormControl('',[Validators.required]),
-        selectedTypeExperienceControl: new FormControl('',[Validators.required]),
       });
     }
   }

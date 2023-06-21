@@ -8,11 +8,17 @@
                     <img src="assets/images/findmentor-logo.png" alt="">
                 </a>
             </div>
-            <div class="portal-info" *ngIf="!isSmallScreen && signInCondition">
-                <p class="user">
+            <div class="portal-info" *ngIf="signInCondition">
+                <p class="user" *ngIf="!isSmallScreen">
                     <span class="name">{{ name }}</span>
                 </p>
-                <button (click)="logout()"
+                <a routerLink="/profile" routerLinkActive="active" [ngClass]="{ inactive: isProfileMessagesRoute() }">
+                    <img class="account" src="{{ assetPath }}/svgs/svg-icons/person.svg">
+                </a>
+                <a routerLink="/profile/messages" routerLinkActive="active">
+                    <img class="message" src="{{ assetPath }}/svgs/svg-icons/email.svg">
+                </a>
+                <button *ngIf="!isSmallScreen" (click)="logout()"
                     class="button button-secondary alert-leave d-print-none">
                     Log af
                 </button>
@@ -83,6 +89,7 @@
                 </div>
             </div>
             <div class="navbar" *ngIf="signInCondition && isSmallScreen">
+
                 <div class="navbar-inner container navbar-context-actions">
                     <div class="nav-actions mobile-menu-links" *ngIf="type == 'mentor'">
                         <a routerLink="/profile/overview"  routerLinkActive="active" class="function-link">Mit overblik</a>
@@ -90,7 +97,7 @@
                         <!-- <a routerLink="/overview"  routerLinkActive="active" class="function-link">Kalender</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Fakturering</a>
                         <a routerLink="/overview"  routerLinkActive="active" class="function-link">Ressourcer</a> -->
-                        <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Profil</a>
+                        <!-- <a routerLink="/profile/account" routerLinkActive="active" class="function-link">Profil</a> -->
                     </div>
                     <div class="nav-actions mobile-menu-links" *ngIf="type == 'commune'">
                         <a routerLink="/profile/find-mentor"  routerLinkActive="active" class="function-link">Udforsk</a>

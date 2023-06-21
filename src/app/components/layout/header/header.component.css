@@ -336,3 +336,41 @@
   margin-bottom: 10px;
 }
 
+.message{
+  height: 40px;
+  width: 40px;
+}
+
+.account{
+  height: 40px;
+  width: 40px;
+}
+
+
+/* if message is active */
+.active{
+  border-bottom: 4px solid #abcfb2;
+  width: 40px;
+  bottom: 0;
+  left: 0;
+  height: 50%;
+}
+
+.active:focus{
+  outline: none;
+}
+.inactive{
+  border-bottom: 0px solid #abcfb2;
+  width: 40px;
+  bottom: 0;
+  left: 0;
+  height: 50%;
+}
+
+
+.header .portal-header .portal-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+}

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { SharedVariablesService } from 'src/app/services/shared-variables.service';
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   type = '';
   // nav: Navigation;
   constructor(private profileService: ProfileService,private router: Router, 
-    private userDataService: UserDataService, private sharedService: SharedVariablesService) { }
+    private userDataService: UserDataService,@Inject('ASSET_PATH') public assetPath: string) { }
 
   ngOnInit(): void {
     if(localStorage.getItem('access_token') && localStorage.getItem('type')){
@@ -97,5 +97,10 @@ export class HeaderComponent implements OnInit {
       this.type = '';
       this.userDataService.logout();
       this.router.navigate(['/home']);
+    }
+
+    isProfileMessagesRoute(): boolean {
+      const currentRoute = this.router.url;
+      return currentRoute.includes('/profile/messages');
     }
 }
