@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { audiencesType, experienceType, languagesType, locationsType } from 'src/app/general/types';
 import { MentorService } from 'src/app/services/mentor.service';
 
@@ -29,7 +29,7 @@ export class MentorDetailComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,private fb: FormBuilder, 
-    private mentorService: MentorService,@Inject('ASSET_PATH') public assetPath: string) { }
+    private mentorService: MentorService,@Inject('ASSET_PATH') public assetPath: string,  private router: Router) { }
 
   ngOnInit(): void {
     this.type = localStorage.getItem('type');
@@ -205,4 +205,10 @@ export class MentorDetailComponent implements OnInit {
         console.error('Error copying text to clipboard: ', error);
       });
   }
+
+  // redirect to a message page with mentor 
+  goToMessage() {
+    this.router.navigate(['profile', 'messages', this.mentor.id , 'mentor']);
+  }
+
 }
