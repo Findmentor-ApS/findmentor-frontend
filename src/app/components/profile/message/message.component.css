@@ -394,8 +394,30 @@
   margin-top: 20px;
 }
 
-.chat.name{
+/* .chat.name{
   border-bottom: #000000 1px solid;
+} */
+
+.chat.name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-content {
+  display: flex;
+  align-items: center;
+}
+
+.name-content h3 {
+  margin-top: 30px;
+  margin-right: auto; /* Adjust the margin as needed */
+  /* margin-left: auto; */
+}
+
+.name-content a {
+  margin-top: 15px;
+  float: right;
 }
 
 .snippet{

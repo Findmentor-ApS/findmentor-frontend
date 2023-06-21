@@ -26,8 +26,16 @@
       </div>
       <div class="col-md-9 chat" *ngIf="selectedContact.contact_type && selectedContact.contact_id">
         <div class="name">
-          <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
+          <div class="name-content">
+            <h3 *ngIf="selectedContact"> {{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
+            <a *ngIf="selectedContact.contact_type == 'mentor'" routerLink="/mentors/{{ selectedContact.contact_id }}">
+              <img src="{{ assetPath }}/svgs/svg-icons/person.svg" alt="Visit Profile">
+            </a>
+          </div>
         </div>
+
+        <!-- show Icons on right side with visit profile -->
+
         <div *ngIf="selectedContact" class="messages-container mb-3" infiniteScroll #messagesContainer
           [infiniteScrollUpDistance]="1" [infiniteScrollThrottle]="300" [scrollWindow]="false"
           (scrolledUp)="onScroll()">
