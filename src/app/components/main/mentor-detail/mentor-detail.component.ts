@@ -12,13 +12,15 @@ import { MentorService } from 'src/app/services/mentor.service';
 export class MentorDetailComponent implements OnInit {
 
 
-  @ViewChild('modalBooking') modalbooking: ElementRef<any>;
+  // @ViewChild('modalBooking') modalbooking: ElementRef<any>;
+  isBookingModalOpen = false;
+  isCallModalOpen = false;
+  isPhoneModalOpen = false;
   @ViewChild('modalCall') modalCall: ElementRef<any>;
   @ViewChild('modalPhone') modalPhone: ElementRef<any>;
 
   mentor: any;
-  formGroupBooking: FormGroup;
-  formGroupCall: FormGroup;
+
   experienceTypeMap: {[key: number]: string} = {};
   type = '';
   success = false;
@@ -39,124 +41,41 @@ export class MentorDetailComponent implements OnInit {
 
     this.route.data.subscribe((data: { mentor: any }) => {
       this.mentor = data.mentor;
-      if(this.type == 'commune') {
-        this.formGroupBooking = this.fb.group({
-          help_text: new FormControl('',[Validators.required]),
-          first_name: new FormControl('',[Validators.required]),
-          last_name: new FormControl('',[Validators.required]),
-          cpr_number: new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]),
-          phone: new FormControl<string>('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
-          street: new FormControl<string>('',[Validators.required]),
-          city: new FormControl<string>('',[Validators.required]),
-          social_worker: new FormControl<string>('',[Validators.required]),
-          ean_nr: new FormControl<string>('',[Validators.required]),
-          goal: new FormControl<string>('',[Validators.required]),
-          start_date: new FormControl<Date>(new Date(),[Validators.required]),
-          end_date: new FormControl<Date>(new Date(),[Validators.required]),
-          type_experience: new FormControl('',[Validators.required]),
-
-        });  
-      }
-      else if(this.type == 'user') {
-        this.formGroupBooking = this.fb.group({
-          help_text: new FormControl('',[Validators.required]),
-          selectedTypeExperienceControl: new FormControl('',[Validators.required]),
-        });
-      }
-      this.formGroupCall = this.fb.group({
-        phone_to_call: new FormControl<string>('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
-        from: new FormControl<string>('', [Validators.required]),
-        to: new FormControl<string>('', [Validators.required]),
-      });
   
       this.mentor.experiences = data.mentor.experiences.map((exp) => parseInt(exp.experience_type));
     });
     this.profileVisited()
-    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
-    this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
-    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'true');
+    // this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
   }
 
-  openBooking(){
-    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'false');
+  // This method opens the booking modal
+  openBookingModal() {
+    this.isBookingModalOpen = true;
   }
 
-  closeBooking() {
-    this.modalbooking.nativeElement.setAttribute('aria-hidden', 'true');
-    this.success = false;
-    this.errorMessage = '';
+  // This method closes the booking modal
+  closeBookingModal() {
+    this.isBookingModalOpen = false;
   }
 
-  openCall(){
-    this.modalCall.nativeElement.setAttribute('aria-hidden', 'false');
+  // This method opens the booking modal
+  openCallModal() {
+    this.isCallModalOpen = true;
   }
 
-  closePhone() {
-    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'true');
-    this.showToast = false
+  // This method closes the booking modal
+  closeCallModal() {
+    this.isCallModalOpen = false;
   }
 
-  callMentor(){
-    this.modalPhone.nativeElement.setAttribute('aria-hidden', 'false');
-    const userData = {
-      mentor_id: this.mentor.id,
-    }
-    this.mentorService.profileCalled(userData).subscribe(
-      {
-        next: (res) => {
-          console.log(res);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-        complete: () => console.log('complete')
-      }
-    )
+  openPhoneModal(){
+    this.isPhoneModalOpen = true;
   }
 
-
-  closeCall() {
-    this.modalCall.nativeElement.setAttribute('aria-hidden', 'true');
-    this.success = false;
-    this.errorMessage = '';
+  closePhoneModal() {
+    this.isPhoneModalOpen = false;
   }
 
-  bookMentor() {
-    this.formGroupBooking.value.mentor_id = this.mentor.id;
-    this.formGroupBooking.value.experience_type = this.selectedTypeExperience;
-    this.mentorService.bookMentor(this.formGroupBooking.value).subscribe(
-      {
-        next: (res) => {
-          this.success = true;
-          this.errorMessage = '';
-        },
-        error: (error) => {
-          this.success = false;
-          this.errorMessage = error.message
-        },
-        complete: () => console.log('complete')
-      }
-    )
-  }
-
-  bookCall() {
-    this.formGroupCall.value.mentor_id = this.mentor.id;
-    this.formGroupCall.value.accepted = false;
-    this
-    this.mentorService.bookCall(this.formGroupCall.value).subscribe(
-      {
-        next: (res) => {
-          this.success = true;
-          this.errorMessage = '';
-        },
-        error: (error) => {
-          this.success = false;
-          this.errorMessage = error.message
-        },
-        complete: () => console.log('complete')
-      }
-    )
-  }
 
   profileVisited() {
     const userData = {
@@ -193,20 +112,6 @@ export class MentorDetailComponent implements OnInit {
 
   hasContactType(type: number): boolean {
     return this.mentor.contacts.some(contact => contact.contact_type == type);
-  }
-
-  copyPhone() {
-    navigator.clipboard.writeText(this.mentor.phone)
-      .then(() => {
-        this.showToast = true;
-
-        setTimeout(() => {
-          this.showToast = false;
-        }, 3000);
-      })
-      .catch((error) => {
-        console.error('Der er opstået en fejl', error);
-      });
   }
 
   // redirect to a message page with mentor 

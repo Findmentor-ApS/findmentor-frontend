@@ -8,6 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { ASSET_PATH } from 'src/app/general/config';
 import { ToastComponent } from './toast/toast.component';
+import { BookingModalComponent } from './modals/booking-modal/booking-modal.component';
+import { CallModalComponent } from './modals/call-modal/call-modal.component';
+import { PhoneModalComponent } from './modals/phone-modal/phone-modal.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -15,18 +19,25 @@ import { ToastComponent } from './toast/toast.component';
     InputComponent,
     TextAreaComponent,
     ToastComponent,
+    BookingModalComponent,
+    CallModalComponent,
+    PhoneModalComponent,
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   exports:[
     SecondaryNavigationComponent,
     InputComponent,
     TextAreaComponent,
     ToastComponent,
+    BookingModalComponent,
+    CallModalComponent,
+    PhoneModalComponent
   ],
   providers: [
     { provide: 'ASSET_PATH', useValue: ASSET_PATH }

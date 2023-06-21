@@ -19,12 +19,16 @@ export class MessageComponent implements OnInit {
   public isSending: boolean = false;
   public user: any = null;
   public loading: boolean = false;
+  public isBookingModalOpen = false;
+  public mentor: any = null;
+  public type: string = null;
   private currentFocusedContactId: number = null;
   private currentFocusedContactType: string = null;
   private page: number = 0;
   private messageChannel: any = null;
   private initializedId: any = null;
   private initializedType: string = null;
+
 
   constructor(private messagingService: MessagingService, private userDataService: UserDataService,
     @Inject('ASSET_PATH') public assetPath: string,private route: ActivatedRoute) { }
@@ -62,7 +66,6 @@ export class MessageComponent implements OnInit {
 
 loadMessagesForContact(contact: any): void {
     this.selectedContact = contact;
-    console.log(this.selectedContact);
     const con = this.contacts.find(c => c.contact_id === this.selectedContact.contact_id && c.contact_type === this.selectedContact.contact_type);
     if(!con){
       this.selectedContact.first_name = localStorage.getItem('first_name')
@@ -73,6 +76,14 @@ loadMessagesForContact(contact: any): void {
       this.selectedContact.first_name = con.first_name;
       this.selectedContact.last_name = con.last_name;
       con.last_message_seen = true;
+    }
+    if(this.selectedContact.contact_type == 'mentor'){
+      this.type = localStorage.getItem('type');
+      this.mentor = {
+        id: this.selectedContact.contact_id,
+        first_name: this.selectedContact.first_name,
+        last_name: this.selectedContact.last_name,
+      }
     }
     // this.selectedContact.last_message_seen = true;
     this.page = 0; // Reset page number
@@ -202,6 +213,16 @@ loadMessagesForContact(contact: any): void {
       event.preventDefault();
       this.sendMessage();
     }
+  }
+
+  // This method opens the booking modal
+  openBookingModal() {
+    this.isBookingModalOpen = true;
+  }
+
+  // This method closes the booking modal
+  closeBookingModal() {
+    this.isBookingModalOpen = false;
   }
 
 }

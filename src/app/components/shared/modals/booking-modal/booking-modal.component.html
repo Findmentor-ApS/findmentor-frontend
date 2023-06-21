@@ -1,0 +1,140 @@
+<div class="fds-modal" id="modal-example" [attr.aria-hidden]="!isModalVisible" role="dialog"
+    aria-modal="true" aria-labelledby="modal-id-1-title" tabindex="-1">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-example-title">
+                Book en session med {{ mentor.first_name }} {{ mentor.last_name }}
+            </h3>
+            <button class="modal-close function-link" (click)="closeBooking()"
+                data-modal-close>X</button>
+        </div>
+        <form [formGroup]="formGroupBooking">
+            <div class="modal-body" *ngIf="type === 'commune'">
+                <div class="col-md-12">
+                    <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
+                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
+                    </app-text-area>
+                </div>
+                <hr class="divider">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="Fornavn" placeholder="Borgers Fornavn" type="text"
+                        errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars"
+                        [required]="true" [control]="$any(formGroupBooking.get('first_name'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="Efternavn" placeholder="Borgers Efternavn" type="text"
+                        errorMessage="Indtast venligst et efternavn" hintMessage="eks. Larsen"
+                        [required]="true" [control]="$any(formGroupBooking.get('last_name'))">
+                        </app-input>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="CPR-Nummer" placeholder="Borgers CPR-Nummer" type="number"
+                        errorMessage="Indtast venligst gyldigt CPR-Nummer" hintMessage="eks. Lars"
+                        [required]="true" [control]="$any(formGroupBooking.get('cpr_number'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="Telefon nr." placeholder="Borgers telefon nummer" type="text"
+                        errorMessage="Indtast venligst et gyldigt telefon nummer" hintMessage="50501010"
+                        [required]="true" [control]="$any(formGroupBooking.get('phone'))">
+                        </app-input>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="Adresse" placeholder="Borgers adresse" type="text"
+                            errorMessage="Indtast venligst en korrekt adresse" hintMessage="eks Amagergade 1 st tv"
+                            [required]="true" [control]="$any(formGroupBooking.get('street'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="By" placeholder="Borgers by" type="text"
+                            errorMessage="Indtast venligst en by" hintMessage="eks København"
+                            [required]="true" [control]="$any(formGroupBooking.get('city'))">
+                        </app-input>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="Henvisende sagsbehandler" placeholder="Sagsbehandler navn" type="text"
+                            errorMessage="Indtast venligst et nav" hintMessage="Lars Larsen"
+                            [required]="true" [control]="$any(formGroupBooking.get('social_worker'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="EAN-nr" placeholder="Intast EAN-nr" type="text"
+                            errorMessage="Indtast venligst dit EAN-nr" hintMessage="1234-1234"
+                            [required]="true" [control]="$any(formGroupBooking.get('ean_nr'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="filter-wrap">
+                            <ng-select [multiple]="false" placeholder="Vælg erfaring" notFoundText="Ingen resultater"
+                                [(ngModel)]="selectedTypeExperience" class="form-input" required="true" [formControl]="$any(formGroupBooking.get('type_experience'))">
+                                <ng-option *ngFor="let type of experienceType" [value]="type.id">{{type.name}}</ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="col-md-12">
+                    <app-text-area label="Overordnet mål" placeholder="Målbeskrivelse" type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vi ønsker at opnå..." rows="6"
+                        [required]="true" [control]="$any(formGroupBooking.get('goal'))" [maxlength]="250">
+                    </app-text-area>
+                </div>
+                <hr class="divider">
+                <div class="col-md-12">
+                    <app-input label="Vælg startsperiode" type="date"
+                        errorMessage="Indtast venligst startsdato" hintMessage="Vælg dato"
+                        [required]="true" [control]="$any(formGroupBooking.get('start_date'))">
+                    </app-input>
+                </div>
+                <div class="col-md-12">
+                    <app-input label="Vælg slutsperiode" type="date"
+                        errorMessage="Indtast venligst slutdato" hintMessage="Vælg dato"
+                        [required]="true" [control]="$any(formGroupBooking.get('end_date'))">
+                    </app-input>
+                </div>
+            </div>
+
+            <div class="modal-body" *ngIf="type === 'user'">
+                <div class="col-md-12">
+                    <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
+                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
+                    </app-text-area>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
+                        <div class="alert-body">
+                            <p class="alert-heading">Fejl</p>
+                            <p class="alert-text">Der er opstået en fejl</p>
+                        </div>
+                    </div>
+                    <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">
+                        <div class="alert-body">
+                            <p class="alert-heading">Success</p>
+                            <p class="alert-text">Din booking er nu sendt.</p>
+                        </div>
+                    </div>
+                    <div class="btnGroup">
+                        <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
+                        <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>

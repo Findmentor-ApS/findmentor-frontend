@@ -1,0 +1,79 @@
+.modal-header{
+    background-color: #e3e5e8;
+    border-bottom: 1px;
+}
+
+
+/* If screen size bigger than medium screen size set top to 20 px else set it to 3px */
+@media (min-width: 768px){
+    .modal-header .function-link{
+        top: 50px;
+    }
+}
+
+@media (max-width: 768px){
+    .modal-header .function-link{
+        top: 3px;
+    }
+}
+
+.modal-body{
+    margin-top: 10px;;
+}
+
+#modal-example{
+    max-width: 700px;
+    margin: auto;
+}
+
+.help{
+    max-width: 100%;
+}
+
+.divider{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.modal-content{
+    padding-bottom: 10px;
+}
+
+.modal-footer .btnGroup button{
+    border: 0;
+    border: 1px solid black;
+    padding: 5px 5px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(65, 65, 65);
+
+}
+.modal-footer .btnGroup button.save{
+    background-color: #a8d6b6;
+    border-color: #a8d6b6;
+    margin-right: 20px;
+    float: right;
+}
+.modal-footer .btnGroup button.cancel{
+    background-color: transparent;
+    border-color: #333333;
+    float: left;
+}
+
+p.mt-0
+{
+    display:inline;
+}
+
+.list:not(:last-child)::after {
+    /* Add a comma after each item except the last one */
+    content: ',';
+}
+
+.toast-info{
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+}
