@@ -38,7 +38,7 @@ export class ClientsComponent {
       this.totalItemsBookings = response['total'];
       this.bookings = Object.values(response);
       //print bookings
-      //console.log(this.bookings);
+      console.log(this.bookings);
       // remove total from response
       this.bookings.pop();
       // If the response includes a total count, use it to calculate the total pages.
@@ -49,7 +49,7 @@ export class ClientsComponent {
     this.profileService.getCalls(this.currentPageCalls, this.pageSizeCalls).subscribe(response => {
       this.totalItemsCalls = response['total'];
       this.calls = Object.values(response);
-      //console.log(this.calls);
+      console.log(this.calls);
       // remove total from response
       this.calls.pop();
       // If the response includes a total count, use it to calculate the total pages.

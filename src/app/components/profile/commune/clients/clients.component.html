@@ -44,7 +44,12 @@
                                         <ng-container *ngIf="0<pageSizeBookings">
                                             <td *ngIf="userType == 'mentor'">
                                                 <div class="dataWrap">
-                                                    {{booking.users.first_name}} {{booking.users.last_name}}
+                                                    <ng-container *ngIf="booking.users">
+                                                        {{booking.users.first_name}} {{booking.users.last_name}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{booking.first_name}} {{booking.last_name}}
+                                                    </ng-container>
                                                 </div>
                                             </td>
                                             <td *ngIf="userType == 'commune' || userType == 'user'">
@@ -63,6 +68,7 @@
                                             <td>
                                                 <div class="tag m-0">
                                                     <!-- {{item.first_name}} -->
+                                                    
                                                 </div>
                                             </td>
                                             <td>
@@ -163,7 +169,12 @@
                                             </td>
                                             <td>
                                                 <div class="dataWrap">
-                                                    {{call.users.first_name}} {{call.users.last_name}}
+                                                    <ng-container *ngIf="call.users">
+                                                        {{call.users.first_name}} {{call.users.last_name}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="call.communes">
+                                                        {{call.communes.first_name}} {{call.communes.last_name}}
+                                                    </ng-container>
                                                 </div>
                                             </td>
                                             <td>
