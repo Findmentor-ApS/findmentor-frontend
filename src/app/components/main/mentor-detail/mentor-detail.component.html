@@ -300,7 +300,7 @@ og hjælper med at bringe det ud af dig
                     <div class="col-md-6">
                         <div class="filter-wrap">
                             <ng-select [multiple]="false" placeholder="Vælg erfaring" notFoundText="Ingen resultater"
-                                [(ngModel)]="selectedTypeExperience" class="form-input" required="true">
+                                [(ngModel)]="selectedTypeExperience" class="form-input" required="true" [formControl]="$any(formGroupBooking.get('type_experience'))">
                                 <ng-option *ngFor="let type of experienceType" [value]="type.id">{{type.name}}</ng-option>
                             </ng-select>
                         </div>
@@ -342,7 +342,7 @@ og hjælper med at bringe det ud af dig
                     <div *ngIf="errorMessage!=''" class="alert alert-error" role="alert" aria-atomic="true">
                         <div class="alert-body">
                             <p class="alert-heading">Fejl</p>
-                            <p class="alert-text">{{ errorMessage }}</p>
+                            <p class="alert-text">Der er opstået en fejl</p>
                         </div>
                     </div>
                     <div *ngIf="success" class="alert alert-success" role="alert" aria-atomic="true">

@@ -53,11 +53,14 @@ export class MentorDetailComponent implements OnInit {
           goal: new FormControl<string>('',[Validators.required]),
           start_date: new FormControl<Date>(new Date(),[Validators.required]),
           end_date: new FormControl<Date>(new Date(),[Validators.required]),
+          type_experience: new FormControl('',[Validators.required]),
+
         });  
       }
       else if(this.type == 'user') {
         this.formGroupBooking = this.fb.group({
-          help_text: new FormControl('',[Validators.required])
+          help_text: new FormControl('',[Validators.required]),
+          selectedTypeExperienceControl: new FormControl('',[Validators.required]),
         });
       }
       this.formGroupCall = this.fb.group({
