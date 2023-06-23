@@ -16,6 +16,8 @@ export class BookingModalComponent implements OnInit {
   @Input() isModalVisible = false; // <- Add this variable
 
   formGroupBooking: FormGroup;
+
+  is_final_evaluation: boolean; // Add this property
   success = false;
   errorMessage = '';
   experienceType = experienceType;
@@ -39,6 +41,7 @@ export class BookingModalComponent implements OnInit {
         start_date: new FormControl<Date>(new Date(),[Validators.required]),
         end_date: new FormControl<Date>(new Date(),[Validators.required]),
         type_experience: new FormControl('',[Validators.required]),
+        is_final_evaluation: new FormControl<boolean>(false)// Convert boolean to string
       });  
     }
     else if(this.type == 'user') {

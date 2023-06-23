@@ -52,13 +52,13 @@
 .modal-footer .btnGroup button.save{
     background-color: #a8d6b6;
     border-color: #a8d6b6;
-    margin-right: 20px;
     float: right;
 }
 .modal-footer .btnGroup button.cancel{
     background-color: transparent;
     border-color: #333333;
-    float: left;
+    margin-right: 20px;
+    float: right;
 }
 
 p.mt-0
@@ -77,3 +77,32 @@ p.mt-0
     left: 50%;
     transform: translateX(-50%);
 }
+
+#toggle-text{
+    display: block;
+    margin-left: 0;
+    text-decoration: none;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  
+  #toggle-example{
+    text-align: right;
+  }
+  
+  .form-group input[type=checkbox].form-toggle:checked ~ .form-toggle-label:before{
+    left: 45px;
+    content: url(../../../../../assets/svgs/tick.svg);
+  }
+  
+  .form-group label::after{
+    width: 75px;
+    background-color: #cecece;
+  }
+  
+  .form-group input[type=checkbox].form-toggle:checked ~ label::after{
+    background-color: #a8d6b6 !important;
+  }
+  .form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
+    content: url(../../../../../assets/svgs/cross.svg);
+  }

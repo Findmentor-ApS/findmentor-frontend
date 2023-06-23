@@ -127,9 +127,18 @@
                             <p class="alert-text">Din booking er nu sendt.</p>
                         </div>
                     </div>
+                    
                     <div class="btnGroup">
-                        <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
+                        <div class="form-group" id="toggle-text">
+                            Ønskes slutevaluering
+                            <input id="toggle-example" type="checkbox" name="toggle-example"
+                               class="form-toggle" formControlName="is_final_evaluation"/>
+                               <label for="toggle-example" class="form-toggle-label "></label>
+
+                        </div>
+
                         <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
+                        <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
                     </div>
                 </div>
 
