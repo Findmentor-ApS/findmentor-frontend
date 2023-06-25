@@ -14,7 +14,24 @@ export class BookingModalComponent implements OnInit {
   @Input() type: string;
   @Output() closeModal = new EventEmitter<void>();
   @Input() isModalVisible = false; // <- Add this variable
+  @Input() fieldConfig: any; // <-- Add this to accept a configuration object
 
+  validatorsConfig = {
+    help_text: [Validators.required],
+    first_name: [Validators.required],
+    last_name: [Validators.required],
+    cpr_number: [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10), Validators.maxLength(10)],
+    phone: [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(8)],
+    street: [Validators.required],
+    city: [Validators.required],
+    social_worker: [Validators.required],
+    ean_nr: [Validators.required],
+    goal: [Validators.required],
+    start_date: [Validators.required],
+    end_date: [Validators.required],
+    type_experience: [Validators.required],
+    is_final_evaluation: [] // No validators for boolean field
+  };
   formGroupBooking: FormGroup;
 
   is_final_evaluation: boolean; // Add this property
@@ -26,29 +43,7 @@ export class BookingModalComponent implements OnInit {
   constructor(private fb: FormBuilder, private mentorService: MentorService) {}
 
   ngOnInit(): void {
-    if(this.type == 'commune') {
-      this.formGroupBooking = this.fb.group({
-        help_text: new FormControl('',[Validators.required]),
-        first_name: new FormControl('',[Validators.required]),
-        last_name: new FormControl('',[Validators.required]),
-        cpr_number: new FormControl('',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10), Validators.maxLength(10)]),
-        phone: new FormControl<string>('', [Validators.required,Validators.pattern('[- +()0-9]+'),Validators.minLength(8)]),
-        street: new FormControl<string>('',[Validators.required]),
-        city: new FormControl<string>('',[Validators.required]),
-        social_worker: new FormControl<string>('',[Validators.required]),
-        ean_nr: new FormControl<string>('',[Validators.required]),
-        goal: new FormControl<string>('',[Validators.required]),
-        start_date: new FormControl<Date>(new Date(),[Validators.required]),
-        end_date: new FormControl<Date>(new Date(),[Validators.required]),
-        type_experience: new FormControl('',[Validators.required]),
-        is_final_evaluation: new FormControl<boolean>(false)// Convert boolean to string
-      });  
-    }
-    else if(this.type == 'user') {
-      this.formGroupBooking = this.fb.group({
-        help_text: new FormControl('',[Validators.required]),
-      });
-    }
+    this.initializeForm();
   }
 
   openBooking() {
@@ -79,5 +74,31 @@ export class BookingModalComponent implements OnInit {
         complete: () => console.log('complete')
       }
     )
+  }
+
+  initializeForm() {
+    let fieldsConfig = {};
+
+    if (this.type == 'commune') {
+      // List of fields that are required for 'commune' type
+      const communeFields = [
+        'help_text', 'first_name', 'last_name', 'cpr_number', 'phone', 'street',
+        'city', 'social_worker', 'ean_nr', 'goal', 'start_date', 'end_date',
+        'type_experience', 'is_final_evaluation'
+      ];
+
+      // Creating config for each field
+      communeFields.forEach(fieldName => {
+        fieldsConfig[fieldName] = ['', this.validatorsConfig[fieldName]];
+      });
+    } else if (this.type == 'user') {
+      // Only 'help_text' field is required for 'user' type
+      fieldsConfig = {
+        help_text: ['', this.validatorsConfig.help_text]
+      };
+    }
+
+    // Creating the form group
+    this.formGroupBooking = this.fb.group(fieldsConfig);
   }
 }

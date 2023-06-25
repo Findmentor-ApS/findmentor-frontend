@@ -13,7 +13,7 @@
         <span *ngIf="displayErrors()" class="form-error-message" id="form-error-error">
             <span class="sr-only">Fejl:</span> {{ errorMessage }}
         </span>
-        <textarea class="form-input" aria-invalid="true" aria-describedby="form-error-hint form-error-error "
+        <textarea class="form-input" [attr.aria-invalid]="displayErrors() ? true : null" aria-describedby="form-error-hint form-error-error "
         [formControl]="control" #myInput [placeholder]="placeholder" [required]="required" [rows]="rows" [maxlength]="maxlength">
         
     </textarea>

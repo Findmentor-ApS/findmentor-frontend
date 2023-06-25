@@ -13,7 +13,10 @@
                 <div class="col-md-12">
                     <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
-                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
+                        [required]="fieldConfig?.help_text?.required ?? true"
+                        [disabled]="fieldConfig?.help_text?.disabled ?? false"
+                        [validators]="validatorsConfig.help_text"
+                        [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
                     </app-text-area>
                 </div>
                 <hr class="divider">
@@ -21,27 +24,38 @@
                     <div class="col-md-6">
                         <app-input label="Fornavn" placeholder="Borgers Fornavn" type="text"
                         errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars"
-                        [required]="true" [control]="$any(formGroupBooking.get('first_name'))">
+                        [required]="fieldConfig?.first_name?.required ?? true"
+                        [disabled]="fieldConfig?.first_name?.disabled ?? false"
+                        [control]="$any(formGroupBooking.get('first_name'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="Efternavn" placeholder="Borgers Efternavn" type="text"
                         errorMessage="Indtast venligst et efternavn" hintMessage="eks. Larsen"
-                        [required]="true" [control]="$any(formGroupBooking.get('last_name'))">
+                        [required]="fieldConfig?.last_name?.required ?? true"
+                        [disabled]="fieldConfig?.last_name?.disabled ?? false"
+                        [validators]="validatorsConfig.last_name"
+                        [control]="$any(formGroupBooking.get('last_name'))">
                         </app-input>
                     </div>
                 </div>
                 <div class="row col-md-12">
                     <div class="col-md-6">
                         <app-input label="CPR-Nummer" placeholder="Borgers CPR-Nummer" type="number"
-                        errorMessage="Indtast venligst gyldigt CPR-Nummer" hintMessage="eks. Lars"
-                        [required]="true" [control]="$any(formGroupBooking.get('cpr_number'))">
+                        errorMessage="Indtast venligst gyldigt CPR-Nummer" hintMessage="eks. 0101011990"
+                        [required]="fieldConfig?.cpr_number?.required ?? true"
+                        [disabled]="fieldConfig?.cpr_number?.disabled ?? false"
+                        [validators]="validatorsConfig.cpr_number"
+                        [control]="$any(formGroupBooking.get('cpr_number'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="Telefon nr." placeholder="Borgers telefon nummer" type="text"
                         errorMessage="Indtast venligst et gyldigt telefon nummer" hintMessage="50501010"
-                        [required]="true" [control]="$any(formGroupBooking.get('phone'))">
+                        [required]="fieldConfig?.phone?.required ?? true"
+                        [disabled]="fieldConfig?.phone?.disabled ?? false"
+                        [validators]="validatorsConfig.phone"
+                        [control]="$any(formGroupBooking.get('phone'))">
                         </app-input>
                     </div>
                 </div>
@@ -49,13 +63,19 @@
                     <div class="col-md-6">
                         <app-input label="Adresse" placeholder="Borgers adresse" type="text"
                             errorMessage="Indtast venligst en korrekt adresse" hintMessage="eks Amagergade 1 st tv"
-                            [required]="true" [control]="$any(formGroupBooking.get('street'))">
+                            [required]="fieldConfig?.street?.required ?? true"
+                            [disabled]="fieldConfig?.street?.disabled ?? false"
+                            [validators]="validatorsConfig.street"
+                            [control]="$any(formGroupBooking.get('street'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="By" placeholder="Borgers by" type="text"
                             errorMessage="Indtast venligst en by" hintMessage="eks København"
-                            [required]="true" [control]="$any(formGroupBooking.get('city'))">
+                            [required]="fieldConfig?.city?.required ?? true"
+                            [disabled]="fieldConfig?.city?.disabled ?? false"
+                            [validators]="validatorsConfig.city"
+                            [control]="$any(formGroupBooking.get('city'))">
                         </app-input>
                     </div>
                 </div>
@@ -64,13 +84,19 @@
                     <div class="col-md-6">
                         <app-input label="Henvisende sagsbehandler" placeholder="Sagsbehandler navn" type="text"
                             errorMessage="Indtast venligst et nav" hintMessage="Lars Larsen"
-                            [required]="true" [control]="$any(formGroupBooking.get('social_worker'))">
+                            [required]="fieldConfig?.social_worker?.required ?? true"
+                            [disabled]="fieldConfig?.social_worker?.disabled ?? false"
+                            [validators]="validatorsConfig.social_worker"
+                            [control]="$any(formGroupBooking.get('social_worker'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
                         <app-input label="EAN-nr" placeholder="Intast EAN-nr" type="text"
                             errorMessage="Indtast venligst dit EAN-nr" hintMessage="1234-1234"
-                            [required]="true" [control]="$any(formGroupBooking.get('ean_nr'))">
+                            [required]="fieldConfig?.ean_nr?.required ?? true"
+                            [disabled]="fieldConfig?.ean_nr?.disabled ?? false"
+                            [validators]="validatorsConfig.ean_nr"
+                            [control]="$any(formGroupBooking.get('ean_nr'))">
                         </app-input>
                     </div>
                     <div class="col-md-6">
@@ -93,13 +119,19 @@
                 <div class="col-md-12">
                     <app-input label="Vælg startsperiode" type="date"
                         errorMessage="Indtast venligst startsdato" hintMessage="Vælg dato"
-                        [required]="true" [control]="$any(formGroupBooking.get('start_date'))">
+                        [required]="fieldConfig?.start_date?.required ?? true"
+                        [disabled]="fieldConfig?.start_date?.disabled ?? false"
+                        [validators]="validatorsConfig.start_date"
+                        [control]="$any(formGroupBooking.get('start_date'))">
                     </app-input>
                 </div>
                 <div class="col-md-12">
                     <app-input label="Vælg slutsperiode" type="date"
                         errorMessage="Indtast venligst slutdato" hintMessage="Vælg dato"
-                        [required]="true" [control]="$any(formGroupBooking.get('end_date'))">
+                        [required]="fieldConfig?.end_date?.required ?? true"
+                        [disabled]="fieldConfig?.end_date?.disabled ?? false"
+                        [validators]="validatorsConfig.end_date"
+                        [control]="$any(formGroupBooking.get('end_date'))">
                     </app-input>
                 </div>
             </div>
