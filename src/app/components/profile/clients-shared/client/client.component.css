@@ -314,4 +314,53 @@
       margin-left: 20px;
     }
   }
+  .smaller-text {
+    font-size: 0.8em; 
+    opacity: 0.5; 
+    color: #888888; 
+    margin-top: 0px;
+}
+
+.search-wrap{
+  margin-top: 1%;
+  display: flex;
+  background-color: #fff;
+}
+.search-wrap .searchInput, .search-wrap .locationInput{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 15px 20px;
+  border-right: 1px solid #f4f4f4;
+}
+.search-wrap .searchInput .icon, .search-wrap .locationInput .icon{
+  margin-right: 8px;
+}
+.search-wrap .searchInput .icon svg, .search-wrap .locationInput .icon svg{
+fill: #f4f4f4;
+}
+.search-wrap .searchInput ng-select, .search-wrap .locationInput ng-select{
+  width: 100%;
+}
+.search-wrap .btn-wrap{
+text-align: center;
+  padding: 15px 20px;
+  width: 20%;
+}
+.search-wrap .btn-wrap button{
+  border-radius: 4px ;
+  border:1px solid #000;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.row{
+  margin-left: 0px;
+  }
+
+  .col-md-12{
+    padding-left: 0px;
+  }
+
   

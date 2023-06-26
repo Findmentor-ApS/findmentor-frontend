@@ -8,7 +8,7 @@ import { ExperienceProfileComponent } from './account/experience-profile/experie
 import { ImageProfileComponent } from './account/image-profile/image-profile.component';
 import { ProfileLayoutComponent } from './profile-layout/profile-layout.component';
 import { OverviewComponent } from './mentor/overview/overview.component';
-import { ClientsComponent } from './commune/clients/clients.component';
+import { BookingComponent} from './commune/booking/booking.component';
 import { TypeGuard } from 'src/app/guards/type.guard';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
 import { ClientsResolver } from 'src/app/resolvers/clients.resolver';
@@ -42,7 +42,8 @@ const routes: Routes = [
   {path:'overview',pathMatch:'full', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
   { path: 'messages', component: MessageComponent, resolve: { user: ProfileResolver }, canActivate: [AuthGuard] },
   { path: 'messages/:id/:type', component: MessageComponent, resolve: { user: ProfileResolver }, canActivate: [AuthGuard] },
-  {path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune', 'mentor'] }, canActivate: [AuthGuard, TypeGuard]},
+  //{path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune', 'mentor'] }, canActivate: [AuthGuard, TypeGuard]},
+  {path:'booking',pathMatch:'full', component:BookingComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune', 'mentor'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
   {path:'find-mentor',pathMatch:'full', component:FindMentorComponent,data: { allowedTypes: ['commune', 'user'] }, canActivate: [AuthGuard, TypeGuard]},
 ];

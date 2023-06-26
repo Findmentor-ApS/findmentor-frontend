@@ -13,7 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ImageProfileComponent } from './account/image-profile/image-profile.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { OverviewComponent } from './mentor/overview/overview.component';
-import { ClientsComponent } from './commune/clients/clients.component';
+import { BookingComponent } from './commune/booking/booking.component';
 import { EditContactsComponent } from './account/edit-contacts/edit-contacts.component';
 import { EditSettingComponent } from './account/edit-setting/edit-setting.component';
 import { EditLanguagesComponent } from './account/edit-languages/edit-languages.component';
@@ -26,6 +26,7 @@ import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { MentorListComponent } from './mentor-list/mentor-list.component';
 import { EditPriceComponent } from './account/edit-price/edit-price.component';
 import { EditApproachComponent } from './account/edit-approach/edit-approach.component';
+import { ClientComponent } from './clients-shared/client/client.component';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { EditApproachComponent } from './account/edit-approach/edit-approach.com
     ExperienceProfileComponent,
     ImageProfileComponent,
     OverviewComponent,
-    ClientsComponent,
+    BookingComponent,
     EditContactsComponent,
     EditSettingComponent,
     EditLanguagesComponent,
@@ -46,7 +47,8 @@ import { EditApproachComponent } from './account/edit-approach/edit-approach.com
     FindMentorComponent,
     MentorListComponent,
     EditPriceComponent,
-    EditApproachComponent
+    EditApproachComponent,
+    ClientComponent
   ],
   imports: [
     CommonModule,

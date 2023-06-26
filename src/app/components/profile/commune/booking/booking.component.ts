@@ -1,13 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
+import { experienceType } from 'src/app/general/types';
 
 @Component({
-  selector: 'app-clients',
-  templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css']
+  selector: 'app-booking',
+  templateUrl: './booking.component.html',
+  styleUrls: ['./booking.component.css']
 })
-export class ClientsComponent {
+export class BookingComponent {
   userType: string = '';
 
   tableDataBookings;
@@ -98,5 +99,11 @@ export class ClientsComponent {
 
   ceil(number: number): number {
     return Math.ceil(number);
+  }
+
+  getExperienceTypeName(typeId: number | string): string {
+    const id = typeof typeId === 'string' ? parseInt(typeId, 10) : typeId;
+    const experience = experienceType.find(item => item.id === id);
+    return experience ? experience.name : '';
   }
 }

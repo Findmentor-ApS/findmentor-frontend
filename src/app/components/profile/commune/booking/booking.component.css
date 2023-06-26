@@ -1,0 +1,366 @@
+.overviewWrap {
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  .welcomeText {
+    margin: 40px 0;
+  }
+  .welcomeText h1,
+  .welcomeText p {
+    margin: 0;
+  }
+  .welcomeText h1 {
+    font-size: 24px;
+    color: #303030;
+  }
+  .welcomeText p {
+    color: #b6b8c0;
+    margin-top: -10px;
+  }
+  .overviewCards {
+    column-gap: 15px;
+    justify-content: space-evenly;
+  }
+  .overviewCard {
+    background-color: #fff;
+    width: 180px;
+    padding-top: 25px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+  }
+  .overviewCard h3,
+  .overviewCard h2 {
+    margin: 0;
+  }
+  .overviewCard h3 {
+    font-size: 16px;
+  }
+  .overviewCard .count {
+    width: 60px;
+    height: 60px;
+    background: #f4f4f4;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .overviewCard .icon {
+    position: relative;
+  }
+  .overviewCard .icon svg {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    fill: #4e4f95;
+  }
+  
+  /* upcoming Agreement  */
+  .upcomingAgreementWrap {
+    margin-top: 50px;
+  }
+  .upcomingAgreementWrap .topText h5 {
+    margin: 0;
+  }
+  .upcomingAgreementWrap .topText {
+    margin-bottom: 8px;
+  }
+  .upcomingAgreementWrap .agreementsWrap .row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .upcomingAgreementWrap .agreementsWrap .row > * {
+    flex: 0 1 32%;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 576px) {
+    .upcomingAgreementWrap .agreementsWrap .row > * {
+      flex-basis: 100%;
+    }
+  }
+  .agreement {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .agreement .buttons {
+    position: absolute;
+    right: 20px;
+    display: flex;
+  }
+  .agreement .buttons button {
+    background-color: transparent;
+    border: 0;
+  }
+  .agreement .buttons button:focus {
+    outline: 0;
+  }
+  .agreement .buttons button.call {
+    background-color: #000;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .agreement .buttons button.call svg {
+    stroke: #fff;
+  }
+  .agreement .buttons button.action svg {
+    fill: #aaacb2;
+    width: 30px;
+  }
+  .agreement .title h3 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .tag {
+    background-color: #e4e0fc;
+    color: #2a2a2b;
+    font-weight: 600;
+  }
+  .agreement .address {
+    max-width: 170px;
+    color: #b9babf;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .agreement .dateTime {
+    font-weight: 600;
+  }
+  
+  /* Inquiries Wrap  */
+  .inquiriesWrap {
+    margin-top: 50px;
+  }
+  .inquiriesWrap .topText h5 {
+    margin: 0;
+  }
+  .inquiriesWrap .topText .calender {
+    column-gap: 20px;
+  }
+  .inquiriesWrap .topText .calender p {
+    color: #b9babf;
+    font-weight: 500;
+  }
+  .inquiriesWrap .topText .calender button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #000;
+    padding: 5px 20px;
+    height: fit-content;
+    border-radius: 4px;
+    margin: auto;
+    column-gap: 5px;
+    font-weight: 600;
+  }
+  
+  /* Data table  */
+  .tableWrap .table {
+    border-color: transparent;
+  }
+  .tableWrap .table tr {
+    background-color: #fff;
+    padding: 20px;
+  }
+  .tableWrap .table th,
+  .tableWrap .table td,
+  .tableWrap .table tr {
+    border: 0;
+    padding: 15px 20px;
+  }
+  .tableWrap .table thead tr {
+    border-bottom: 10px solid #f4f4f4;
+  }
+  .tableWrap .table tbody tr {
+    position: relative;
+  }
+  .tableWrap .table tbody tr::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 97%;
+    height: 0.5px;
+    background-color: #b9babf4f;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .tableWrap .table thead tr th,
+  .tableWrap .table tbody tr td {
+    position: relative;
+  }
+  .tableWrap .table thead tr th:not(:last-child)::after,
+  .tableWrap .table tbody tr td:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    width: 0.5px;
+    height: 60%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #b9babf4f;
+  }
+  .tableWrap .table thead tr th:last-child {
+    width: 35%;
+  }
+  
+  .tableWrap .table tbody tr td .dataWrap {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+  .tableWrap .table tbody tr td .dataWrap .noteWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .tableWrap .table tbody tr td {
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .tableWrap .table tbody tr td .dataWrap .icon {
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .tableWrap .table tbody tr td .dataWrap .icon svg {
+    fill: #fff;
+    width: 18px;
+  }
+  
+  .tableWrap .table tbody tr td .dataWrap .noteWrap p {
+    color: #b9babf;
+    white-space: nowrap;
+    width: 160px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tableWrap .table tbody tr td .dataWrap .noteWrap button {
+    background-color: #a8d6b6;
+    border: 0;
+    color: #373c3a;
+    font-weight: 800;
+    padding: 5px 20px;
+    border-radius: 4px;
+  }
+  .tableWrap .pagination .pageSize .form-group {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+  }
+  .tableWrap .pagination .pageSize .form-group select {
+    width: fit-content;
+    background-color: transparent;
+    padding-bottom: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid;
+    font-weight: 500;
+    height: fit-content;
+  }
+  .tableWrap .pagination {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+  }
+  .tableWrap .pagination .pageSize .form-group select:focus {
+    outline: 0;
+  }
+  .tableWrap table.table tfoot tr {
+    background-color: transparent;
+  }
+  .tableWrap table.table tfoot tr td .pagination {
+    display: flex;
+    justify-content: end;
+  }
+  .tableWrap .pagination .page button {
+    background-color: transparent;
+    border: 0;
+  }
+  .tableWrap .pagination .page button:focus {
+    outline: 0;
+  }
+  .tableWrap .pagination .page button img {
+    width: 24px;
+    margin-bottom: -5px;
+  }
+  .tableWrap .pagination .page span {
+    color: #b9babf;
+    font-weight: 600;
+  }
+  @media screen and (max-width: 992px) {
+    .overviewCard {
+      margin-bottom: 20px;
+      min-height: 200px;
+    }
+    .upcomingAgreementWrap,
+    .inquiriesWrap {
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+  }
+  .smaller-text {
+    font-size: 0.8em; 
+    opacity: 0.5; 
+    color: #888888; 
+    margin-top: 0px;
+}
+
+.search-wrap{
+  margin-top: 1%;
+  display: flex;
+  background-color: #fff;
+}
+.search-wrap .searchInput, .search-wrap .locationInput{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 15px 20px;
+  border-right: 1px solid #f4f4f4;
+}
+.search-wrap .searchInput .icon, .search-wrap .locationInput .icon{
+  margin-right: 8px;
+}
+.search-wrap .searchInput .icon svg, .search-wrap .locationInput .icon svg{
+fill: #f4f4f4;
+}
+.search-wrap .searchInput ng-select, .search-wrap .locationInput ng-select{
+  width: 100%;
+}
+.search-wrap .btn-wrap{
+text-align: center;
+  padding: 15px 20px;
+  width: 20%;
+}
+.search-wrap .btn-wrap button{
+  border-radius: 4px ;
+  border:1px solid #000;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 10px 20px;
+}
+
+.row{
+  margin-left: 0px;
+  }
+
+  .col-md-12{
+    padding-left: 0px;
+  }
+
+  

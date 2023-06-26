@@ -1,5 +1,6 @@
 <app-secondary-navigation></app-secondary-navigation>
 <div class="overviewWrap">
+    <ng-container *ngIf="userType == 'mentor'">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -29,11 +30,11 @@
                                         <th aria-sort="ascending" class="table-header-no-wrap">
                                             Borger navn
                                         </th>
-                                        <th *ngIf="userType == 'commune' || userType == 'user'">
+                                        <!--<th *ngIf="userType == 'commune' || userType == 'user'">
                                             Mentor navn
-                                        </th>
-                                        <th aria-sort="none" class="table-header-no-wrap" *ngIf="userType == 'commune'">
-                                            CPR nummer</th>
+                                        </th> -->
+                                        <!-- <th aria-sort="none" class="table-header-no-wrap" *ngIf="userType == 'commune'">
+                                            CPR nummer</th> -->
                                         <th aria-sort="none" class="table-header-no-wrap">Dato</th>
                                         <th aria-sort="none">Forløbstype</th>
                                         <th>Note</th>
@@ -52,13 +53,13 @@
                                                     </ng-container>
                                                 </div>
                                             </td>
-                                            <td *ngIf="userType == 'commune' || userType == 'user'">
+                                           <!-- <td *ngIf="userType == 'commune' || userType == 'user'">
                                                 <div class="dataWrap">
                                                     <div>
                                                         {{booking.mentor.first_name}} {{booking.mentor.last_name}}
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <div class="dataWrap">
                                                     <!-- {{item.date}} -->
@@ -67,8 +68,9 @@
                                             </td>
                                             <td>
                                                 <div class="tag m-0">
-                                                    <!-- {{item.first_name}} -->
-                                                    
+                                                    <ng-container *ngIf="booking.experience_type">
+                                                        {{getExperienceTypeName(booking.experience_type)}}
+                                                    </ng-container>
                                                 </div>
                                             </td>
                                             <td>
@@ -143,13 +145,13 @@
                             <table class="table mt-6" id="sortingTable">
                                 <thead>
                                     <tr>
-                                        <th *ngIf="userType == 'commune' || userType == 'user'">
-                                            Mentor Navn</th>
+                                       <!-- <th *ngIf="userType == 'commune' || userType == 'user'">
+                                            Mentor Navn</th> -->
                                         <th aria-sort="none" class="table-header-no-wrap">
                                             Telefon nummer</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Fra</th>
                                         <th aria-sort="none">Tid</th>
-                                        <th *ngIf="userType == 'commune' || userType == 'user'">Godkendt</th>
+                                       <!-- <th *ngIf="userType == 'commune' || userType == 'user'">Godkendt</th> -->
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
@@ -160,13 +162,13 @@
                                                     {{call.phone_to_call}}
                                                 </div>
                                             </td>
-                                            <td *ngIf="userType == 'commune'">
+                                           <!-- <td *ngIf="userType == 'commune'">
                                                 <div class="dataWrap">
-                                                    <div class="tag m-0">
+                                                    <div class="tag m-0"> -->
                                                         <!-- {{item.inquiry}} -->
-                                                    </div>
+                                                   <!-- </div>
                                                 </div>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <div class="dataWrap">
                                                     <ng-container *ngIf="call.users">
@@ -242,4 +244,56 @@
             </div>
         </div>
     </div>
+    </ng-container>
+
+   <!-- <ng-container *ngIf="userType === 'commune'">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inquiriesWrap">
+                        <div class="topText row justify-content-between align-items-center">
+                            <h5>
+                                Klienter
+                            </h5>
+                        </div>
+                        <div class="row justify-content-left mt-2">
+                            <h5 class="smaller-text text-gray">
+                                Overblik over alle klienter
+                            </h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                              <div class="search-wrap">
+                                <div class="searchInput">
+                                  <div class="icon">
+                                    <img class="" src="{{ assetPath }}/svgs/svg-icons/search.svg">
+                                  </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tableWrap">
+                            <div class="table--responsive-scroll">
+                                <table class="table mt-6" id="sortingTable">
+                                    <thead>
+                                        <tr>
+                                            <th aria-sort="ascending" class="table-header-no-wrap">Navn</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">CPR-nummer</th>
+                                            <th aria-sort="none">Forløbstype</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Aftalenr</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Startdato</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Slutdato</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Slutevaluering</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Status</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container> -->
 </div>
