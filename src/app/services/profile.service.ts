@@ -262,6 +262,40 @@ export class ProfileService {
     );
   }
 
+  acceptBookingRequest(id: number) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.put<any>(`/me/bookings/${id}/accept`, {id}, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          console.log(error.error);
+          errorMessage = error.error;
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );
+  }
+
+  declineBookingRequest(id: number) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    return this.http.put<any>(`/me/bookings/${id}/decline`, {id}, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          console.log(error.error);
+          errorMessage = error.error;
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );
+  }
+
   deleteProfile() {
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
     return this.http.delete<any>(`/me/delete`, {headers}).pipe(

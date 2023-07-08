@@ -106,4 +106,14 @@ export class BookingComponent {
     const experience = experienceType.find(item => item.id === id);
     return experience ? experience.name : '';
   }
+
+  acceptBookingRequest(id: number): void { 
+    this.profileService.acceptBookingRequest(id).subscribe(response => {
+    });
+  }
+
+  declineBookingRequest(id: number): void {
+    this.profileService.declineBookingRequest(id).subscribe(response => {
+    });
+  }
 }

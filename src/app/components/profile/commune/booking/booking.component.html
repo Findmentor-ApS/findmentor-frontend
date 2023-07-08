@@ -9,18 +9,6 @@
                         <h5>
                             Bookinger
                         </h5>
-                        <!-- <div class="calender row">
-                            <p>
-                                Viser for perioden
-                            </p>
-                            <button>
-                                Seneste
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
-                                    <path
-                                        d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z" />
-                                </svg>
-                            </button>
-                        </div> -->
                     </div>
                     <div class="tableWrap">
                         <div class="table--responsive-scroll">
@@ -53,13 +41,6 @@
                                                     </ng-container>
                                                 </div>
                                             </td>
-                                           <!-- <td *ngIf="userType == 'commune' || userType == 'user'">
-                                                <div class="dataWrap">
-                                                    <div>
-                                                        {{booking.mentor.first_name}} {{booking.mentor.last_name}}
-                                                    </div>
-                                                </div>
-                                            </td> -->
                                             <td>
                                                 <div class="dataWrap">
                                                     <!-- {{item.date}} -->
@@ -162,13 +143,6 @@
                                                     {{call.phone_to_call}}
                                                 </div>
                                             </td>
-                                           <!-- <td *ngIf="userType == 'commune'">
-                                                <div class="dataWrap">
-                                                    <div class="tag m-0"> -->
-                                                        <!-- {{item.inquiry}} -->
-                                                   <!-- </div>
-                                                </div>
-                                            </td> -->
                                             <td>
                                                 <div class="dataWrap">
                                                     <ng-container *ngIf="call.users">
@@ -245,55 +219,4 @@
         </div>
     </div>
     </ng-container>
-
-   <!-- <ng-container *ngIf="userType === 'commune'">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="inquiriesWrap">
-                        <div class="topText row justify-content-between align-items-center">
-                            <h5>
-                                Klienter
-                            </h5>
-                        </div>
-                        <div class="row justify-content-left mt-2">
-                            <h5 class="smaller-text text-gray">
-                                Overblik over alle klienter
-                            </h5>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                              <div class="search-wrap">
-                                <div class="searchInput">
-                                  <div class="icon">
-                                    <img class="" src="{{ assetPath }}/svgs/svg-icons/search.svg">
-                                  </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tableWrap">
-                            <div class="table--responsive-scroll">
-                                <table class="table mt-6" id="sortingTable">
-                                    <thead>
-                                        <tr>
-                                            <th aria-sort="ascending" class="table-header-no-wrap">Navn</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">CPR-nummer</th>
-                                            <th aria-sort="none">Forløbstype</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">Aftalenr</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">Startdato</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">Slutdato</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">Slutevaluering</th>
-                                            <th aria-sort="none" class="table-header-no-wrap">Status</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ng-container> -->
 </div>

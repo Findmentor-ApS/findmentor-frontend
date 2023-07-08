@@ -21,6 +21,7 @@ import { FindMentorComponent } from './find-mentor/find-mentor.component';
 import { SearchResolver } from 'src/app/resolvers/search.resolver';
 import { EditPriceComponent } from './account/edit-price/edit-price.component';
 import { EditApproachComponent } from './account/edit-approach/edit-approach.component';
+import { ClientComponent } from './clients-shared/client/client.component';
 
 
 const routes: Routes = [
@@ -42,7 +43,7 @@ const routes: Routes = [
   {path:'overview',pathMatch:'full', component:OverviewComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
   { path: 'messages', component: MessageComponent, resolve: { user: ProfileResolver }, canActivate: [AuthGuard] },
   { path: 'messages/:id/:type', component: MessageComponent, resolve: { user: ProfileResolver }, canActivate: [AuthGuard] },
-  //{path:'clients',pathMatch:'full', component:ClientsComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune', 'mentor'] }, canActivate: [AuthGuard, TypeGuard]},
+  {path:'clients',pathMatch:'full', component:ClientComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['mentor'] },  canActivate: [AuthGuard,TypeGuard]},
   {path:'booking',pathMatch:'full', component:BookingComponent, resolve: {user: ProfileResolver},data: { allowedTypes: ['commune', 'mentor'] }, canActivate: [AuthGuard, TypeGuard]},
   // {path:'chat', component:ChatComponent, canActivate: [AuthGuard]}
   {path:'find-mentor',pathMatch:'full', component:FindMentorComponent,data: { allowedTypes: ['commune', 'user'] }, canActivate: [AuthGuard, TypeGuard]},
