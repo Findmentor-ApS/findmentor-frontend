@@ -17,7 +17,6 @@
                                         <th aria-sort="ascending" class="table-header-no-wrap">Navn</th>
                                         <th aria-sort="none" class="table-header-no-wrap">CPR</th>
                                         <th aria-sort="none">Forløbstype</th>
-                                        <th aria-sort="none" class="table-header-no-wrap">Aftalenr</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Startdato</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Slutdato</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Slutevaluering</th>
@@ -25,7 +24,72 @@
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
-                                    
+                                    <tr *ngFor="let booking of bookings">
+                                        <ng-container *ngIf="pageSizeBookings>0">
+                                            <td *ngIf="userType == 'mentor'">
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{booking.first_name}} {{booking.last_name}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="booking.user">
+                                                        {{booking.users.first_name}} {{booking.users.last_name}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{booking.cpr_number}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{getHelpType(booking.help_type)}}
+                                                    </ng-container>
+                                                    <ng-container *ngIf="booking.user">
+                                                        {{getHelpType(booking.users.help_type)}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{booking.start_date | date:'dd-MM-yyyy'}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        {{booking.end_date | date:'dd-MM-yyyy'}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap form-group" id="toggle-text">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        <ng-container *ngIf="booking.is_final_evaluation == '1'">
+                                                            <input id="toggle-example-{{booking.id}}" class="toggle-example" type="checkbox" name="toggle-example"
+                                                            class="form-toggle" disabled [checked]="true"/>
+                                                            <label for="toggle-example-{{booking.id}}" class="form-toggle-label "></label>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="booking.is_final_evaluation != '1'">
+                                                            <input id="toggle-example-{{booking.id}}" class="toggle-example" type="checkbox" name="toggle-example"
+                                                            class="form-toggle" disabled [checked]="false"/>
+                                                            <label for="toggle-example-{{booking.id}}" class="form-toggle-label "></label>
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    
+                                                </div>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

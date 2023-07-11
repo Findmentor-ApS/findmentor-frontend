@@ -357,10 +357,34 @@ text-align: center;
 
 .row{
   margin-left: 0px;
-  }
+}
 
   .col-md-12{
     padding-left: 0px;
-  }
+}
 
+#toggle-text{
+  display: block;
+  margin-left: 0;
+  text-decoration: none;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.toggle-example{
+  text-align: right;
+}
+
+.form-group input[type=checkbox].form-toggle:checked ~ .form-toggle-label:before{
+  left: 45px;
+  content: url(../../../../../assets/svgs/tick.svg);
+}
+
+.form-group input[type=checkbox].form-toggle:checked ~ label::after{
+  background-color: #a8d6b6 !important;
+  width: 73px;
+}
+.form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
+  content: url(../../../../../assets/svgs/cross.svg);
+}
   
