@@ -128,7 +128,10 @@
                 <div class="col-md-12">
                     <app-text-area label="Overordnet mål" placeholder="Målbeskrivelse" type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vi ønsker at opnå..." rows="6"
-                        [required]="true" [control]="$any(formGroupBooking.get('goal'))" [maxlength]="250">
+                        [required]="fieldConfig?.goal?.required ?? true"
+                        [disabled]="fieldConfig?.goal?.disabled ?? false"
+                        [validators]="validatorsConfig.goal"
+                        [control]="$any(formGroupBooking.get('goal'))" [maxlength]="250">
                     </app-text-area>
                 </div>
                 <hr class="divider">
@@ -156,7 +159,10 @@
                 <div class="col-md-12">
                     <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
-                        [required]="true" [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
+                        [required]="fieldConfig?.help_text?.required ?? true"
+                        [disabled]="fieldConfig?.help_text?.disabled ?? false"
+                        [validators]="validatorsConfig.help_text"
+                        [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
                     </app-text-area>
                 </div>
             </div>
@@ -177,21 +183,27 @@
                     </div>
                     
                     <div class="btnGroup">
-                        <div class="form-group" id="toggle-text" *ngIf="type == 'commune'">
+
+                        <div class="form-group" id="toggle-text" *ngIf="type == 'commune' && !booking">
                             Ønskes slutevaluering
                             <input id="toggle-example" type="checkbox" name="toggle-example"
                                class="form-toggle" formControlName="is_final_evaluation"/>
-                               <label for="toggle-example" class="form-toggle-label "></label>
+                               <label for="toggle-example" class="form-toggle-label"></label>
+                        </div>
+                        <div class="form-group" id="toggle-text" *ngIf="type == 'commune' && booking">
+                            Ønskes slutevaluering
+                            <input class="toggle-example" type="checkbox" name="toggle-example"
+                                class="form-toggle" disabled [checked]="booking.is_final_evaluation == 1"/>
+                            <label class="form-toggle-label "></label>
                         </div>
 
                         <ng-container *ngIf="!booking">
-
                             <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
-                            <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
+                            <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
                         </ng-container>
                         <ng-container *ngIf="booking && booking.status == 0 && userType=='mentor'">
-                            <button (click)="acceptBookingRequest(booking.id)" [disabled]="!formGroupBooking.valid" class="save">Accepter</button>
-                            <button class="cancel" (click)="declineBookingRequest(booking.id)" data-modal-close>Afvis</button>
+                            <button (click)="acceptBookingRequest(booking.id)" [disabled]="isStatusDisabled" class="save">Accepter</button>
+                            <button class="reject" (click)="declineBookingRequest(booking.id)" [disabled]="isStatusDisabled" data-modal-close>Afvis</button>
                             <div *ngIf="accepted" class="alert alert-success booking-alert" role="alert" aria-atomic="true">
                                 <div class="alert-body">
                                     <p class="alert-heading">Accepteret</p>

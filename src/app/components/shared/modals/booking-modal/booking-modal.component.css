@@ -61,6 +61,12 @@
     float: right;
 }
 
+.modal-footer .btnGroup button.reject{
+    background-color: #E4867A;
+    color: white;
+    border: 0;
+}
+
 p.mt-0
 {
     display:inline;
@@ -86,7 +92,7 @@ p.mt-0
     font-weight: 600;
   }
   
-  #toggle-example{
+  .toggle-example{
     text-align: right;
   }
   

@@ -21,6 +21,7 @@ export class BookingModalComponent implements OnInit {
   userType: string = '';
   accepted: boolean = false;
   declined: boolean = false;
+  isStatusDisabled: boolean = false;
 
   validatorsConfig = {
     help_text: [Validators.required],
@@ -112,18 +113,10 @@ export class BookingModalComponent implements OnInit {
       });
     } else if (this.type == 'user') {
       // Only 'help_text' field is required for 'user' type
-      const userFields = [
-        'help_text'
-      ];
-      userFields.forEach(fieldName => {
-        // If a booking is provided and contains this field, use the booking's value as the initial value
-          
-        const initialValue = this.booking && this.booking[fieldName] ? this.booking[fieldName] : '';
-        if(fieldName == 'help_type' && initialValue) {
-          this.selectedHelpType = initialValue;
-        }
-        fieldsConfig[fieldName] = [initialValue, this.validatorsConfig[fieldName]];
-      });
+      const initialValue = this.booking && this.booking.help_text ? this.booking.help_text : '';
+      fieldsConfig = {
+        help_text: [initialValue, this.validatorsConfig.help_text]
+      };
     }
 
     // Creating the form group
@@ -133,6 +126,8 @@ export class BookingModalComponent implements OnInit {
   acceptBookingRequest(id: number): void { 
     this.accepted = true;
     this.declined = false;
+    this.isStatusDisabled = true;
+    this.formGroupBooking.disable();
     this.profileService.acceptBookingRequest(id).subscribe(response => {
     });
     setTimeout(() => {
@@ -146,6 +141,7 @@ export class BookingModalComponent implements OnInit {
   declineBookingRequest(id: number): void {
     this.accepted = false;
     this.declined = true;
+    this.isStatusDisabled = true;
     this.formGroupBooking.disable();
     this.profileService.declineBookingRequest(id).subscribe(response => {
     });
