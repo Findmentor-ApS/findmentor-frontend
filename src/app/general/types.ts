@@ -8,7 +8,7 @@ export const experienceType = [
     { id: 7, name: 'Stofmisbrug' },
   ];
 
-export const searchArr = [
+export const helpType = [
     { id: 1, name: 'Støttementor' },
     { id: 2, name: 'SocialMentor' },
   ];

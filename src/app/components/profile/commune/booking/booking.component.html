@@ -25,6 +25,7 @@
                                             CPR nummer</th> -->
                                         <th aria-sort="none" class="table-header-no-wrap">Dato</th>
                                         <th aria-sort="none">Forløbstype</th>
+                                        <th aria-sort="none">Brugertype</th>
                                         <th>Note</th>
                                     </tr>
                                 </thead>
@@ -49,8 +50,18 @@
                                             </td>
                                             <td>
                                                 <div class="tag m-0">
-                                                    <ng-container *ngIf="booking.experience_type">
-                                                        {{getExperienceTypeName(booking.experience_type)}}
+                                                    <ng-container *ngIf="booking.help_type">
+                                                        {{getHelpType(booking.help_type)}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="datawrap">
+                                                    <ng-container *ngIf="booking.users">
+                                                        Borger
+                                                    </ng-container>
+                                                    <ng-container *ngIf="booking.communes">
+                                                        Kommune
                                                     </ng-container>
                                                 </div>
                                             </td>
@@ -60,9 +71,21 @@
                                                         <p class="m-0">
                                                             {{booking.help_text}}
                                                         </p>
-                                                        <button>
+                                                        <button (click)="openModal(booking)">
                                                             Besvar
                                                         </button>
+                                                        <app-booking-modal
+                                                         *ngIf="booking.openModal" 
+                                                         [mentor]="booking.mentor_id"
+                                                         [type]="booking.commune_id ? 'commune' : 'user'"
+                                                         [isModalVisible]="booking.openModal"
+                                                         (closeModal)="closeModal(booking)"
+                                                         [booking] = "booking"
+                                                         [fieldConfig]="{
+                                                           help_text: {required: false, disabled: true},
+                                                           last_name: {required: false, disabled: true}
+                                                         }"></app-booking-modal>
+
                                                     </div>
                                                 </div>
                                             </td>

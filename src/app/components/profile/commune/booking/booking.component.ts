@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import { experienceType } from 'src/app/general/types';
+import { helpType } from 'src/app/general/types';
 
 @Component({
   selector: 'app-booking',
@@ -35,7 +36,7 @@ export class BookingComponent {
 
 
   loadBookings(): void {
-    this.profileService.getBookings(this.currentPageBookings, this.pageSizeBookings).subscribe(response => {
+    this.profileService.getBookings(this.currentPageBookings, this.pageSizeBookings, 0).subscribe(response => {
       this.totalItemsBookings = response['total'];
       this.bookings = Object.values(response);
       //print bookings
@@ -107,13 +108,18 @@ export class BookingComponent {
     return experience ? experience.name : '';
   }
 
-  acceptBookingRequest(id: number): void { 
-    this.profileService.acceptBookingRequest(id).subscribe(response => {
-    });
+
+  getHelpType(typeId: number | string): string {
+    const id = typeof typeId === 'string' ? parseInt(typeId, 10) : typeId;
+    const help = helpType.find(item => item.id === id);
+    return help ? help.name : '';
   }
 
-  declineBookingRequest(id: number): void {
-    this.profileService.declineBookingRequest(id).subscribe(response => {
-    });
+  openModal(booking): void {
+    booking.openModal = true;
+  }
+
+  closeModal(booking): void {
+    booking.openModal = false;
   }
 }

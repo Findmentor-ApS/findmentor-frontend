@@ -3,11 +3,7 @@
   [mentor]="mentor"
   [type]="type"
   [isModalVisible]="isBookingModalOpen"
-  (closeModal)="closeBookingModal()"
-  [fieldConfig]="{
-    help_text: {required: false, disabled: true},
-    last_name: {required: false, disabled: true}
-  }">
+  (closeModal)="closeBookingModal()">
 </app-booking-modal>
 
 <app-call-modal

@@ -106,3 +106,8 @@ p.mt-0
   .form-group input[type=checkbox].form-toggle ~ .form-toggle-label:before{
     content: url(../../../../../assets/svgs/cross.svg);
   }
+
+
+  .booking-alert{
+    margin-top: 70px;
+  }

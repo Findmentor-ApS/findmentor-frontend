@@ -203,11 +203,12 @@ export class ProfileService {
     );
   }
 
-  getBookings(page: number = 1, perPage = 10) {
+  getBookings(page: number = 1, perPage = 10, status = 0) {
     const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
     const params = {
       page: page,
-      perpage: perPage
+      perpage: perPage,
+      status: status
     };
     return this.http.get(`/me/bookings`, {params,headers }).pipe(
       catchError(error => {

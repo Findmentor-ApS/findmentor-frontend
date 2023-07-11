@@ -2,8 +2,11 @@
     aria-modal="true" aria-labelledby="modal-id-1-title" tabindex="-1">
     <div class="modal-content">
         <div class="modal-header">
-            <h3 class="modal-title" id="modal-example-title">
+            <h3 class="modal-title" id="modal-example-title" *ngIf="userType != 'mentor'">
                 Book en session med {{ mentor.first_name }} {{ mentor.last_name }}
+            </h3>
+            <h3 class="modal-title" id="modal-example-title" *ngIf="userType == 'mentor'">
+                Se din booking
             </h3>
             <button class="modal-close function-link" (click)="closeBooking()"
                 data-modal-close>X</button>
@@ -100,11 +103,24 @@
                         </app-input>
                     </div>
                     <div class="col-md-6">
-                        <div class="filter-wrap">
-                            <ng-select [multiple]="false" placeholder="Vælg erfaring" notFoundText="Ingen resultater"
-                                [(ngModel)]="selectedTypeExperience" class="form-input" required="true" [formControl]="$any(formGroupBooking.get('type_experience'))">
-                                <ng-option *ngFor="let type of experienceType" [value]="type.id">{{type.name}}</ng-option>
+                        <div class="filter-wrap" *ngIf="!booking">
+                            <label class="form-label" for="form-error">
+                                Støtte type
+                            </label>
+                            <ng-select [multiple]="false" placeholder="Vælg støtte type" notFoundText="Ingen resultater"
+                                [(ngModel)]="selectedHelpType" class="form-input" required="true" [formControl]="$any(formGroupBooking.get('help_type'))">
+                                <ng-option *ngFor="let type of helpType" [value]="type.id">{{type.name}}</ng-option>
                             </ng-select>
+                        </div>
+
+                        <div class="form-group" *ngIf="booking">
+                            <label class="form-label" for="form-error">
+                                Støtte type
+                            </label>
+                            <input class="form-input"  aria-describedby="form-error-hint form-error-error"
+                            [value]="getHelpType(booking.help_type)"
+                            type="text"
+                            [disabled]="true" />
                         </div>
                     </div>
                 </div>
@@ -161,21 +177,37 @@
                     </div>
                     
                     <div class="btnGroup">
-                        <div class="form-group" id="toggle-text">
+                        <div class="form-group" id="toggle-text" *ngIf="type == 'commune'">
                             Ønskes slutevaluering
                             <input id="toggle-example" type="checkbox" name="toggle-example"
                                class="form-toggle" formControlName="is_final_evaluation"/>
                                <label for="toggle-example" class="form-toggle-label "></label>
-
                         </div>
 
-                        <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
-                        <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
+                        <ng-container *ngIf="!booking">
+
+                            <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
+                            <button class="cancel" (click)="closeBooking()" data-modal-close>Annuller</button>
+                        </ng-container>
+                        <ng-container *ngIf="booking && booking.status == 0 && userType=='mentor'">
+                            <button (click)="acceptBookingRequest(booking.id)" [disabled]="!formGroupBooking.valid" class="save">Accepter</button>
+                            <button class="cancel" (click)="declineBookingRequest(booking.id)" data-modal-close>Afvis</button>
+                            <div *ngIf="accepted" class="alert alert-success booking-alert" role="alert" aria-atomic="true">
+                                <div class="alert-body">
+                                    <p class="alert-heading">Accepteret</p>
+                                    <p class="alert-text">Bookingen er accepteret, og kan ses i klient siden.</p>
+                                </div>
+                            </div>
+                            <div *ngIf="declined" class="alert alert-warning booking-alert" role="alert" aria-atomic="true">
+                                <div class="alert-body">
+                                    <p class="alert-heading">Afvist</p>
+                                    <p class="alert-text">Bookingen er afvist.</p>
+                                </div>
+                            </div>
+                        </ng-container>
                     </div>
                 </div>
-
             </div>
         </form>
-
     </div>
 </div>
