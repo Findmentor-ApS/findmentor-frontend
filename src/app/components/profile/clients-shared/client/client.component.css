@@ -126,6 +126,25 @@
     color: #2a2a2b;
     font-weight: 600;
   }
+
+  .greentag {
+    background-color: #a8d6b6;
+    color: #2a2a2b;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .graytag {
+    background-color: #f4f4f4;
+    color: #9999b516;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
   .agreement .address {
     max-width: 170px;
     color: #b9babf;

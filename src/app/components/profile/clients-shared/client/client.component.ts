@@ -67,4 +67,12 @@ export class ClientComponent {
     return help ? help.name : '';
   }
 
+  openModal(booking): void {
+    booking.openModal = true;
+  }
+
+  closeModal(booking): void {
+    booking.openModal = false;
+  }
+
 }

@@ -17,10 +17,12 @@
                                         <th aria-sort="ascending" class="table-header-no-wrap">Navn</th>
                                         <th aria-sort="none" class="table-header-no-wrap">CPR</th>
                                         <th aria-sort="none">Forløbstype</th>
+                                        <th aria-sort="none" class="table-header-no-wrap">Brugertype</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Startdato</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Slutdato</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Slutevaluering</th>
                                         <th aria-sort="none" class="table-header-no-wrap">Status</th>
+                                        <th aria-sort="none" class="table-header-no-wrap">Skema</th>
                                     </tr>
                                 </thead>
                                 <tbody aria-live="polite">
@@ -31,7 +33,7 @@
                                                     <ng-container *ngIf="booking.communes">
                                                         {{booking.first_name}} {{booking.last_name}}
                                                     </ng-container>
-                                                    <ng-container *ngIf="booking.user">
+                                                    <ng-container *ngIf="booking.users">
                                                         {{booking.users.first_name}} {{booking.users.last_name}}
                                                     </ng-container>
                                                 </div>
@@ -41,15 +43,28 @@
                                                     <ng-container *ngIf="booking.communes">
                                                         {{booking.cpr_number}}
                                                     </ng-container>
+                                                    <ng-container *ngIf="booking.users">
+                                                        
+                                                    </ng-container>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="dataWrap">
+                                                <div class="tag m-0">
                                                     <ng-container *ngIf="booking.communes">
                                                         {{getHelpType(booking.help_type)}}
                                                     </ng-container>
                                                     <ng-container *ngIf="booking.user">
                                                         {{getHelpType(booking.users.help_type)}}
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="dataWrap">
+                                                    <ng-container *ngIf="booking.users">
+                                                        Borger
+                                                    </ng-container>
+                                                    <ng-container *ngIf="booking.communes">
+                                                        Kommune
                                                     </ng-container>
                                                 </div>
                                             </td>
@@ -84,8 +99,44 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                <div class="greentag m-0">
+                                                    <ng-container *ngIf="booking.communes">
+                                                        <ng-container *ngIf="booking.status == '1'">
+                                                            Aktiv
+                                                        </ng-container>
+                                                    </ng-container>
+                                                </div>
+                                            </td>
+                                            <td>
                                                 <div class="dataWrap">
-                                                    
+                                                    <div class="noteWrap">
+                                                        <button (click)="openModal(booking)">
+                                                            Besvar
+                                                        </button>
+                                                        <app-booking-modal
+                                                        *ngIf="booking.openModal" 
+                                                        [mentor]="booking.mentor_id"
+                                                        [type]="booking.commune_id ? 'commune' : 'user'"
+                                                        [isModalVisible]="booking.openModal"
+                                                        (closeModal)="closeModal(booking)"
+                                                        [booking] = "booking"
+                                                        [fieldConfig]="{
+                                                            help_text: {required: false, disabled: true},
+                                                            last_name: {required: false, disabled: true},
+                                                            first_name: {required: false, disabled: true},
+                                                            cpr_number: {required: false, disabled: true},
+                                                            phone: {required: false, disabled: true},
+                                                            street: {required: false, disabled: true},
+                                                            city: {required: false, disabled: true},
+                                                            social_worker: {required: false, disabled: true},
+                                                            ean_nr: {required: false, disabled: true},
+                                                            goal: {required: false, disabled: true},
+                                                            start_date: {required: false, disabled: true},
+                                                            end_date: {required: false, disabled: true},
+                                                            is_final_evaluation: {required: false, disabled: true},
+                                                                                                      
+                                                        }"></app-booking-modal>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </ng-container>
