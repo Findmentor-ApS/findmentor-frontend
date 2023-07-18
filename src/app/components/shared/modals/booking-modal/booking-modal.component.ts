@@ -97,6 +97,12 @@ export class BookingModalComponent implements OnInit {
         next: (res) => {
           this.success = true;
           this.errorMessage = '';
+          setTimeout(() => {
+            this.success = false;
+            this.closeModal.emit();
+            window.location.reload();
+      
+          }, 3000);
         },
         error: (error) => {
           this.success = false;
