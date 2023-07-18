@@ -147,6 +147,43 @@
                                         </ng-container>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="9">
+                                            <div class="pagination">
+                                                <div class="pageSize">
+                                                    <div class="form-group ">
+                                                        <label class="form-label" for="options">
+                                                            Antal pr. side
+                                                        </label>
+
+                                                        <select #pageSizeValue class=" form-select" name="options"
+                                                            id="options" (change)="changePageSizeBookings(pageSizeValue.value)">
+
+                                                            <option value="10">10</option>
+
+                                                            <option value="15">15</option>
+
+                                                            <option value="25">25</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="page">
+                                                    <button (click)="prevPageBookings()" [disabled]="currentPageBookings === 1">
+                                                        <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-left.svg">
+                                                    </button>
+                                                    <span>
+                                                      {{currentPageBookings}}/{{ceil(totalItemsBookings / pageSizeBookings)}}
+                                                    </span>
+                                                    <button (click)="nextPageBookings()" [disabled]="(currentPageBookings) * pageSizeBookings >= totalItemsBookings">
+                                                        <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-right.svg">
+                                                  </button>
+                                                  </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

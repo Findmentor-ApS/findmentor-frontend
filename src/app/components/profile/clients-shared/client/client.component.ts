@@ -67,6 +67,10 @@ export class ClientComponent {
     return help ? help.name : '';
   }
 
+  ceil(number: number): number {
+    return Math.ceil(number);
+  }
+
   openModal(booking): void {
     booking.openModal = true;
   }
