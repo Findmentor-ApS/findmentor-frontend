@@ -254,4 +254,149 @@
         </div>
     </div>
     </ng-container>
+    <ng-container *ngIf="userType == 'commune'">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inquiriesWrap">
+                        <div class="topText row justify-content-between align-items-center">
+                            <h5>
+                                Forespørgsler sendt
+                            </h5>
+                        </div>
+                        <div class="tableWrap">
+                            <div class="table--responsive-scroll">
+                                <table class="table mt-6" id="sortingTable">
+                                    <thead>
+                                        <tr>
+                                            <th aria-sort="ascending" class="table-header-no-wrap">
+                                                Navn
+                                            </th>
+                                            <!--<th *ngIf="userType == 'commune' || userType == 'user'">
+                                                Mentor navn
+                                            </th> -->
+                                            <!-- <th aria-sort="none" class="table-header-no-wrap" *ngIf="userType == 'commune'">
+                                                CPR nummer</th> -->
+                                            <th aria-sort="none" class="table-header-no-wrap">Startdato</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Slutdato</th>
+                                            <th aria-sort="none">Forløbstype</th>
+                                            <th aria-sort="none" class="table-header-no-wrap">Status</th>
+                                            <th>Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody aria-live="polite">
+                                        <tr *ngFor="let booking of bookings">
+                                            <ng-container *ngIf="0<pageSizeBookings">
+                                                <td *ngIf="userType == 'commune'">
+                                                    <div class="dataWrap">
+                                                        <ng-container *ngIf="booking.mentor">
+                                                            {{booking.mentor.first_name}} {{booking.mentor.last_name}}
+                                                        </ng-container>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="dataWrap">
+                                                        <!-- {{item.date}} -->
+                                                        {{booking.created_at | date: 'dd-MM-yyyy'}}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="dataWrap">
+                                                        <!-- {{item.date}} -->
+                                                        {{booking.end_date | date: 'dd-MM-yyyy'}}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="tag m-0">
+                                                        <ng-container *ngIf="booking.help_type">
+                                                            {{getHelpType(booking.help_type)}}
+                                                        </ng-container>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="greentag m-0" *ngIf="booking.status == '1'">
+                                                        Aktiv
+                                                    </div>
+                                                    <div class="redtag m-0" *ngIf="booking.status == '-1'">
+                                                        Afvist
+                                                    </div>
+                                                    <div class="greytag m-0" *ngIf="booking.status == '0'">
+                                                        Afventer
+                                                    </div>
+                                                    <div class="purpletag m-0" *ngIf="booking.status == '2'">
+                                                        Afsluttet
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="dataWrap">
+                                                        <div class="noteWrap">
+                                                            <p class="m-0">
+                                                                {{booking.help_text}}
+                                                            </p>
+                                                            <button (click)="openModal(booking)">
+                                                                Rediger
+                                                            </button>
+                                                            <app-booking-modal
+                                                             *ngIf="booking.openModal" 
+                                                             [mentor]="booking.mentor_id"
+                                                             [type]="booking.commune_id ? 'commune' : 'user'"
+                                                             [isModalVisible]="booking.openModal"
+                                                             (closeModal)="closeModal(booking)"
+                                                             [booking] = "booking"
+                                                             [fieldConfig]="{
+                                                                cpr_number: {required: true, disabled: true}
+                                                             }"></app-booking-modal>
+    
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+    
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="pagination">
+                                                    <div class="pageSize">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="options">
+                                                                Antal pr. side
+                                                            </label>
+    
+                                                            <select #pageSizeValue class=" form-select" name="options"
+                                                                id="options" (change)="changePageSizeBookings(pageSizeValue.value)">
+    
+                                                                <option value="10">10</option>
+    
+                                                                <option value="15">15</option>
+    
+                                                                <option value="25">25</option>
+    
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="page">
+                                                        <button (click)="prevPageBookings()" [disabled]="currentPageBookings === 1">
+                                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-left.svg">
+                                                        </button>
+                                                        <span>
+                                                          {{currentPageBookings}}/{{ceil(totalItemsBookings / pageSizeBookings)}}
+                                                        </span>
+                                                        <button (click)="nextPageBookings()" [disabled]="(currentPageBookings) * pageSizeBookings >= totalItemsBookings">
+                                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-right.svg">
+                                                      </button>
+                                                      </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </ng-container>
 </div>

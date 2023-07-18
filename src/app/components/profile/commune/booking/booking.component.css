@@ -363,4 +363,42 @@ text-align: center;
     padding-left: 0px;
   }
 
+  .greentag {
+    background-color: #a8d6b6;
+    color: #2a2a2b;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .greytag {
+    background-color: #f4f4f4;
+    color: #2a2a2b;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .redtag {
+    background-color: #E4867A;
+    color: #2a2a2b;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .purpletag {
+    background-color: #e4e0fc;
+    color: #2a2a2b;
+    font-weight: 600;
+    max-width: 100px;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+
+
   
