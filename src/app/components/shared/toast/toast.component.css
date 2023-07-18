@@ -1,0 +1,20 @@
+.toast {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 9999; /* Optional, to ensure it is above other elements */
+    width: 300px;
+    background-color: #e2f2ea;
+}
+
+.toast-message{
+    width: 250px;
+}
+
+.toast-close{
+    float: right;
+}
+
+.toast-icon{
+    background-color: #c3e1d2;
+}
