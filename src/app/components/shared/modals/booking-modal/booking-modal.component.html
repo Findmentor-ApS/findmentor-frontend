@@ -201,6 +201,10 @@
                             <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
                             <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
                         </ng-container>
+                        <ng-container *ngIf="booking && (booking.status != '-1' || booking.status !='-2')  && userType=='commune'">
+                            <button (click)="updateBookMentor()" [disabled]="!formGroupBooking.valid" class="save">Gem</button>
+                            <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
+                        </ng-container>
                         <ng-container *ngIf="booking && booking.status == 0 && userType=='mentor'">
                             <button (click)="acceptBookingRequest(booking.id)" [disabled]="isStatusDisabled" class="save">Accepter</button>
                             <button class="reject" (click)="declineBookingRequest(booking.id)" [disabled]="isStatusDisabled" data-modal-close>Afvis</button>

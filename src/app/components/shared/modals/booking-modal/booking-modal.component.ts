@@ -90,6 +90,23 @@ export class BookingModalComponent implements OnInit {
     )
   }
 
+  updateBookMentor() {
+    this.formGroupBooking.value.id = this.booking.id;
+    this.mentorService.UpdateBookMentor(this.formGroupBooking.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
+  }
+
   initializeForm() {
     let fieldsConfig = {};
   
