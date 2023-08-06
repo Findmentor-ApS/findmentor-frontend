@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ProfileService } from 'src/app/services/profile.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
@@ -7,63 +8,54 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
-  agreementList;
-  tableData;
   pageSize;
   user: any;
-  constructor(private userDataService: UserDataService) { }
+  calls: any[] = [];
+  pageSizeCalls;
+  currentPageCalls: number = 1;
+  totalItemsCalls: number = 0;
+  constructor(private userDataService: UserDataService, private profileService: ProfileService, @Inject('ASSET_PATH') public assetPath: string) { }
 
   ngOnInit(): void {
     this.user = this.userDataService.getCurrentUser();
-    this.agreementList = agreementList;
-    this.tableData = tableData
     this.pageSize = 10;
-    console.log(this.user);
+    this.pageSizeCalls = 10;
+    this.loadCalls();
   }
   changePageSize(event){
     this.pageSize = event;
   }
+  loadCalls(): void {
+    this.profileService.getCalls(this.currentPageCalls, this.pageSizeCalls).subscribe(response => {
+      this.totalItemsCalls = response['total'];
+      this.calls = Object.values(response);
+      console.log(this.calls);
+      // remove total from response
+      this.calls.pop();
+      // If the response includes a total count, use it to calculate the total pages.
+    });
+  }
+
+  changePageSizeCalls(event): void {
+    this.pageSizeCalls = event;
+    this.currentPageCalls = 1; // Reset to the first page.
+    this.loadCalls();
+  }
+
+  prevPageCalls(): void {
+    if (this.currentPageCalls > 1) {
+      this.currentPageCalls--;
+      this.loadCalls();
+    }
+  }
+
+  nextPageCalls(): void {
+    if ((this.currentPageCalls) * this.pageSizeCalls < this.totalItemsCalls) {
+      this.currentPageCalls++;
+      this.loadCalls();
+    }
+  }
+  ceil(number: number): number {
+    return Math.ceil(number);
+  }
 }
-export const agreementList =[
-  {title: 'Jonas Nielsen', tag:'Depression', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Mandag 06.06.2022 - 18:00'},
-  {title: 'Ali Ahmad', tag:'Angst', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Mandag 06.06.2022 - 21:00'},
-  {title: 'Thomas Skov', tag:'Depression', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Tirsdag 07.06.2022 - 18:00'},
-  {title: 'Jonas Nielsen', tag:'Depression', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Mandag 06.06.2022 - 18:00'},
-  {title: 'Ali Ahmad', tag:'Angst', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Mandag 06.06.2022 - 21:00'},
-  {title: 'Jonas Nielsen', tag:'Depression', address: 'Falkoner Alle 33, St.2000 Frederiksberg', date:'Mandag 06.06.2022 - 18:00'}
-
-]
-
-export const tableData =[
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-  {type:'Besked', inquiry:'Depression', date:'06.06.2022 - 18:40',name: 'Deniz Dogan',note:' Hej! Dette er en note testing '},
-
-]

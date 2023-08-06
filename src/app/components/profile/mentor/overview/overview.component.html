@@ -1,5 +1,3 @@
-
-
 <app-secondary-navigation></app-secondary-navigation>
 <div class="overviewWrap">
     <div class="container">
@@ -120,12 +118,12 @@
                             Upcoming aftaler
                         </h5>
                         <h5>
-                            Se alle (16)
+                            Se alle aftaler ({{calls?.length}})
                         </h5>
                     </div>
                     <div class="agreementsWrap">
                         <div class="row">
-                            <div class="agreement" *ngFor="let agreement of agreementList">
+                            <div class="agreement" *ngFor="let call of calls">
                                 <div class="buttons">
                                     <button class="call">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" >
@@ -141,30 +139,85 @@
                                     </button>
                                 </div>
                                 <div class="title">
-                                    <h3>
-                                        {{agreement.title}}
-                                    </h3>
+                                    <ng-container *ngIf="call.communes">
+                                        <h3>
+                                            {{call.communes.first_name}} {{call.communes.last_name}}
+                                        </h3>
+                                    </ng-container>
+                                    <ng-container *ngIf="call.users">
+                                        <h3>
+                                            {{call.users.first_name}} {{call.users.last_name}}
+                                        </h3>
+                                    </ng-container>
                                 </div>
                                 <div class="tag">
-                                    {{agreement.tag}}
+                                    <ng-container *ngIf="call.communes">
+                                            Kommune
+                                    </ng-container>
+                                    <ng-container *ngIf="call.users">
+                                            Borger
+                                    </ng-container>
                                 </div>
                                 <div class="address">
-                                   {{agreement.address}}
+                                    <ng-container *ngIf="call.communes">
+                                            Telefon nr. {{call.phone_to_call}}
+                                    </ng-container>
+                                    <ng-container *ngIf="call.users">
+                                            Telefon nr. {{call.phone_to_call}}
+                                    </ng-container>
                                 </div>
                                 <div class="dateTime">
-                                    {{agreement.date}}
+                                    <ng-container *ngIf="call.communes">
+                                            Ring mig op mellem <span class="tag">{{call.from}}</span>til <span class="tag">{{call.to}}</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="call.users">
+                                            Ring mig op mellem <span class="tag">{{call.from}}</span>til <span class="tag">{{call.to}}</span>
+                                    </ng-container>
                                 </div>
                             </div>
-
-            
-                            
-                            
                         </div>
                     </div>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <div class="pagination">
+                                    <div class="pageSize">
+                                        <div class="form-group ">
+                                            <label class="form-label" for="options">
+                                                Antal pr. side
+                                            </label>
+
+                                            <select #pageSizeValue class=" form-select" name="options"
+                                                id="options" (change)="changePageSizeCalls(pageSizeValue.value)">
+
+                                                <option value="10">10</option>
+
+                                                <option value="15">15</option>
+
+                                                <option value="25">25</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="page">
+                                        <button (click)="prevPageCalls()" [disabled]="currentPageCalls === 1">
+                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-left.svg">
+                                        </button>
+                                        <span>
+                                          {{currentPageCalls}}/{{ceil(totalItemsCalls / pageSizeCalls)}}
+                                        </span>
+                                        <button (click)="nextPageCalls()" [disabled]="(currentPageCalls) * pageSizeCalls >= totalItemsCalls">
+                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-right.svg">
+                                      </button>
+                                      </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
                 </div>
             </div>
         </div> <!-- Upcoming Agreements Row End-->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12">
                 <div class="inquiriesWrap">
                     <div class="topText row justify-content-between align-items-center">
@@ -289,7 +342,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </div>
