@@ -115,7 +115,7 @@
                 <div class="upcomingAgreementWrap">
                     <div class="topText row justify-content-between">
                         <h5>
-                            Upcoming aftaler
+                            Ring mig op forespørgsler
                         </h5>
                         <h5>
                             Se alle aftaler ({{calls?.length}})
@@ -125,18 +125,16 @@
                         <div class="row">
                             <div class="agreement" *ngFor="let call of calls">
                                 <div class="buttons">
-                                    <button class="call">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" >
-                                            <path d="M16 9L21 7V17L16 15M4 18.5H15C15.5523 18.5 16 18.0523 16 17.5V6.5C16 5.94772 15.5523 5.5 15 5.5H4C3.44772 5.5 3 5.94772 3 6.5V17.5C3 18.0523 3.44772 18.5 4 18.5Z"  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                    </button>
-                                    <button class="action">
+                                    <button class="action" (click)="toggleDropDown(call.id)">
                                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20 20" >
                                             <circle cx="10" cy="15" r="2" />
                                             <circle cx="10" cy="10" r="2" />
                                             <circle cx="10" cy="5" r="2" />
                                             </svg>
                                     </button>
+                                    <div *ngIf="isDropDownVisible && currentCallId === call.id" class="dropdown-menu">
+                                        <button (click)="removeCall()">Slet</button>
+                                    </div>
                                 </div>
                                 <div class="title">
                                     <ng-container *ngIf="call.communes">
@@ -190,11 +188,11 @@
                                             <select #pageSizeValue class=" form-select" name="options"
                                                 id="options" (change)="changePageSizeCalls(pageSizeValue.value)">
 
-                                                <option value="10">10</option>
+                                                <option value="9">9</option>
+
+                                                <option value="12">12</option>
 
                                                 <option value="15">15</option>
-
-                                                <option value="25">25</option>
 
                                             </select>
                                         </div>

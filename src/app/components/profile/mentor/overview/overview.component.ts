@@ -8,6 +8,8 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  isDropDownVisible = false;
+  currentCallId = null;
   pageSize;
   user: any;
   calls: any[] = [];
@@ -18,8 +20,8 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userDataService.getCurrentUser();
-    this.pageSize = 10;
-    this.pageSizeCalls = 10;
+    this.pageSize = 9;
+    this.pageSizeCalls = 9;
     this.loadCalls();
   }
   changePageSize(event){
@@ -57,5 +59,21 @@ export class OverviewComponent implements OnInit {
   }
   ceil(number: number): number {
     return Math.ceil(number);
+  }
+
+  toggleDropDown(callId: number): void {
+    this.isDropDownVisible = !this.isDropDownVisible;
+    this.currentCallId = callId;
+  }
+
+  removeCall(): void {
+    if (!this.currentCallId) {
+      return;
+    }
+    this.profileService.removeCall(this.currentCallId).subscribe(response => {
+      this.isDropDownVisible = false;
+      this.currentCallId = null;
+      this.loadCalls();
+    });
   }
 }

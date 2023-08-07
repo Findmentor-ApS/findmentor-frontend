@@ -310,7 +310,7 @@
 .tableWrap .pagination .page button:focus {
   outline: 0;
 }
-.tableWrap .pagination .page button svg {
+.tableWrap .pagination .page button img {
   width: 12px;
 }
 .tableWrap .pagination .page span {
@@ -327,4 +327,14 @@
     margin-right: 20px;
     margin-left: 20px;
   }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px;
+  z-index: 1000;
 }

@@ -316,6 +316,24 @@ export class ProfileService {
     );
   }
 
+  removeCall(id: number) {
+    const headers = new HttpHeaders().set('access_token',  this.authService.getAccessToken());
+    console.log(id);
+    return this.http.put<any>(`/me/calls/${id}/delete`, {id}, {headers}).pipe(
+      catchError(error => {
+        let errorMessage = 'Der er opstået en fejl!';
+        if (error.error) {
+          console.log(error.error);
+          errorMessage = typeof error.error === 'object' && error.error.message ? error.error.message : JSON.stringify(error.error);
+        }
+        return throwError(() => new Error(errorMessage));
+      }),
+      map(response => {
+        return response;
+      })
+    );
+  }
+
   searchCompany(cvr: string) {
     const headers = new HttpHeaders().set('access_token', this.authService.getAccessToken());
     const body = {
