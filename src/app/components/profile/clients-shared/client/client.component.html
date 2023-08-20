@@ -113,7 +113,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="dataWrap">
+                                                <div class="dataWrap" *ngIf="booking.communes">
                                                     <div class="noteWrap">
                                                         <button (click)="openModal(booking)">
                                                             Besvar
@@ -121,10 +121,11 @@
                                                         <app-booking-modal
                                                         *ngIf="booking.openModal" 
                                                         [mentor]="booking.mentor_id"
-                                                        [type]="booking.commune_id ? 'commune' : 'user'"
+                                                        [type]="'commune'"
                                                         [isModalVisible]="booking.openModal"
                                                         (closeModal)="closeModal(booking)"
                                                         [booking] = "booking"
+                                                        [fromClient]="true"
                                                         [fieldConfig]="{
                                                             help_text: {required: false, disabled: true},
                                                             last_name: {required: false, disabled: true},
@@ -139,6 +140,34 @@
                                                             start_date: {required: false, disabled: true},
                                                             end_date: {required: false, disabled: true},
                                                             is_final_evaluation: {required: false, disabled: true},
+                                                                                                      
+                                                        }"></app-booking-modal>
+                                                    </div>
+                                                </div>
+                                                <div class="dataWrap" *ngIf="booking.users">
+                                                    <div class="noteWrap">
+                                                        <button (click)="openModal(booking)">
+                                                            Besvar
+                                                        </button>
+                                                        <app-booking-modal
+                                                        *ngIf="booking.openModal" 
+                                                        [mentor]="booking.mentor_id"
+                                                        [type]="'user'"
+                                                        [isModalVisible]="booking.openModal"
+                                                        (closeModal)="closeModal(booking)"
+                                                        [booking] = "booking"
+                                                        [fromClient]="true"
+                                                        [fieldConfig]="{
+                                                            help_text: {required: false, disabled: true},
+                                                            last_name: {required: false, disabled: true},
+                                                            first_name: {required: false, disabled: true},
+                                                            cpr_number: {required: false, disabled: false},
+                                                            phone: {required: false, disabled: false},
+                                                            street: {required: false, disabled: false},
+                                                            city: {required: false, disabled: false},
+                                                            goal: {required: false, disabled: false},
+                                                            start_date: {required: false, disabled: false},
+                                                            end_date: {required: false, disabled: false},
                                                                                                       
                                                         }"></app-booking-modal>
                                                     </div>

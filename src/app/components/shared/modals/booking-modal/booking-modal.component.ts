@@ -17,6 +17,7 @@ export class BookingModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
   @Input() isModalVisible = false; // <- Add this variable
   @Input() fieldConfig: any; // <-- Add this to accept a configuration object
+  @Input() fromClient: boolean = false; // <-- Add this to accept a configuration object
 
   userType: string = '';
   accepted: boolean = false;
@@ -134,12 +135,29 @@ export class BookingModalComponent implements OnInit {
         }
         fieldsConfig[fieldName] = [initialValue, this.validatorsConfig[fieldName]];
       });
-    } else if (this.type == 'user') {
+    } else if (this.type == 'user' && !this.fromClient) {
       // Only 'help_text' field is required for 'user' type
       const initialValue = this.booking && this.booking.help_text ? this.booking.help_text : '';
       fieldsConfig = {
         help_text: [initialValue, this.validatorsConfig.help_text]
       };
+    }else if (this.type == 'user' && this.fromClient) {
+      const userClientFields = [
+        'help_text', 'first_name', 'last_name', 'cpr_number', 'phone', 'street',
+        'city', 'goal', 'start_date', 'end_date',
+        'help_type'
+      ];
+
+      // Creating config for each field
+      userClientFields.forEach(fieldName => {
+        // If a booking is provided and contains this field, use the booking's value as the initial value
+          
+        const initialValue = this.booking && this.booking[fieldName] ? this.booking[fieldName] : '';
+        if(fieldName == 'help_type' && initialValue) {
+          this.selectedHelpType = initialValue;
+        }
+        fieldsConfig[fieldName] = [initialValue, this.validatorsConfig[fieldName]];
+      });
     }
 
     // Creating the form group
@@ -176,6 +194,30 @@ export class BookingModalComponent implements OnInit {
     }, 3000);
 
 
+  }
+  
+
+  updateBookingForUser() {
+    this.formGroupBooking.value.id = this.booking.id;
+    this.mentorService.updateBookingForUser(this.booking.id, this.formGroupBooking.value).subscribe(
+      {
+        next: (res) => {
+          this.success = true;
+          this.errorMessage = '';
+          setTimeout(() => {
+            this.success = false;
+            this.closeModal.emit();
+            window.location.reload();
+      
+          }, 3000);
+        },
+        error: (error) => {
+          this.success = false;
+          this.errorMessage = error.message
+        },
+        complete: () => console.log('complete')
+      }
+    )
   }
 
   hideToast() {

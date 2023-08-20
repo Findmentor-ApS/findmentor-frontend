@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="modal-body" *ngIf="type === 'user'">
+            <div class="modal-body" *ngIf="type === 'user' && !fromClient">
                 <div class="col-md-12">
                     <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
                         errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
@@ -166,6 +166,109 @@
                     </app-text-area>
                 </div>
             </div>
+
+            <div class="modal-body" *ngIf="type === 'user' && fromClient">
+                <div class="col-md-12">
+                    <app-text-area label="Hvad kan jeg hjælpe med" placeholder="Jeg søger hjælp til..." type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vejledning af gennem uddannelse..." rows="6"
+                        [required]="fieldConfig?.help_text?.required ?? true"
+                        [disabled]="fieldConfig?.help_text?.disabled ?? false"
+                        [validators]="validatorsConfig.help_text"
+                        [control]="$any(formGroupBooking.get('help_text'))" [maxlength]="750">
+                    </app-text-area>
+                </div>
+                <hr class="divider">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="Fornavn" placeholder="Borgers Fornavn" type="text"
+                        errorMessage="Indtast venligst et fornavn" hintMessage="eks. Lars"
+                        [required]="fieldConfig?.first_name?.required ?? true"
+                        [disabled]="fieldConfig?.first_name?.disabled ?? false"
+                        [control]="$any(formGroupBooking.get('first_name'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="Efternavn" placeholder="Borgers Efternavn" type="text"
+                        errorMessage="Indtast venligst et efternavn" hintMessage="eks. Larsen"
+                        [required]="fieldConfig?.last_name?.required ?? true"
+                        [disabled]="fieldConfig?.last_name?.disabled ?? false"
+                        [validators]="validatorsConfig.last_name"
+                        [control]="$any(formGroupBooking.get('last_name'))">
+                        </app-input>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="CPR-Nummer" placeholder="Borgers CPR-Nummer" type="number"
+                        errorMessage="Indtast venligst gyldigt CPR-Nummer" hintMessage="eks. 0101011990"
+                        [required]="fieldConfig?.cpr_number?.required ?? true"
+                        [disabled]="fieldConfig?.cpr_number?.disabled ?? false"
+                        [validators]="validatorsConfig.cpr_number"
+                        [control]="$any(formGroupBooking.get('cpr_number'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="Telefon nr." placeholder="Borgers telefon nummer" type="text"
+                        errorMessage="Indtast venligst et gyldigt telefon nummer" hintMessage="50501010"
+                        [required]="fieldConfig?.phone?.required ?? true"
+                        [disabled]="fieldConfig?.phone?.disabled ?? false"
+                        [validators]="validatorsConfig.phone"
+                        [control]="$any(formGroupBooking.get('phone'))">
+                        </app-input>
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <app-input label="Adresse" placeholder="Borgers adresse" type="text"
+                            errorMessage="Indtast venligst en korrekt adresse" hintMessage="eks Amagergade 1 st tv"
+                            [required]="fieldConfig?.street?.required ?? true"
+                            [disabled]="fieldConfig?.street?.disabled ?? false"
+                            [validators]="validatorsConfig.street"
+                            [control]="$any(formGroupBooking.get('street'))">
+                        </app-input>
+                    </div>
+                    <div class="col-md-6">
+                        <app-input label="By" placeholder="Borgers by" type="text"
+                            errorMessage="Indtast venligst en by" hintMessage="eks København"
+                            [required]="fieldConfig?.city?.required ?? true"
+                            [disabled]="fieldConfig?.city?.disabled ?? false"
+                            [validators]="validatorsConfig.city"
+                            [control]="$any(formGroupBooking.get('city'))">
+                        </app-input>
+                    </div>
+                </div>
+                <hr class="divider">
+                <div class="col-md-12">
+                    <app-text-area label="Overordnet mål" placeholder="Målbeskrivelse" type="text"
+                        errorMessage="Udfyld venligst feltet" hintMessage="Vi ønsker at opnå..." rows="6"
+                        [required]="fieldConfig?.goal?.required ?? true"
+                        [disabled]="fieldConfig?.goal?.disabled ?? false"
+                        [validators]="validatorsConfig.goal"
+                        [control]="$any(formGroupBooking.get('goal'))" [maxlength]="250">
+                    </app-text-area>
+                </div>
+                <hr class="divider">
+                <div class="col-md-12">
+                    <app-input label="Vælg startsperiode" type="date"
+                        errorMessage="Indtast venligst startsdato" hintMessage="Vælg dato"
+                        [required]="fieldConfig?.start_date?.required ?? true"
+                        [disabled]="fieldConfig?.start_date?.disabled ?? false"
+                        [validators]="validatorsConfig.start_date"
+                        [control]="$any(formGroupBooking.get('start_date'))">
+                    </app-input>
+                </div>
+                <div class="col-md-12">
+                    <app-input label="Vælg slutsperiode" type="date"
+                        errorMessage="Indtast venligst slutdato" hintMessage="Vælg dato"
+                        [required]="fieldConfig?.end_date?.required ?? true"
+                        [disabled]="fieldConfig?.end_date?.disabled ?? false"
+                        [validators]="validatorsConfig.end_date"
+                        [control]="$any(formGroupBooking.get('end_date'))">
+                    </app-input>
+                </div>
+            </div>
+
+
             <hr class="divider">
             <div class="modal-footer">
                 <div class="col-md-12">
@@ -197,14 +300,17 @@
                             <label class="form-toggle-label "></label>
                         </div>
 
+                        <!-- If new booking-->
                         <ng-container *ngIf="!booking">
                             <button (click)="bookMentor()" [disabled]="!formGroupBooking.valid" class="save">Send</button>
                             <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
                         </ng-container>
+                        <!-- If booking is already made for commune-->  
                         <ng-container *ngIf="booking && (booking.status != '-1' || booking.status !='-2')  && userType=='commune'">
                             <button (click)="updateBookMentor()" [disabled]="!formGroupBooking.valid" class="save">Gem</button>
                             <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
                         </ng-container>
+                        <!-- If booking is already made, mentor can accept and decline from booking-->
                         <ng-container *ngIf="booking && booking.status == 0 && userType=='mentor'">
                             <button (click)="acceptBookingRequest(booking.id)" [disabled]="isStatusDisabled" class="save">Accepter</button>
                             <button class="reject" (click)="declineBookingRequest(booking.id)" [disabled]="isStatusDisabled" data-modal-close>Afvis</button>
@@ -220,6 +326,11 @@
                                     <p class="alert-text">Bookingen er afvist.</p>
                                 </div>
                             </div>
+                        </ng-container>
+                        <!-- From client, change user booking-->
+                        <ng-container *ngIf="booking && fromClient">
+                            <button (click)="updateBookingForUser()" class="save">Gem</button>
+                            <button class="reject" (click)="closeBooking()" data-modal-close>Annuller</button>
                         </ng-container>
                     </div>
                 </div>
