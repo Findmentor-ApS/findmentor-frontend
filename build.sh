@@ -1,2 +1,3 @@
 npm install
-npm run start --host 0.0.0.0 --disable-host-check
+npm install -g @angular/cli
+ng serve --host 0.0.0.0 --disable-host-check
