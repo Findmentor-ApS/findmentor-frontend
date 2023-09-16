@@ -9,6 +9,7 @@ USER findmentor
 
 WORKDIR /usr/src/app
 RUN chown -R findmentor:findmentor /usr/src/app
+ENV npm_config_cache /tmp/npm
 
 EXPOSE 4200
 ENTRYPOINT ["sh", "build.sh"]
