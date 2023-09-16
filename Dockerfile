@@ -9,5 +9,7 @@ USER findmentor
 
 WORKDIR /usr/src/app
 COPY package*.json ./
+RUN chown -R findmentor:findmentor /usr/src/app
+
 EXPOSE 4200
 ENTRYPOINT ["sh", "build.sh"]
