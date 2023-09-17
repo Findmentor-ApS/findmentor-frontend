@@ -305,7 +305,7 @@
   }
   .tableWrap table.table tfoot tr td .pagination {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .tableWrap .pagination .page button {
     background-color: transparent;
