@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://dev.findmentor.dk:8080"
+  apiUrl: "http://dev.findmentor.dk/api"
 };
 
 /*
