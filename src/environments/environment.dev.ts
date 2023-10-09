@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://findmentor.dk/api"
+  apiUrl: "https://dev.findmentor.dk/api"
 };
