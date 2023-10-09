@@ -204,12 +204,8 @@
 }
   .pagination {
   display: flex;
-<<<<<<< Updated upstream
-  justify-content: flex-end;
-=======
   justify-content: end;
   margin-bottom: 40px;
->>>>>>> Stashed changes
 }
  .pagination .page button {
   background-color: transparent;
