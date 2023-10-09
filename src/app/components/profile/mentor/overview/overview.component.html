@@ -175,43 +175,37 @@
                             </div>
                         </div>
                     </div>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7">
-                                <div class="pagination">
-                                    <div class="pageSize">
-                                        <div class="form-group ">
-                                            <label class="form-label" for="options">
-                                                Antal pr. side
-                                            </label>
+                    <div class="pagination">
+                        <div class="pageSize">
+                            <div class="form-group ">
+                                <label class="form-label" for="options">
+                                    Antal pr. side
+                                </label>
 
-                                            <select #pageSizeValue class=" form-select" name="options"
-                                                id="options" (change)="changePageSizeCalls(pageSizeValue.value)">
+                                <select #pageSizeValue class=" form-select" name="options"
+                                    id="options" (change)="changePageSizeCalls(pageSizeValue.value)">
 
-                                                <option value="9">9</option>
+                                    <option value="9">9</option>
 
-                                                <option value="12">12</option>
+                                    <option value="12">12</option>
 
-                                                <option value="15">15</option>
+                                    <option value="18">18</option>
 
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="page">
-                                        <button (click)="prevPageCalls()" [disabled]="currentPageCalls === 1">
-                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-left.svg">
-                                        </button>
-                                        <span>
-                                          {{currentPageCalls}}/{{ceil(totalItemsCalls / pageSizeCalls)}}
-                                        </span>
-                                        <button (click)="nextPageCalls()" [disabled]="(currentPageCalls) * pageSizeCalls >= totalItemsCalls">
-                                            <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-right.svg">
-                                      </button>
-                                      </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="page">
+                            <button (click)="prevPageCalls()" [disabled]="currentPageCalls === 1">
+                                <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-left.svg">
+                            </button>
+                            <span>
+                                {{currentPageCalls}}/{{ceil(totalItemsCalls / pageSizeCalls)}}
+                            </span>
+                            <button (click)="nextPageCalls()" [disabled]="(currentPageCalls) * pageSizeCalls >= totalItemsCalls">
+                                <img class=""src="{{assetPath}}/svgs/svg-icons/chevron-right.svg">
+                            </button>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div> <!-- Upcoming Agreements Row End-->

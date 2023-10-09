@@ -179,106 +179,12 @@
   font-weight: 600;
 }
 
-/* Data table  */
-.tableWrap .table {
-  border-color: transparent;
-}
-.tableWrap .table tr {
-  background-color: #fff;
-  padding: 20px;
-}
-.tableWrap .table th,
-.tableWrap .table td,
-.tableWrap .table tr {
-  border: 0;
-  padding: 15px 20px;
-}
-.tableWrap .table thead tr {
-  border-bottom: 10px solid #f4f4f4;
-}
-.tableWrap .table tbody tr {
-  position: relative;
-}
-.tableWrap .table tbody tr::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  width: 97%;
-  height: 0.5px;
-  background-color: #b9babf4f;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.tableWrap .table thead tr th,
-.tableWrap .table tbody tr td {
-  position: relative;
-}
-.tableWrap .table thead tr th:not(:last-child)::after,
-.tableWrap .table tbody tr td:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 10px;
-  width: 0.5px;
-  height: 60%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #b9babf4f;
-}
-.tableWrap .table thead tr th:last-child {
-  width: 35%;
-}
-
-.tableWrap .table tbody tr td .dataWrap {
+ .pagination .pageSize .form-group {
   display: flex;
   align-items: center;
   column-gap: 8px;
 }
-.tableWrap .table tbody tr td .dataWrap .noteWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.tableWrap .table tbody tr td {
-  font-weight: 600;
-  vertical-align: middle;
-}
-.tableWrap .table tbody tr td .dataWrap .icon {
-  width: 30px;
-  height: 30px;
-  background-color: #000;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tableWrap .table tbody tr td .dataWrap .icon svg {
-  fill: #fff;
-  width: 18px;
-}
-
-.tableWrap .table tbody tr td .dataWrap .noteWrap p {
-  color: #b9babf;
-  white-space: nowrap;
-  width: 160px;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.tableWrap .table tbody tr td .dataWrap .noteWrap button {
-  background-color: #a8d6b6;
-  border: 0;
-  color: #373c3a;
-  font-weight: 800;
-  padding: 5px 20px;
-  border-radius: 4px;
-}
-.tableWrap .pagination .pageSize .form-group {
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-}
-.tableWrap .pagination .pageSize .form-group select {
+ .pagination .pageSize .form-group select {
   width: fit-content;
   background-color: transparent;
   padding-bottom: 0;
@@ -288,32 +194,34 @@
   font-weight: 500;
   height: fit-content;
 }
-.tableWrap .pagination {
+ .pagination {
   display: flex;
   column-gap: 10px;
   align-items: center;
 }
-.tableWrap .pagination .pageSize .form-group select:focus {
+ .pagination .pageSize .form-group select:focus {
   outline: 0;
 }
-.tableWrap table.table tfoot tr {
-  background-color: transparent;
-}
-.tableWrap table.table tfoot tr td .pagination {
+  .pagination {
   display: flex;
+<<<<<<< Updated upstream
   justify-content: flex-end;
+=======
+  justify-content: end;
+  margin-bottom: 40px;
+>>>>>>> Stashed changes
 }
-.tableWrap .pagination .page button {
+ .pagination .page button {
   background-color: transparent;
   border: 0;
 }
-.tableWrap .pagination .page button:focus {
+ .pagination .page button:focus {
   outline: 0;
 }
-.tableWrap .pagination .page button img {
+ .pagination .page button img {
   width: 12px;
 }
-.tableWrap .pagination .page span {
+ .pagination .page span {
   color: #b9babf;
   font-weight: 600;
 }

@@ -10,22 +10,18 @@ import { UserDataService } from 'src/app/services/user-data.service';
 export class OverviewComponent implements OnInit {
   isDropDownVisible = false;
   currentCallId = null;
-  pageSize;
   user: any;
   calls: any[] = [];
   pageSizeCalls;
   currentPageCalls: number = 1;
   totalItemsCalls: number = 0;
+  totalItemCalls: number = 0;
   constructor(private userDataService: UserDataService, private profileService: ProfileService, @Inject('ASSET_PATH') public assetPath: string) { }
 
   ngOnInit(): void {
     this.user = this.userDataService.getCurrentUser();
-    this.pageSize = 9;
     this.pageSizeCalls = 9;
     this.loadCalls();
-  }
-  changePageSize(event){
-    this.pageSize = event;
   }
   loadCalls(): void {
     this.profileService.getCalls(this.currentPageCalls, this.pageSizeCalls).subscribe(response => {
@@ -35,6 +31,7 @@ export class OverviewComponent implements OnInit {
       // remove total from response
       this.calls.pop();
       // If the response includes a total count, use it to calculate the total pages.
+      
     });
   }
 
