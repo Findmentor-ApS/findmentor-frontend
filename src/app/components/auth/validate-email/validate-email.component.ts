@@ -12,6 +12,7 @@ export class ValidateEmailComponent implements OnInit {
   errorMessage = '';
   userType: string;
   loginToken: string;
+  accessToken: string;
   loading = true;
   success = false;
   error = false;
